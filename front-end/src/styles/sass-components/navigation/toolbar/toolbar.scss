@@ -1,0 +1,17 @@
+.toolbar{
+  font-size: 2rem;
+  color: $color-white;
+  background-image:linear-gradient(to top, #434343 , #000000);
+  transition: all 1s;
+  @include respond(phone){
+    font-size: 1.5rem;
+  }
+}
+.openToolbar{
+  // color:$color-link;
+  margin-left: 30rem;
+  transform: rotate(180deg);
+}
+.closeToolbar{
+  transform: rotate(0deg);
+}
