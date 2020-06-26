@@ -42,7 +42,7 @@ class Layout extends Component{
        <Fragment>
           <Toolbar classes={this.state.toolbar} toggleSideDrawer={this.sideDrawerToggleHandler}/>
            {sideDrawer}
-          <div>modal</div>
+           {/*<div>modal</div>*/}
           <Main/>
        </Fragment>
      )

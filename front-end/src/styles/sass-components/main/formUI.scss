@@ -1,10 +1,19 @@
 .formUI{
+  min-height: 40rem;
   box-shadow: 1px 1px 10px rgba($color-link,.4);
-  width:60%;
-  display: inline-block;
-  margin: 4rem auto;
+  width:30%;
+  display: flex;
+  // display: inline-block;
+  padding:auto;
   border-radius: 8px;
   overflow: hidden;
+  @include respond(tab-port){
+    width:50%;
+  }
+  @include respond(phone){
+    width:90%;
+    flex-flow: column;
+  }
   &__heading{
     background: $color-grey-dark-3;
     color: $color-white;
@@ -19,6 +28,7 @@
     font-size: 1.5rem;
   }
   &__details{
+    flex-grow: 1;
     padding: 1rem 2rem;
 
     background: rgba($color-link,.7);
@@ -28,10 +38,6 @@
     }
   }
   &__name,&__email,&__pass,&__pass2{
-    &-label{
-      font-size: 1.5rem;
-      margin: 2rem 0rem;
-    }
     &-input{
       width: 100%;
       font-size: 1.5rem;

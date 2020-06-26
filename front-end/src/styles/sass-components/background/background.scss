@@ -1,0 +1,49 @@
+ .background{
+   z-index: -1;
+   background: rgba($color-grey,.3);
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   &__circle{
+     height: 10rem;
+     width: 10rem;
+     border-radius: 100px;
+     background: $color-grey-dark-3;
+   }
+    &__circle1{
+      height: 17.5rem;
+      width: 17.5rem;
+      position:absolute;
+      top:30%;
+      left: 10%;
+    }
+    &__circle2{
+      height: 17.5rem;
+      width: 17.5rem;
+      position:absolute;
+      top:20%;
+      left: 50%;
+    }
+    &__circle3{
+      position:absolute;
+      top:10%;
+      left: 30%;
+    }
+    &__circle4{
+      height: 15rem;
+      width: 15rem;
+      position:absolute;
+      bottom:20%;
+      right: 45%;
+    }
+    &__circle5{
+      height: 5rem;
+      width: 5rem;
+      position:absolute;
+      bottom:40%;
+      right: 10%;
+    }
+    &__circle{
+
+    }
+ }

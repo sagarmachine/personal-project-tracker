@@ -26,15 +26,9 @@
        <div className="formUI">
            <div className="formUI__heading">
                <h1 className="formUI__head">Log In</h1>
-               <p className="formUI__para">Create your Account</p>
            </div>
            <div className="formUI__details">
                <div className="formUI__email">
-                   <label
-                   htmlFor="Sname"
-                   className="formUI__email-label">
-                   Email
-                   </label><br/>
                    <input
                    onChange={this.onChangeHandler}
                    id="Semail"
@@ -45,11 +39,6 @@
                    value={this.state.email}/>
                </div>
                <div className="formUI__pass">
-                   <label
-                   htmlFor="Spass"
-                   className="formUI__pass-label">
-                   Password
-                   </label><br/>
                    <input
                    onChange={this.onChangeHandler}
                    id="Spass"

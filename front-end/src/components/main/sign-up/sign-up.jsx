@@ -33,11 +33,6 @@
            </div>
            <div className="formUI__details">
                <div className="formUI__name">
-                   <label
-                   htmlFor="Sname"
-                   className="formUI__name-label">
-                   Name
-                   </label><br/>
                    <input
                    onChange={this.onChangeHandler}
                    id="Sname"
@@ -50,11 +45,6 @@
                    value={this.state.name}/>
                </div>
                <div className="formUI__email">
-                   <label
-                   htmlFor="Sname"
-                   className="formUI__email-label">
-                   Email
-                   </label><br/>
                    <input
                    onChange={this.onChangeHandler}
                    id="Semail"
@@ -64,11 +54,6 @@
                    name="email" />
                </div>
                <div className="formUI__pass">
-                   <label
-                   htmlFor="Spass"
-                   className="formUI__pass-label">
-                   Password
-                   </label><br/>
                    <input
                    onChange={this.onChangeHandler}
                    id="Spass"
@@ -78,11 +63,6 @@
                    name="password" />
                </div>
                <div className="formUI__pass2">
-                   <label
-                   htmlFor="Spass2"
-                   className="formUI__pass2-label">
-                   Confirm Password
-                   </label><br/>
                    <input onChange={this.onChangeHandler}
                    id="Spass2"
                    type="password"
