@@ -1,4 +1,18 @@
 .addProject{
+  & hr{
+    border: none;
+    border-bottom:.5px dashed rgba($color-white,.3);
+    margin-bottom: 1.5rem;
+  }
+  & h6{
+    color: $color-white;
+    margin: 1rem;
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-bottom: 0;
+  }
+  position: relative;
+  background: rgba($color-link,.7);
   align-self: flex-start;
   height: 100%;
   width: 100%;
@@ -6,4 +20,51 @@
   @include respond(phone){
     margin:5rem 0rem;
   }
+  &__heading{
+    text-transform: lowercase;
+    letter-spacing: 1.5px;
+    font-weight: 100;
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: $color-white;
+  }
+  &__item{
+    margin: 1rem;
+    &-name,&-id,&-des,&-date{
+      @include respond(tab-port){
+        width: 100%;
+      }
+      border: none;
+      padding: 1rem;
+      color: $color-white;
+      background: rgba($color-grey-dark-2,.5);
+      height: 3rem;
+      width: 47%;
+      border-left: 5px solid transparent;
+      &:focus{
+        border-left: 5px solid $color-white;
+        outline: none;
+      }
+    }
+    &-des{
+      height: 6rem;
+    }
+    &-date{
+
+    }
+  }
+}
+.addProject__img{
+   height: 85%;
+   background-size: cover;
+   background-position: bottom;
+   background-image:linear-gradient(to right,rgba($color-grey-dark-3,.9),rgba($color-grey-dark-3,.9)), url("../../../assets/images/add-project-image.jpg");
+   position:absolute;
+   top: 5rem;
+   right: 1rem;
+   width: 50%;
+   @include respond(tab-port){
+     display: none;
+   }
 }
