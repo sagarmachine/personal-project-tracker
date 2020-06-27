@@ -8,6 +8,7 @@
 
      return (
       <div className="nav__items">
+         <Link to="/dashboard" className="nav__items-item">Dashboard</Link>          
          <Link to="/" className="nav__items-item">signUp</Link>
          <Link to="/login" className="nav__items-item">logIn</Link>
       </div>

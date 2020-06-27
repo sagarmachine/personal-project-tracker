@@ -1,0 +1,16 @@
+.dark-btn{
+  display: inline-block;
+  font-size: 2.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem 3rem;
+  background: rgba($color-grey-dark-3,1);
+  backface-visibility: hidden;
+  &:hover{
+    animation: shake .5s ease-out;
+  }
+  @include respond(phone){
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+  }
+}

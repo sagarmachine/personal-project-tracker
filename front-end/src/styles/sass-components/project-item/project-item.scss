@@ -1,0 +1,65 @@
+.projectItem{
+  box-shadow: .5px .5px 5px rgba($color-grey-dark-3,.2);
+  background: rgba($color-grey-dark-2,.2);
+  padding: 2rem 1.5rem;
+  display: flex;
+  margin: 1rem 0;
+  @include respond(phone){
+    flex-flow: column;
+    margin: 1rem 0;
+  }
+  &__details{
+    flex-grow: 1;
+    & h3{
+      letter-spacing: 1.5px;
+      font-size: 4rem;
+      font-weight: lighter;
+      margin-bottom: 1rem;
+      @include respond(phone){
+        letter-spacing: 1px;
+        font-size: 2.5rem;
+      }
+    }
+    & p{
+      letter-spacing: 1.5px;
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      @include respond(phone){
+        letter-spacing: 1px;
+        font-size: 1.5rem;
+      }
+    }
+  }
+  &__edits{
+    font-size: 2.5rem;
+    &-list{
+       list-style: none;
+    }
+    &-item{
+      padding: 1rem 2rem;
+      transition: all .2s;
+    }
+    &-board{
+      color: $color-green;
+      &:hover{
+        background: rgba($color-green,.75);
+        color: $color-white;
+      }
+    }
+    &-update{
+      color: $color-blue;
+      &:hover{
+        background: rgba($color-blue,.75);
+        color: $color-white;
+      }
+    }
+    &-delete{
+      color: $color-red;
+      &:hover{
+            background: rgba($color-red,.75);
+            color: $color-white;
+      }
+    }
+  }
+}
