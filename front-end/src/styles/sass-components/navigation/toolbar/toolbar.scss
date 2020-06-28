@@ -11,6 +11,9 @@
   // color:$color-link;
   margin-left: 30rem;
   transform: rotate(180deg);
+  @include respond(phone){
+      margin-left: 25rem;
+    }
 }
 .closeToolbar{
   transform: rotate(0deg);

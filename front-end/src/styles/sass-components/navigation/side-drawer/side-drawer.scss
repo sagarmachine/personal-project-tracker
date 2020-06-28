@@ -21,6 +21,9 @@
 .open{
   visibility: visible;
   width: 30rem;
+  @include respond(phone){
+    width: 25rem;
+  }
 }
 .close{
   width: 0;
