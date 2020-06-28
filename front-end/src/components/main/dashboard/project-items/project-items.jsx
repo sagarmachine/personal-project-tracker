@@ -18,6 +18,20 @@ import axios from "axios"
         })
    }
 
+   // shouldComponentUpdate=(nextProps,nextState)=>{
+   //    if((nextState.projects!==this.state.projects) && this.state.projects.length!==0){
+   //      axios.get('/v1/project')
+   //      .then(response=>{
+   //        this.setState({
+   //          projects:response.data
+   //        })
+   //        console.log(response);
+   //      }).catch(e=>{
+   //        console.log(e);
+   //      })
+   //    }
+   // }
+
    render(){
       let projectItem =  this.state.projects.map(project=>(
         <ProjectItem name={project.projectName} des={project.projectDescription}/>

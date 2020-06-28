@@ -1,5 +1,6 @@
  import React, {Component} from "react"
 import axios from "axios";
+import {Link} from "react-router-dom"
 
  class ProjectItem extends Component{
 
@@ -23,21 +24,21 @@ import axios from "axios";
                     </div>
                     <div className="projectItem__edits">
                         <ul className="projectItem__edits-list">
-                            <a href="#">
+                            <Link to="">
                                 <li className="projectItem__edits-board projectItem__edits-item">
                                     <i className="fa fa-flag-checkered pr-1"> Project Board</i>
                                 </li>
-                            </a>
-                            <a href="#">
+                            </Link>
+                            <Link to="">
                                 <li className="projectItem__edits-update projectItem__edits-item">
                                     <i className="fa fa-edit pr-1"> Update Project Info</i>
                                 </li>
-                            </a>
-                            <a href="">
+                            </Link>
+                            <Link to="/dashboard">
                                 <li onClick={this.onClickHandler} className="projectItem__edits-delete projectItem__edits-item">
                                     <i className="fa fa-minus-circle pr-1"> Delete Project</i>
                                 </li>
-                            </a>
+                            </Link>
                         </ul>
                     </div>
                 </div>
