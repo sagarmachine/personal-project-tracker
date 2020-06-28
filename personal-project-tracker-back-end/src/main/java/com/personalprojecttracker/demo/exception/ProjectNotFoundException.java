@@ -1,0 +1,16 @@
+package com.personalprojecttracker.demo.exception;
+
+public class ProjectNotFoundException extends RuntimeException{
+
+    String message;
+
+    public ProjectNotFoundException(String message) {
+        super(message);
+        this.message=message;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+}
