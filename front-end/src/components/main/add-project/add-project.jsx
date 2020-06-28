@@ -21,7 +21,8 @@ import {Link} from "react-router-dom"
     }
 
     onSubmitHandler=()=>{
-      console.log("in");
+
+      console.log(this.props);
        const newProject= {
          projectName:this.state.projectName,
          projectIdentifier:this.state.projectIdentifier,
@@ -30,8 +31,9 @@ import {Link} from "react-router-dom"
          endingDate: this.state.endingDate
        }
 
-       axios.post("/v1/project",newProject).then(response=>{
+       axios.post("/v1/project",newProject,{headers:{"Content-Type":"application/json"}}).then(response=>{
            console.log(response);
+           this.props.history.push("/dashboard");
        }).catch(e=>{
           console.log(e);
        })
@@ -88,12 +90,10 @@ import {Link} from "react-router-dom"
                 onChange={this.onChangeHandler}/>
           </div>
           <div className="addProject__item">
-                <Link to="/dashboard">
                 <input
                 onClick={this.onSubmitHandler}
                 type="submit"
                 className="submitBtn" />
-                </Link>
           </div>
           <div className="addProject__img">
           </div>
