@@ -1,7 +1,16 @@
  import React, {Component} from "react"
-
+import axios from "axios";
 
  class ProjectItem extends Component{
+
+   onClickHandler=()=>{
+     axios.delete("/v1/project/"+this.props.name).then(res=>{
+       console.log(res);
+     }).catch(e=>{
+       console.log(e);
+     })
+   }
+
 
    render(){
 
@@ -9,8 +18,8 @@
          // <!-- Project Item Component -->
         <div className="projectItem">
                     <div className="projectItem__details">
-                        <h3>Spring / React Project</h3>
-                        <p>Project to create a Kanban Board with Spring Boot and React</p>
+                        <h3>{this.props.name}</h3>
+                        <p>{this.props.des}</p>
                     </div>
                     <div className="projectItem__edits">
                         <ul className="projectItem__edits-list">
@@ -25,7 +34,7 @@
                                 </li>
                             </a>
                             <a href="">
-                                <li className="projectItem__edits-delete projectItem__edits-item">
+                                <li onClick={this.onClickHandler} className="projectItem__edits-delete projectItem__edits-item">
                                     <i className="fa fa-minus-circle pr-1"> Delete Project</i>
                                 </li>
                             </a>
