@@ -1,6 +1,8 @@
 package com.personalprojecttracker.demo.advice;
 
 
+import com.personalprojecttracker.demo.exception.ProjectAlreadyExist;
+import com.personalprojecttracker.demo.exception.ProjectNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,10 @@ public class ProjectAdiviceController {
 
     @ExceptionHandler(value = {DataIntegrityViolationException.class})
     public ResponseEntity<String> dataIntegrationViolationExceptionHandler(DataIntegrityViolationException ex, WebRequest request){
-        return new ResponseEntity<>("Data Already Exists", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("DataIntegration Error ->"+ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = {RuntimeException.class})
+    @ExceptionHandler(value = {ProjectNotFoundException.class, ProjectAlreadyExist.class})
     public ResponseEntity<String> runtimeExceptionHandler(RuntimeException ex,WebRequest request){
       return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
     }

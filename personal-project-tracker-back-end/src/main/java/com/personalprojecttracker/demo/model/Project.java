@@ -3,6 +3,8 @@ package com.personalprojecttracker.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.data.repository.cdi.Eager;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,7 +12,8 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -53,4 +56,11 @@ public class Project {
     void setUpdatedDate(){
         this.updatedDate=new Date();
     }
+
+    @OneToOne(mappedBy ="project",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    Backlog backlog;
 }
+
+
+
+
