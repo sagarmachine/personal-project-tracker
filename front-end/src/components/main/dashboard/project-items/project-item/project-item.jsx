@@ -1,6 +1,6 @@
  import React, {Component} from "react"
 // import axios from "axios";
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
  class ProjectItem extends Component{
 
@@ -18,9 +18,11 @@
                     </div>
                     <div className="projectItem__edits">
                         <ul className="projectItem__edits-list">
+                              <Link to={"/projectBoard/"+this.props.identifier}>
                                 <li className="projectItem__edits-board projectItem__edits-item">
                                     <i className="fa fa-flag-checkered pr-1"> Project Board</i>
                                 </li>
+                              </Link>
                                 <li className="projectItem__edits-update projectItem__edits-item">
                                     <i className="fa fa-edit pr-1"> Update Project Info</i>
                                 </li>
