@@ -3,6 +3,7 @@ import Toolbar from "../navigation/toolbar/toolbar";
 import SideDrawer from "../navigation/side-drawer/side-drawer";
 import Main from "../main/main";
 
+
 class Layout extends Component{
   state={
     sideDrawer:null,
@@ -41,7 +42,7 @@ class Layout extends Component{
      return (
        <Fragment>
           <Toolbar classes={this.state.toolbar} toggleSideDrawer={this.sideDrawerToggleHandler}/>
-           {sideDrawer}
+            {sideDrawer}
            {/*<div>modal</div>*/}
           <Main/>
        </Fragment>

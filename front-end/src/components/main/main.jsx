@@ -6,6 +6,7 @@ import Background from "../UI/background/background"
 import Dashboard from "./dashboard/dashboard"
 import AddProject from "./add-project/add-project"
 import ProjectBoard from "./project-board/project-board"
+import AddTask from "./project-board/add-task/add-task";
 
  class Main extends Component{
 
@@ -13,18 +14,14 @@ import ProjectBoard from "./project-board/project-board"
 
      return (
         <div className="main">
-          <Switch>
-             <Route exact path="/" component={Background}/>
-             <Route exact path="/login" component={Background}/>
-             <Route path="/projectBoard" component={Background}/>
-             <Route exact path="/dashboard" component={Background}/>
-          </Switch>
+             <Background />
           <Switch>
               <Route exact path="/" component={SignUp}/>
               <Route exact path="/login" component={LogIn}/>
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/addProject" component={AddProject}/>
-              <Route path="/projectBoard" component={ProjectBoard}/>
+              <Route exact path="/projectBoard" component={ProjectBoard}/>
+              <Route exact path="/addTask" component={AddTask}/>
           </Switch>
         </div>
      )

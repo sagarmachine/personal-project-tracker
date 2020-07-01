@@ -74,13 +74,18 @@ if(this.state.loadingProjects===1)
        background:"rgba(255,255,255,.3)",
      }
      if(this.state.totalProjects===0){
-      projectItem = <Link to="/addProject"><h1 style={style}><i class="fa fa-plus" aria-hidden="true"></i> Add a project</h1></Link>
+      projectItem = <Link to="/addProject"><h1 style={style}><i className="fa fa-plus" aria-hidden="true"></i> Add a project</h1></Link>
     }else{
       if(this.state.deleting){
         projectItem = <Spinner/>
       }else{
         projectItem =  this.state.projects.map((project,i)=>(
-          <ProjectItem key={project.projectName+i} index={i} delete={this.deleteProjectHandler} name={project.projectName} des={project.projectDescription} identifier={project.projectIdentifier}/>
+          <ProjectItem
+          key={project.projectName+i}
+          index={i}
+          delete={this.deleteProjectHandler}
+          name={project.projectName} des={project.projectDescription}
+          identifier={project.projectIdentifier}/>
           // console.log(arr)
         ))
       }

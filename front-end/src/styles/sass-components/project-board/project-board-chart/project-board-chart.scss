@@ -1,0 +1,20 @@
+.projectBoard__chart{
+  font-size: 3rem;
+  color: #000;
+  & > *{
+    margin: rem 0rem;
+    margin-left: 6rem;
+  }
+}
+.projectBoard__span{
+  position: absolute;
+  color: $color-grey;
+  font-weight: 1000;
+  letter-spacing: 1.5px;
+  text-transform:capitalize;
+  left: 10rem;
+  font-size: 2rem;
+  width: 30rem;
+  padding: 1rem;
+  border-radius: 3px;
+}

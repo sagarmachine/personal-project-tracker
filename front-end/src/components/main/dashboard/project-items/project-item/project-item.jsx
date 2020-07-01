@@ -3,7 +3,7 @@
 import {Link} from "react-router-dom"
 
  class ProjectItem extends Component{
-
+    
 
 
 
@@ -18,7 +18,10 @@ import {Link} from "react-router-dom"
                     </div>
                     <div className="projectItem__edits">
                         <ul className="projectItem__edits-list">
-                              <Link to={"/projectBoard/"+this.props.identifier}>
+                              <Link to={{
+                                pathname:"/projectBoard",
+                                params:{projectIdentifier:this.props.identifier}
+                              }}>
                                 <li className="projectItem__edits-board projectItem__edits-item">
                                     <i className="fa fa-flag-checkered pr-1"> Project Board</i>
                                 </li>

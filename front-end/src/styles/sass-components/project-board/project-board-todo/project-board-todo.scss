@@ -1,0 +1,9 @@
+.projectBoard__todo,.projectBoard__inDevelopment,.projectBoard__completed{
+  background: rgba($color-lightblue,.8);
+  padding: 6rem 2rem 6rem 10rem;
+  clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}

@@ -4,8 +4,31 @@
   width : 100vw;
   margin: 2rem;
   padding: 1rem;
-  
-}
-.dark-btn--modifier{
-
+   &__li{
+    // list-style: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+   &::before {
+     content: "|";
+     font-size: 10rem;
+     margin-right:  4rem;
+     color: $color-grey;
+     font-weight: 100;
+     position: relative;
+     top:-8px;
+    }
+    &::after {
+      content: "\2600";
+      font-size: 5rem;
+      margin-right:  4rem;
+      color: #3dd466;
+      // background-clip: text;
+      // background-image: linear-gradient(to right bottom,$color-green,$color-cyan);
+      font-weight: 100;
+      position: absolute;
+      top: 25%;
+      left:-6.5px;
+     }
+  }
 }

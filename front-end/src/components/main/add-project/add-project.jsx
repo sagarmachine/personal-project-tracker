@@ -8,7 +8,7 @@ import axios from "axios"
       projectIdentifier: "",
       projectDescription: "",
       startingDate: "",
-      endingDate: ""
+      endingDate: "",
     }
 
     onChangeHandler=(e)=>{
