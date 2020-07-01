@@ -2,7 +2,9 @@ package com.personalprojecttracker.demo.controller;
 
 
 import com.personalprojecttracker.demo.model.Project;
+import com.personalprojecttracker.demo.model.User;
 import com.personalprojecttracker.demo.repository.ProjectRepository;
+import com.personalprojecttracker.demo.repository.UserRepository;
 import com.personalprojecttracker.demo.service.IBindingResultErrorService;
 import com.personalprojecttracker.demo.service.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 
 @RestController
@@ -28,35 +31,39 @@ public class ProjectController {
     @Autowired
     ProjectRepository projectRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("")
-    public ResponseEntity<ArrayList<Project>> getAllProjects(){
-       return  new ResponseEntity(projectRepository.findAll(),HttpStatus.OK);
+    public ResponseEntity<?> getAllProjects(Principal principal){
+        User user =userRepository.findByEmail(principal.getName());
+       return  new ResponseEntity<>(user.getProjects(),HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable String id){
-     return new ResponseEntity<>( projectService.getProjectById(id),HttpStatus.OK);
+    public ResponseEntity<Project> getProjectById(@PathVariable String id, Principal principal){
+     return new ResponseEntity<>( projectService.getProjectById(id,principal),HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<?> postNewProject(@Valid @RequestBody Project project, BindingResult result){
+    public ResponseEntity<?> postNewProject(@Valid @RequestBody Project project, BindingResult result,Principal principal){
         if(result.hasErrors())
              return bindingResultErrorService.getErrorResponse(result);
 
-        return new ResponseEntity<>(projectService.saveOrUpdateProject(project), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(projectService.saveOrUpdateProject(project,principal), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProjectById(@ PathVariable String id){
-        projectService.deleteProjectById(id);
+    public ResponseEntity<?> deleteProjectById(@ PathVariable String id,Principal principal){
+        projectService.deleteProjectById(id,principal);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, BindingResult result){
+    public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, BindingResult result,Principal principal){
         if(result.hasErrors())
             return bindingResultErrorService.getErrorResponse(result);
 
-        return new ResponseEntity<>(projectService.saveOrUpdateProject(project), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(projectService.saveOrUpdateProject(project,principal), HttpStatus.ACCEPTED);
     }
 }

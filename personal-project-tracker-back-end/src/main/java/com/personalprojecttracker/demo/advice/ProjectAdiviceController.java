@@ -20,7 +20,7 @@ public class ProjectAdiviceController {
     }
 
     @ExceptionHandler(value = {ProjectNotFoundException.class, ProjectAlreadyExist.class})
-    public ResponseEntity<String> runtimeExceptionHandler(RuntimeException ex,WebRequest request){
+    public ResponseEntity<String> runtimeExceptionHandler(ProjectNotFoundException ex,WebRequest request){
       return  new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
     }
 }

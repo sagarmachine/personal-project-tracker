@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("api/v1")
@@ -23,36 +24,40 @@ public class ProjectTaskController {
     IProjectTaskService projectTaskService;
 
   @PostMapping("/projecttask/{projectIdentifier}")
-    ResponseEntity<?> addNewProjectTask(@PathVariable String  projectIdentifier, @Valid @RequestBody ProjectTask projectTask, BindingResult bindingResult){
+    ResponseEntity<?> addNewProjectTask(@PathVariable String  projectIdentifier,
+                                         @Valid @RequestBody ProjectTask projectTask,
+                                        BindingResult bindingResult, Principal principal){
 
       if(bindingResult.hasErrors())
           return bindingResultErrorService.getErrorResponse(bindingResult);
-      return new ResponseEntity<>(projectTaskService.addProjectTask(projectIdentifier,projectTask), HttpStatus.ACCEPTED);
+      return new ResponseEntity<>(projectTaskService.addProjectTask(projectIdentifier,projectTask,principal), HttpStatus.ACCEPTED);
   }
 
   @GetMapping("/project/{projectIdentifier}/projecttask")
-   ResponseEntity<?> getAllProjectTaskByProjectIdentifier(@PathVariable String projectIdentifier){
-    return new ResponseEntity<>(projectTaskService.getAllTaskByProjectIdentifier(projectIdentifier),HttpStatus.OK);
+   ResponseEntity<?> getAllProjectTaskByProjectIdentifier(@PathVariable String projectIdentifier,Principal principal){
+    return new ResponseEntity<>(projectTaskService.getAllTaskByProjectIdentifier(projectIdentifier,principal),HttpStatus.OK);
   }
 
   @GetMapping("/projecttask/{projectTaskIdentifier}")
-    ResponseEntity<ProjectTask> getProjectTaskByProjectTaskIdentifier(@PathVariable String projectTaskIdentifier){
-       return new ResponseEntity<>(projectTaskService.getProjectByProjectTaskIdentifier(projectTaskIdentifier),HttpStatus.OK);
+    ResponseEntity<ProjectTask> getProjectTaskByProjectTaskIdentifier(@PathVariable String projectTaskIdentifier,Principal principal){
+       return new ResponseEntity<>(projectTaskService.getProjectByProjectTaskIdentifier(projectTaskIdentifier,principal),HttpStatus.OK);
   }
 
   @PutMapping("/projecttask/{projectTaskIdentifier}")
-    ResponseEntity<?> updateProjectTaskByProjectTaskIdentifier(@PathVariable String projectTaskIdentifier, @Valid @RequestBody ProjectTask projectTask, BindingResult bindingResult){
+    ResponseEntity<?> updateProjectTaskByProjectTaskIdentifier(@PathVariable String projectTaskIdentifier,
+                                                               @Valid @RequestBody ProjectTask projectTask,
+                                                               BindingResult bindingResult,Principal principal){
       if(bindingResult.hasErrors())
           return bindingResultErrorService.getErrorResponse(bindingResult);
 
-      return new ResponseEntity<>(projectTaskService.updateProjectTaskByProjectTaskIdentifier(projectTaskIdentifier,projectTask),HttpStatus.ACCEPTED);
+      return new ResponseEntity<>(projectTaskService.updateProjectTaskByProjectTaskIdentifier(projectTaskIdentifier,projectTask,principal),HttpStatus.ACCEPTED);
 
   }
 
   @DeleteMapping("/projecttask/{projectTaskIdentifier}")
   @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    void deleteProjectTaskByProjectTaskIdentifier(@PathVariable String projectTaskIdentifier){
-        projectTaskService.deleteProjectTaskByprojecttaskIdentifier(projectTaskIdentifier);
+    void deleteProjectTaskByProjectTaskIdentifier(@PathVariable String projectTaskIdentifier,Principal principal){
+        projectTaskService.deleteProjectTaskByprojecttaskIdentifier(projectTaskIdentifier,principal);
   }
 
 }

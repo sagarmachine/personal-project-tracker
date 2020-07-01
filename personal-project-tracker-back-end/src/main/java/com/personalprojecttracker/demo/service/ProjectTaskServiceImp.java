@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.Set;
 
 
@@ -25,9 +26,9 @@ import java.util.Set;
     ProjectTaskRepository projectTaskRepository;
 
     @Override
-    public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask) {
+    public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask, Principal principal) {
         Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
-        if(backlog==null)
+        if(backlog==null || !principal.getName().equals(backlog.getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project found with projectIdentifier=\""+projectIdentifier+"\"");
        // projectTask.setProjectTaskIdentifier(projectTask.getProjectTaskIdentifier().toUpperCase());
         backlog.setProjectTaskSequence(backlog.getProjectTaskSequence()+1);
@@ -40,37 +41,50 @@ import java.util.Set;
     }
 
     @Override
-    public ProjectTask getProjectByProjectTaskIdentifier(String projectTaskIdentifier) {
+    public ProjectTask getProjectByProjectTaskIdentifier(String projectTaskIdentifier, Principal principal) {
 
-      ProjectTask projectIdentifier = projectTaskRepository.findByProjectTaskIdentifier( projectTaskIdentifier.toUpperCase());
-        if(projectIdentifier==null)
+      ProjectTask projectTask = projectTaskRepository.findByProjectTaskIdentifier( projectTaskIdentifier.toUpperCase());
+        if(projectTask==null || !principal.getName().equals(projectTask.getBacklog().getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project task found with projectTaskIdentifier=\""+projectTaskIdentifier.toUpperCase()+"\"");
-        return projectIdentifier;
+        return projectTask;
     }
 
     @Override
-    public Set<ProjectTask> getAllTaskByProjectIdentifier(String projectIdentifier) {
+    public Set<ProjectTask> getAllTaskByProjectIdentifier(String projectIdentifier, Principal principal) {
         Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier.toUpperCase());
-        if(backlog==null)
+        if(backlog==null || !principal.getName().equals(backlog.getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project found with projectIdentifier=\""+projectIdentifier.toUpperCase()+"\"");
 return backlog.getProjectTasks();
     }
 
     @Override
-    public void deleteProjectTaskByprojecttaskIdentifier(String projectTaskIdentifier) {
+    public void deleteProjectTaskByprojecttaskIdentifier(String projectTaskIdentifier, Principal principal) {
         ProjectTask projectTask = projectTaskRepository.findByProjectTaskIdentifier( projectTaskIdentifier.toUpperCase());
-        if(projectTask==null)
+        log.info(principal+"  ");
+        log.info(projectTask.getBacklog()+"  ");
+        log.info(projectTask.getBacklog().getProject()+"  ");
+        log.info(projectTask.getBacklog().getProject().getUser()+"  ");
+        if(projectTask==null || ! principal.getName().equals(projectTask.getBacklog().getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project task found with projectTaskIdentifier=\""+projectTaskIdentifier+"\"");
-        log.info("DELETING------>"+projectTask.getProjectTaskIdentifier());
-        projectTaskRepository.delete(projectTask);
+        String projectIdentifier= projectTaskIdentifier.substring(0,projectTaskIdentifier.lastIndexOf("-"));
+        Backlog backlog= backlogRepository.findByProjectIdentifier(projectIdentifier);
+        Set <ProjectTask>projectTasks= backlog.getProjectTasks();
+        projectTasks.remove(projectTask);
+           backlogRepository.save(backlog);
+       projectTaskRepository.deleteById(projectTask.getId());
+//        log.info("DELETING------>"+projectTask.getProjectTaskIdentifier());
     }
 
     @Override
-    public ProjectTask updateProjectTaskByProjectTaskIdentifier(String projectTaskIdentifier, ProjectTask projectTask) {
-        if(projectTask.getId()==0 && !projectTaskRepository.findById(projectTask.getId()).isPresent())
+    public ProjectTask updateProjectTaskByProjectTaskIdentifier(String projectTaskIdentifier, ProjectTask projectTask, Principal principal) {
+        log.info("principal-->" +principal);
+        if(projectTask.getId()==0 && !projectTaskRepository.findById(projectTask.getId()).isPresent() )
             throw  new ProjectNotFoundException("no project task found with project id=\""+projectTask.getId()+"\"");
 
         ProjectTask projectTaskTemp=projectTaskRepository.findById(projectTask.getId()).get();
+        if( !principal.getName().equals(projectTaskTemp.getBacklog().getProject().getUser().getEmail()))
+            throw  new ProjectNotFoundException("no project task found with project id=\""+projectTask.getId()+"\"");
+
         projectTask.setBacklog(projectTaskTemp.getBacklog());
         projectTask.setCreatedDate(projectTaskTemp.getCreatedDate());
         projectTask.setProjectTaskIdentifier(projectTaskTemp.getProjectTaskIdentifier());

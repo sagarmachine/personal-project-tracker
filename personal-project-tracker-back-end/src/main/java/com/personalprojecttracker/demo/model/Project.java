@@ -2,11 +2,9 @@ package com.personalprojecttracker.demo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.data.repository.cdi.Eager;
-
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -59,6 +57,12 @@ public class Project {
 
     @OneToOne(mappedBy ="project",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     Backlog backlog;
+
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnore
+    User user;
+
 }
 
 

@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Data
 @Setter
 @Getter
 @Builder
@@ -59,7 +58,7 @@ public class ProjectTask {
     }
 
 
-    @ManyToOne
+    @ManyToOne(cascade =CascadeType.REFRESH)
     @JoinColumn
     @JsonIgnore
     Backlog backlog;
