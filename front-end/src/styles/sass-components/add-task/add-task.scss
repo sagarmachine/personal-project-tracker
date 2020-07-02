@@ -1,0 +1,33 @@
+.addTask{
+  background: rgba($color-link, .4);
+  font-size: 1rem;
+  flex-flow: column;
+  & > * > *,::placeholder{
+    font-size: 2.5rem;
+    color: $color-link;
+  }
+  &__modifier{
+
+    &1{
+      color:yellow;
+    }
+    &2{
+      color: orangered;
+      font-weight: bolder;
+    }
+    &3{
+      display: flex;
+      justify-content:  flex-end;
+      margin: 1rem auto;
+      border: none;
+      color: $color-white;
+      letter-spacing: 1.5px;
+      &:active{
+        transform: translateY(4px);
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}

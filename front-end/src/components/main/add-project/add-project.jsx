@@ -8,7 +8,7 @@ import {Link} from "react-router-dom"
       projectIdentifier: "",
       projectDescription: "",
       startingDate: "",
-      endingDate: ""
+      endingDate: "",
     }
 
     onChangeHandler=(e)=>{
@@ -90,10 +90,10 @@ import {Link} from "react-router-dom"
                 onChange={this.onChangeHandler}/>
           </div>
           <div className="addProject__item">
-                <input
-                onClick={this.onSubmitHandler}
-                type="submit"
-                className="submitBtn" />
+                    <input
+                    onClick={this.onSubmitHandler}
+                    type="submit"
+                    className="submitBtn" />
           </div>
           <div className="addProject__img">
           </div>

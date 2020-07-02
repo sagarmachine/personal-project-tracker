@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+::selection{
+  color: white;
+  background: $color-grey-dark-3;
+}
+
 html{
   // 1 rem
   font-size: 62.5%;

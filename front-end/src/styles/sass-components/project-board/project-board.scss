@@ -1,0 +1,53 @@
+.projectBoard{
+  align-self: flex-start;
+  color:$color-white;
+  width : 100vw;
+  margin: 2rem;
+  padding: 1rem;
+   &__ul{
+     max-width: 25vw;
+   }
+   &__li{
+    // list-style: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 50vw;
+    margin-bottom: 2rem;
+    position: relative;
+    left: 7rem;
+    @include respond(phone){
+      left: -3rem;
+    }
+   &::before {
+     content: "|";
+     font-size: 10rem;
+     margin-right:  4rem;
+     color: $color-grey;
+     font-weight: 100;
+     position: absolute;
+     transform: translate(-50%,-50%);
+     top: 50%;
+     left:-5.5rem;
+     @include respond(phone){
+       display: none;
+     }
+    }
+    &::after {
+      content: "\25CF";
+      font-size: 5.5rem;
+      margin-right:  4rem;
+      color: #3dd466;
+      // background-clip: text;
+      // background-image: linear-gradient(to right bottom,$color-green,$color-cyan);
+      font-weight: 100;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      top: 50%;
+      left:-5.5rem;
+      @include respond(phone){
+        display: none;
+      }
+     }
+  }
+}

@@ -1,5 +1,5 @@
  import React, {Component} from "react";
- import {Link} from "react-router-dom";
+ import {NavLink} from "react-router-dom";
 
 
  class NavItem extends Component{
@@ -8,9 +8,9 @@
 
      return (
       <div className="nav__items">
-         <Link to="/dashboard" className="nav__items-item">Dashboard</Link>          
-         <Link to="/" className="nav__items-item">signUp</Link>
-         <Link to="/login" className="nav__items-item">logIn</Link>
+         <NavLink activeStyle={{background:"rgba(255,255,255,.5)",color:"black",transition:"all .4s"}} exact to="/dashboard" className="nav__items-item">Dashboard</NavLink>
+         <NavLink activeStyle={{background:"rgba(255,255,255,.5)",color:"black",transition:"all .4s"}} exact to="/" className="nav__items-item">signUp</NavLink>
+         <NavLink activeStyle={{background:"rgba(255,255,255,.5)",color:"black",transition:"all .4s"}} exact to="/login" className="nav__items-item">logIn</NavLink>
       </div>
      )
    }
