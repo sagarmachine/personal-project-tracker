@@ -3,8 +3,8 @@
   width: 8rem;
   height: 8rem;
   box-sizing: content-box;
-  border: 1rem solid $color-grey;
-  box-shadow: 0rem 0rem 20pt $color-grey;
+  border: 1rem solid $color-secondary-pink;
+  box-shadow: 0rem 0rem 20pt $color-secondary-pink;
   outline-offset: 1rem;
   margin: 4rem 2rem;
   justify-content: center;
@@ -21,7 +21,19 @@
     border: 1rem solid #0b2624;
     background: $color-link;
     // background-clip: none;
-    color: green;
+    color: $color-green;
+  }
+  &__todo{
+       border: 1rem solid $color-grey;
+       box-shadow: 0rem 0rem 20pt $color-grey;
+  }
+  &__inDevelopment{
+       border: 1rem solid $color-purple;
+       box-shadow: 0rem 0rem 20pt $color-purple;
+  }
+  &__completed{
+      border: 1rem solid $color-green;
+      box-shadow: 0rem 0rem 20pt $color-green;
   }
 }
 

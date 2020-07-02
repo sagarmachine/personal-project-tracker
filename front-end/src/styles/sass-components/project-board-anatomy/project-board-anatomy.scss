@@ -1,0 +1,33 @@
+.projectBoard{
+  &__anatomy{
+   width: 100%;
+   height: 100%;
+   font-size: 1.5rem;
+   color: $color-link;
+  }
+  &__head{
+    padding: 1.5rem 2.5rem;
+  }
+  &__body{
+    padding: 1.5rem 2.5rem;
+    text-transform:capitalize;
+  }
+  &__foot{
+    padding: .5rem 2.5rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    background: $color-grey-dark-2;
+    &-modifier{
+      &2{
+        background: $color-red;
+        color: $color-white;
+        margin-left: 2rem;
+      }
+      &1{
+        color: $color-white;
+        background: $color-cyan;
+      }
+    }
+  }
+}

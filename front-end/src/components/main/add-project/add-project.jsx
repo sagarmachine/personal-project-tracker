@@ -1,6 +1,6 @@
  import React, {Component} from "react"
 import axios from "axios"
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
  class AddProject extends Component{
     state={
@@ -90,10 +90,10 @@ import axios from "axios"
                 onChange={this.onChangeHandler}/>
           </div>
           <div className="addProject__item">
-                <input
-                onClick={this.onSubmitHandler}
-                type="submit"
-                className="submitBtn" />
+                    <input
+                    onClick={this.onSubmitHandler}
+                    type="submit"
+                    className="submitBtn" />
           </div>
           <div className="addProject__img">
           </div>

@@ -1,9 +1,10 @@
  import React, {Component} from "react"
-import AddTask from "./add-task/add-task"
 import {Link} from "react-router-dom"
 import TodoTask from "./todo-task/todo-task"
 import InDevelopmentTask from "./in-development-task/in-development-task"
 import CompletedTask from "./completed-task/completed-task"
+import axios from "axios";
+import Spinner from "../../UI/Spinner/Spinner"
 
  class ProjectBoard extends Component{
 
@@ -12,6 +13,7 @@ import CompletedTask from "./completed-task/completed-task"
      todoToggle:"hidden",
      inDevelopmentToggle:"hidden",
      completedToggle:"hidden",
+     data:[]
    }
 
    onClickHandler=(name)=>{
@@ -26,16 +28,99 @@ import CompletedTask from "./completed-task/completed-task"
        })
    }
 
+   componentDidMount=()=>{
+     const identifier = "/v1/project/"+this.props.location.state.projectIdentifier+"/projecttask"
+     console.log(identifier);
+     axios.get(identifier)
+     .then(res=>{
+       console.log(res);
+       this.setState({
+         data:res.data
+       })
+     }).catch(e=>{
+       console.log(e);
+     })
+   }
+
+
    render(){
+     let todo = null;
+     if(this.state.data.length===0){
+         todo = <Spinner />
+     }else{
+         todo = <ul className="projectBoard__ul">
+           {this.state.data.map(data=>{
+             return (data.status==="TO_DO")?
+                    <li  className="projectBoard__li">
+                        <TodoTask
+                            summary={data.summary}
+                            status={data.status}
+                            preference={data.preference}
+                            id={data.projectTaskIdentifier}
+                            updateID={data.id}
+                            projectIdentifier={this.props.location.state.projectIdentifier}
+                            />
+                   </li>
+                   :null
+           })
+         }
+         </ul>
+     }
 
+     let inDevelopment = null;
+     if(this.state.data.length===0){
+         inDevelopment = <Spinner />
+     }else{
+         inDevelopment = <ul className="projectBoard__ul">
+           {this.state.data.map(data=>{
+             return (data.status==="IN_PROGRESS")?
+                    <li  className="projectBoard__li">
+                        <InDevelopmentTask
+                            summary={data.summary}
+                            status={data.status}
+                            preference={data.preference}
+                            id={data.projectTaskIdentifier}
+                            updateID={data.id}
+                            projectIdentifier={this.props.location.state.projectIdentifier}
+                            />
+                   </li>
+                   :null
+           })
+         }
+         </ul>
+     }
 
+     let completed = null;
+     if(this.state.data.length===0){
+         completed = <Spinner />
+     }else{
+         completed = <ul className="projectBoard__ul">
+           {this.state.data.map(data=>{
+             return (data.status==="DONE")?
+                    <li  className="projectBoard__li">
+                        <CompletedTask
+                            summary={data.summary}
+                            status={data.status}
+                            preference={data.preference}
+                            id={data.projectTaskIdentifier}
+                            updateID={data.id}
+                            projectIdentifier={this.props.location.state.projectIdentifier}
+                            />
+                   </li>
+                   :null
+           })
+         }
+         </ul>
+     }
+
+  //   console.log(this.props.location.state);
      return (
        <div className="projectBoard">
              <Link to={{
                pathname:"/addTask",
-               params:{
-                 // projectIdentifier:this.props.location.params.projectIdentifier,
-
+               state:{
+                 projectIdentifier:this.props.location.state.projectIdentifier,
+                 projectName:this.props.location.state.projectName
             }}}>
                 <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
             </Link>
@@ -43,45 +128,33 @@ import CompletedTask from "./completed-task/completed-task"
             <div className='projectBoard__chart'>
                 <div
                 onClick={()=>this.onClickHandler("todoToggle")}
-                className="projectBoardTogger">
-                     <i class="fa fa-tasks" aria-hidden="true"></i>
+                className="projectBoardTogger projectBoardTogger__todo">
+                     <i className="fa fa-tasks" aria-hidden="true"></i>
                      <span className="projectBoard__span">todo list tasks</span>
                 </div>
                 <div
                 className={this.state.todoToggle}>
-                  <ul>
-                    <li  className="projectBoard__li">
-                        <TodoTask />
-                    </li>
-                  </ul>
+                 {todo}
                 </div>
                 <div
                 onClick={()=>this.onClickHandler("inDevelopmentToggle")}
-                className="projectBoardTogger">
-                     <i class="fa fa-spinner" aria-hidden="true"></i>
+                className="projectBoardTogger projectBoardTogger__inDevelopment">
+                     <i className="fa fa-spinner" aria-hidden="true"></i>
                       <span className="projectBoard__span">in development tasks</span>
                 </div>
                 <div
                 className={this.state.inDevelopmentToggle}>
-                <ul>
-                  <li className="projectBoard__li">
-                     <InDevelopmentTask/>
-                  </li>
-                </ul>
+                  {inDevelopment}
                 </div>
                 <div
                 onClick={()=>this.onClickHandler("completedToggle")}
-                className="projectBoardTogger">
-                      <i class="fa fa-check" aria-hidden="true"></i>
+                className="projectBoardTogger projectBoardTogger__completed">
+                      <i className="fa fa-check" aria-hidden="true"></i>
                        <span className="projectBoard__span">compeleted tasks</span>
                 </div>
                 <div
                 className={this.state.completedToggle}>
-                <ul>
-                  <li  className="projectBoard__li">
-                     <CompletedTask/>
-                  </li>
-                </ul>
+                   {completed}
                 </div>
                 <div
                        style={{
@@ -90,7 +163,7 @@ import CompletedTask from "./completed-task/completed-task"
                          fontSize:"3.5rem"
                        }}
                        className="projectBoardTogger">
-                      <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                      <i className="fa fa-hourglass-end" aria-hidden="true"></i>
                 </div>
           </div>
        </div>
