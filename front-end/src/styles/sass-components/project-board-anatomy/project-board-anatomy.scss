@@ -22,12 +22,24 @@
       &2{
         background: $color-red;
         color: $color-white;
+        visibility: hidden;
+        opacity: 0;
         margin-left: 2rem;
       }
       &1{
-        color: $color-white;
         background: $color-cyan;
+        color: $color-white;
+        visibility: hidden;
+        opacity: 0;
       }
     }
   }
+}
+.projectBoard__anatomy:hover > .projectBoard__foot > a > .projectBoard__foot-modifier1{
+  visibility: visible;
+  opacity: 1;
+}
+.projectBoard__anatomy:hover > .projectBoard__foot  > .projectBoard__foot-modifier2{
+  visibility: visible;
+  opacity: 1;
 }

@@ -47,7 +47,7 @@ import {Link} from "react-router-dom"
                          projectIdentifier:this.props.projectIdentifier
                        }
                      }}>
-                         <input type="Submit" className="projectBoard__foot-modifier1 submitBtn" value="Update"/>
+                     <input type="Submit" className="projectBoard__foot-modifier1 submitBtn" value="Update"/>
                     </Link >
                     <input onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn" value="delete"/>
                 </div>

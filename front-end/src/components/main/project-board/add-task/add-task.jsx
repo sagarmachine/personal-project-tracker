@@ -31,6 +31,10 @@ import axios from "axios"
      axios.post("/v1/projecttask/"+this.props.location.state.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
      .then(res=>{
        console.log("success");
+       this.props.history.push("/projectBoard",{
+         projectIdentifier:this.props.location.state.projectIdentifier,
+         projectName:this.props.location.state.projectName
+       })
      }).catch(e=>{
        console.log("failure");
      })
@@ -88,18 +92,18 @@ import axios from "axios"
                 </select>
             </div>
 
-            <Link to={{
-              pathname:"/projectBoard",
-              state:{
-                projectIdentifier:this.props.location.state.projectIdentifier,
-                projectName:this.props.location.state.projectName
-              }
-            }}>
+            {/*/ <Link to={{
+            //   pathname:"/projectBoard",
+            //   state:{
+            //     projectIdentifier:this.props.location.state.projectIdentifier,
+            //     projectName:this.props.location.state.projectName
+            //   }
+            // }}>
+            // </Link>*/}
                 <input
                     onClick={this.onSubmitHandler}
                     type="submit"
                     className="dark-btn addTask__modifier3" />
-            </Link>
 
         </div>
      )

@@ -10,7 +10,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
 
    state={
-     todoToggle:"hidden",
+     todoToggle:"visible",
      inDevelopmentToggle:"hidden",
      completedToggle:"hidden",
      data:[]
@@ -44,6 +44,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
 
    render(){
+     console.log(this.props.location.state);
      let todo = null;
      if(this.state.data.length===0){
          todo = <Spinner />
