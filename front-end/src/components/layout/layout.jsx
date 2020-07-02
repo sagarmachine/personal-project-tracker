@@ -2,6 +2,9 @@ import React, {Component,Fragment} from "react"
 import Toolbar from "../navigation/toolbar/toolbar";
 import SideDrawer from "../navigation/side-drawer/side-drawer";
 import Main from "../main/main";
+import axios from "axios";
+
+
 
 
 class Layout extends Component{
@@ -10,6 +13,7 @@ class Layout extends Component{
     toolbar:["toolbar","closeToolbar"],
     toggle:true
   }
+  
 
   sideDrawerToggleHandler=()=>{
     const newToggle = !this.state.toggle
@@ -34,7 +38,11 @@ class Layout extends Component{
 
 
    render(){
-     let sideDrawer = null;
+
+   
+
+    
+    let sideDrawer = null;
      if(this.state.sideDrawer){
         sideDrawer = <SideDrawer classes={this.state.sideDrawer}/>
 

@@ -1,11 +1,24 @@
  import React, {Component} from "react"
+ import axios from "axios"
 
 
  class LogIn extends Component{
    state={
      email:"",
-     password:""
+     password:"",
+     authenticating:false,
    }
+
+   componentDidUpdate=()=>{
+      
+    if(this.state.authenticating===true)
+    axios.post("http://localhost:8081/api/v1/user/login",this.state).then(data=>{console.log(data);
+                                                                                  this.setState({authenticating:false})});
+  }
+
+  loginHandler=()=>{
+    this.setState({authenticating:true})
+  }
 
    onChangeHandler=(e)=>{
      let name = e.target.name
@@ -17,7 +30,7 @@
        )
      })
      setTimeout(()=>{
-       console.log(this.state);
+     //  console.log(this.state);
      },0)
    }
    render(){
@@ -49,7 +62,7 @@
                    value={this.state.password}/>
                </div>
 
-               <input type="submit" className="submitBtn"  value="Log In"/>
+               <input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
            </div>
 
        </div>

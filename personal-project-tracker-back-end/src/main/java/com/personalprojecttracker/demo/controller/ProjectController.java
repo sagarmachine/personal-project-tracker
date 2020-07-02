@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/v1/project")
-@CrossOrigin({"http://localhost:3000"})
+@CrossOrigin(value = {"http://localhost:3000"},exposedHeaders = "Authentication")
 public class ProjectController {
 
     @Autowired

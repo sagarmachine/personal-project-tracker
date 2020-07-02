@@ -25,7 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/user")
 @RefreshScope
-@CrossOrigin({"http://localhost:3000"})
+@CrossOrigin(value = {"http://localhost:3000"},exposedHeaders = "Authentication")
 public class UserController {
 
 //    @Value("${test}")

@@ -14,7 +14,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("api/v1")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(value = {"http://localhost:3000"},exposedHeaders = "Authentication")
 public class ProjectTaskController {
 
     @Autowired

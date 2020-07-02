@@ -1,11 +1,22 @@
  import React, {Component} from "react"
+import axios from "axios"
+
 
  class SignUp extends Component{
     state={
       name:"",
       email:"",
       password:"",
-      confirmPassword:""
+      confirmPassword:"",
+      registering:false,
+    }
+
+
+    componentDidUpdate=()=>{
+      
+      if(this.state.registering===true)
+      axios.post("http://localhost:8081/api/v1/user/register",this.state).then(data=>{console.log(data);
+                                                                                         this.setState({registering:false})});
     }
 
     onChangeHandler=(e)=>{
@@ -18,8 +29,12 @@
         )
       })
       setTimeout(()=>{
-        console.log(this.state);
+     //   console.log(this.state);
       },0)
+    }
+
+    onSubmitHandler=()=>{
+      this.setState({registering:true})
     }
 
    render(){
