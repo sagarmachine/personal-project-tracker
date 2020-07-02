@@ -49,7 +49,7 @@ import axios from "axios"
                 }}>
                     <input type="Submit" className="projectBoard__foot-modifier1 submitBtn" value="Update"/>
                 </Link >
-                    <input type="Submit" className="projectBoard__foot-modifier2 submitBtn" value="delete"/>
+                    <input onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn" value="delete"/>
                 </div>
             </div>
         </div>
