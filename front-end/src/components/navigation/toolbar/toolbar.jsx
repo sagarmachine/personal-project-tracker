@@ -6,7 +6,12 @@ import NavItems from "./nav-items/nav-items"
    render(){
      return (
         <div className={this.props.classes[0]}>
-               <NavItems classes={this.props.classes[1]} toggleSideDrawer={this.props.toggleSideDrawer}/>
+               <NavItems
+               logIn={this.props.logIn}
+               logOut={this.props.logOut}
+               email={this.props.email}
+               classes={this.props.classes[1]}
+               toggleSideDrawer={this.props.toggleSideDrawer}/>
         </div>
      )
    }

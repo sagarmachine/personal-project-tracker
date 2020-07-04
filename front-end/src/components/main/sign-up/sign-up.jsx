@@ -13,10 +13,9 @@ import axios from "axios"
 
 
     componentDidUpdate=()=>{
-      
       if(this.state.registering===true)
-      axios.post("http://localhost:8081/api/v1/user/register",this.state).then(data=>{console.log(data);
-                                                                                         this.setState({registering:false})});
+      axios.post("/v1/user/register",this.state)
+      .then(data=>{console.log(data);                                                                                   this.setState({registering:false})});
     }
 
     onChangeHandler=(e)=>{
@@ -35,6 +34,7 @@ import axios from "axios"
 
     onSubmitHandler=()=>{
       this.setState({registering:true})
+      this.props.email(this.state.email);
     }
 
    render(){

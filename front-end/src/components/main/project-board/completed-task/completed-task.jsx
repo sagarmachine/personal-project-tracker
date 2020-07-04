@@ -4,6 +4,18 @@
 
  class CompletedTask extends Component{
 
+   deleteHandler=()=>{
+      if(window.confirm('Are you sure you would like to accept this reply as your favor?')===true){
+         axios.delete("/v1/").then(res=>{
+          console.log(res);
+        }).catch(e=>{
+          alert(e);
+        })
+      }else{
+        alert("not proceeded");
+      }
+   }
+
    render(){
      let preference = null;
      let classPriority = null;

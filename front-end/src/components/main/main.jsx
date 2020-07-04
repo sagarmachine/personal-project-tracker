@@ -17,8 +17,8 @@ import UpdateTask from "./project-board/update-task/update-task";
         <div className="main">
              <Background />
           <Switch>
-              <Route exact path="/" component={SignUp}/>
-              <Route exact path="/login" component={LogIn}/>
+              <Route exact path="/"><SignUp email={(email)=>this.props.email(email)}/></Route>
+              <Route exact path="/login"><LogIn email={(email)=>this.props.email(email)}/></Route>
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/addProject" component={AddProject}/>
               <Route exact path="/projectBoard" component={ProjectBoard}/>

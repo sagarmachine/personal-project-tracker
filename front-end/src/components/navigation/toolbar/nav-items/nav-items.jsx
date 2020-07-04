@@ -8,7 +8,10 @@ import NavItem from "./nav-item/nav-item"
      return (
           <nav className="nav">
              <i onClick={this.props.toggleSideDrawer} className={"nav__toggler fa fa-arrow-circle-right "+this.props.classes}></i>
-             <NavItem/>
+             <NavItem
+             logIn={this.props.logIn}
+             logOut={this.props.logOut}
+             email={this.props.email}/>
           </nav>
      )
    }

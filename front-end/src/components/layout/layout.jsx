@@ -2,7 +2,7 @@ import React, {Component,Fragment} from "react"
 import Toolbar from "../navigation/toolbar/toolbar";
 import SideDrawer from "../navigation/side-drawer/side-drawer";
 import Main from "../main/main";
-import axios from "axios";
+// import axios from "axios";
 
 
 
@@ -11,9 +11,11 @@ class Layout extends Component{
   state={
     sideDrawer:null,
     toolbar:["toolbar","closeToolbar"],
-    toggle:true
+    toggle:true,
+    logInName:"",
+    logIn:false
   }
-  
+
 
   sideDrawerToggleHandler=()=>{
     const newToggle = !this.state.toggle
@@ -35,13 +37,26 @@ class Layout extends Component{
      }
    }
 
+   logInHandler=()=>{
+   this.setState({login :true})
+      alert("Clicked login")
+   }
 
+
+   logOutHandler=()=>{
+      this.setState({logInName:""})
+   }
+
+   logInNameHandler=(email)=>{
+     const newState = this.state;
+     newState.logInName = email;
+     this.setState({
+       ...newState
+     })
+   }
 
    render(){
 
-   
-
-    
     let sideDrawer = null;
      if(this.state.sideDrawer){
         sideDrawer = <SideDrawer classes={this.state.sideDrawer}/>
@@ -49,10 +64,15 @@ class Layout extends Component{
      }
      return (
        <Fragment>
-          <Toolbar classes={this.state.toolbar} toggleSideDrawer={this.sideDrawerToggleHandler}/>
+          <Toolbar
+           logIn={this.logInHandler}
+           logOut={this.logOutHandler}
+           email={this.state.logInName}
+           classes={this.state.toolbar}
+           toggleSideDrawer={this.sideDrawerToggleHandler}/>
             {sideDrawer}
            {/*<div>modal</div>*/}
-          <Main/>
+          <Main email={(email)=>this.logInNameHandler(email)}/>
        </Fragment>
      )
   }

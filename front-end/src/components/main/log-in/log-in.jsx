@@ -1,6 +1,6 @@
  import React, {Component} from "react"
  import axios from "axios"
-
+ import {Link} from "react-router-dom";
 
  class LogIn extends Component{
    state={
@@ -10,14 +10,16 @@
    }
 
    componentDidUpdate=()=>{
-      
     if(this.state.authenticating===true)
-    axios.post("http://localhost:8081/api/v1/user/login",this.state).then(data=>{console.log(data);
-                                                                                  this.setState({authenticating:false})});
-  }
+    axios.post("/v1/user/login",this.state)
+    .then(data=>{
+      console.log(data);
+      this.setState({authenticating:false})});
+     }
 
   loginHandler=()=>{
     this.setState({authenticating:true})
+    this.props.email(this.state.email)
   }
 
    onChangeHandler=(e)=>{
@@ -61,8 +63,9 @@
                    name="password"
                    value={this.state.password}/>
                </div>
-
                <input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
+               <Link to="/dashboard">
+               </Link>
            </div>
 
        </div>
