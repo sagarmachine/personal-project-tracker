@@ -1,5 +1,6 @@
 package com.personalprojecttracker.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,6 +54,22 @@ public class User implements UserDetails {
         projects.add(project);
     }
 
+
+    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE},orphanRemoval = true)
+    @JsonIgnore
+    Set<TeamProjectMember> teamProjectsMember= new HashSet<>();
+
+    public void addTeamProjectMember(TeamProjectMember teamProjectMember){
+        teamProjectsMember.add(teamProjectMember);
+    }
+
+     @OneToMany(mappedBy = "createdBy")
+     @JsonIgnore
+      Set<TeamProject> projectsCreated= new HashSet<>();
+
+    public void addCreatedTeamProject(TeamProject teamProject){
+        projectsCreated.add(teamProject);
+    }
 
 
     @Override
