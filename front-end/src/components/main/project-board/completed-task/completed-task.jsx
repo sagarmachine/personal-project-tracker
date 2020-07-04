@@ -47,9 +47,9 @@
                       projectIdentifier:this.props.projectIdentifier
                     }
                   }}>
-                      <input type="Submit" className="projectBoard__foot-modifier1 submitBtn" value="Update"/>
-                  </Link >
-                      <input onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn" value="delete"/>
+                     <div className="projectBoard__foot-modifier1 submitBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+                 </Link >
+                  <div onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i class="fa fa-trash" aria-hidden="true"></i></div>
                   </div>
               </div>
           </div>

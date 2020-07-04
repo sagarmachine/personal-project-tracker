@@ -1,0 +1,24 @@
+.detailView{
+  display: flex;
+  width: 25vw;
+  height: 70vh;
+  border: none;
+  box-shadow: 0rem 0rem 2rem rgba($color-link,.5);
+  background: $color-link;
+  padding: 1rem;
+  color: $color-warning;
+  text-shadow: 0rem 0rem 2.5rem rgba($color-warning,.1);
+  position: fixed;
+  z-index: 200;
+  right:1%;
+  top: 20%;
+  font-size: 3rem;
+  overflow-y: scroll;
+  &::-webkit-scrollbar{
+    display: none;
+  }
+  padding: 1rem 2rem;
+  @include respond(tab-port){
+    position: static;
+  }
+}
