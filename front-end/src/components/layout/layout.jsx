@@ -2,7 +2,7 @@ import React, {Component,Fragment} from "react"
 import Toolbar from "../navigation/toolbar/toolbar";
 import SideDrawer from "../navigation/side-drawer/side-drawer";
 import Main from "../main/main";
-// import axios from "axios";
+import axios from "axios";
 
 
 
@@ -45,6 +45,8 @@ class Layout extends Component{
 
    logOutHandler=()=>{
       this.setState({logInName:""})
+      axios.defaults.headers.common['Authentication'] = null;
+      alert("done");
    }
 
    logInNameHandler=(email)=>{

@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import TodoTask from "./todo-task/todo-task"
 import InDevelopmentTask from "./in-development-task/in-development-task"
 import CompletedTask from "./completed-task/completed-task"
+import DetailView from "./detail-view/detail-view"
 import axios from "axios";
 import Spinner from "../../UI/Spinner/Spinner"
 
@@ -117,6 +118,7 @@ import Spinner from "../../UI/Spinner/Spinner"
   //   console.log(this.props.location.state);
      return (
        <div className="projectBoard">
+             <DetailView />
              <Link to={{
                pathname:"/addTask",
                state:{

@@ -9,6 +9,22 @@
   background: $color-grey-dark-3;
 }
 
+::-webkit-scrollbar{
+  width: 1.5rem;
+  background: $color-grey-dark-3;
+
+}
+
+::-webkit-scrollbar-track{
+   border: 1px solid rgba($color-grey,.5);
+   box-shadow: inset .1rem .1rem .5rem $color-grey;
+   display: none;
+}
+
+::-webkit-scrollbar-thumb{
+    background-image: linear-gradient(to bottom, $color-grey,$color-link, $color-grey);
+}
+
 html{
   // 1 rem
   font-size: 62.5%;

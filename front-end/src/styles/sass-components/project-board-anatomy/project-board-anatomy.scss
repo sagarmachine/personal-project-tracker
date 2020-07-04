@@ -18,19 +18,28 @@
     display: flex;
     justify-content: flex-end;
     background: $color-grey-dark-2;
+    font-size: 30rem;
     &-modifier{
-      &2{
-        background: $color-red;
+
+      &1{
+        background: rgba($color-cyan,.5);
         color: $color-white;
-        visibility: hidden;
-        opacity: 0;
+      }
+      &2{
+        background: rgba($color-red,.6);
+        color: $color-white;
         margin-left: 2rem;
       }
-      &1{
-        background: $color-cyan;
-        color: $color-white;
-        visibility: hidden;
+      &1,&2{
+        border-radius: 100px;
+        padding: 2rem;
+        font-size: 2.5rem;
         opacity: 0;
+        visibility: hidden;
+        @include respond(phone){
+          opacity: 1;
+          visibility: visible;
+        }
       }
     }
   }
