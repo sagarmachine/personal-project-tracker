@@ -8,11 +8,10 @@ export default class TaskDetailView extends Component {
 
     render() {
 
-        console.log(this.props.task)
         return (
             <div>
-                     TASK DETAIL VIEW {this.props.task.projectTaskIdentifier}
-                     <button onClick={()=>this.props.openUpdateTaskDetailView(this.props.selectedTask)} >Update</button>        
+                     TASK DETAIL VIEW {this.props.selectedTask.projectTaskIdentifier}
+                     <button onClick={()=>this.props.openUpdateTaskDetailView(this.props.selectedTaskIndex)} >Update</button>        
             </div>
         )
     }

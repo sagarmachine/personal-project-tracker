@@ -20,7 +20,7 @@ import Spinner from "../../UI/Spinner/Spinner"
      active:"detailViewClose",
      detailViewIndex:1,
      loadingTasks:false,
-     selectedTask:0,
+     selectedTaskIndex:-1,
    }
 
    activeHandler=()=>{
@@ -79,13 +79,14 @@ import Spinner from "../../UI/Spinner/Spinner"
      this.setState({detailViewIndex:1});
    }
    openTaskDetailViewHandler=(index)=>{
-    this.setState({detailViewIndex:2,selectedTask:index});
+    this.setState({detailViewIndex:2,selectedTaskIndex:index});
   }
   openAddTaskDetailViewHandler=()=>{
     this.setState({detailViewIndex:3});
   }
   openUpdateTaskDetailViewHandler=(index)=>{
-    this.setState({detailViewIndex:4,selectedTask:index});
+    console.log(index)
+    this.setState({detailViewIndex:4,selectedTaskIndex:index});
   
   }
 
@@ -101,7 +102,7 @@ import Spinner from "../../UI/Spinner/Spinner"
              return (data.status==="TO_DO")?
                     <li  className="projectBoard__li">
                         <TodoTask
-                            index={index}
+                           
                             activeHandler={this.activeHandler}
                             summary={data.summary}
                             status={data.status}
@@ -111,6 +112,7 @@ import Spinner from "../../UI/Spinner/Spinner"
                             projectIdentifier={this.props.location.state.projectIdentifier}
                             openTaskDetailView={this.openTaskDetailViewHandler}
                             openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
+                            index={index}
                             />
                    </li>
                    :null
@@ -124,7 +126,7 @@ import Spinner from "../../UI/Spinner/Spinner"
          inDevelopment = null;
      }else{
          inDevelopment = <ul className="projectBoard__ul">
-           {this.state.data.map(data=>{
+           {this.state.data.map((data,index)=>{
              return (data.status==="IN_PROGRESS")?
                     <li  className="projectBoard__li">
                         <InDevelopmentTask
@@ -134,6 +136,9 @@ import Spinner from "../../UI/Spinner/Spinner"
                             id={data.projectTaskIdentifier}
                             updateID={data.id}
                             projectIdentifier={this.props.location.state.projectIdentifier}
+                            openTaskDetailView={this.openTaskDetailViewHandler}
+                            openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
+                            index={index}
                             />
                    </li>
                    :null
@@ -147,7 +152,7 @@ import Spinner from "../../UI/Spinner/Spinner"
          completed = null
      }else{
          completed = <ul className="projectBoard__ul">
-           {this.state.data.map(data=>{
+           {this.state.data.map((data,index)=>{
              return (data.status==="DONE")?
                     <li  className="projectBoard__li">
                         <CompletedTask
@@ -157,6 +162,9 @@ import Spinner from "../../UI/Spinner/Spinner"
                             id={data.projectTaskIdentifier}
                             updateID={data.id}
                             projectIdentifier={this.props.location.state.projectIdentifier}
+                            openTaskDetailView={this.openTaskDetailViewHandler}
+                            openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
+                            index={index}
                             />
                    </li>
                    :null
@@ -180,9 +188,9 @@ import Spinner from "../../UI/Spinner/Spinner"
                          detailViewIndex={this.state.detailViewIndex}
                           projectIdentifier={this.props.location.state.projectIdentifier}
                           reloadTasks={this.reloadTaskHandler}
-                          task={this.state.data[this.state.selectedTask]}
+                          selectedTask={this.state.data[this.state.selectedTaskIndex]}
                           openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
-                          selectedTask={this.state.selectedTask}
+                          selectedTaskIndex={this.state.selectedTaskIndex}
 
              />
 

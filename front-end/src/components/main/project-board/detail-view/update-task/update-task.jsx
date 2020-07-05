@@ -4,14 +4,6 @@ import axios from "axios"
 
  class UpdateTask extends Component{
 
-   // state={
-   //         id:this.props.location.state.id,
-   //         summary:this.props.location.state.summary,
-   //         status: this.props.location.state.status,
-   //         preference:this.props.location.state.preference,
-   //         startDate:"",
-   //         endDate:""
-   //      }
 
    state={
            id:"id",
@@ -19,8 +11,9 @@ import axios from "axios"
            status: "DONE",
            preference:"HIGH",
            startDate:"",
-           endDate:""
-        }
+           endDate:"",
+          //prevTask:"",   
+             }
 
    onChangeHandler=(e)=>{
      const name = e.target.name
@@ -36,9 +29,16 @@ import axios from "axios"
    }
 
    componentDidMount=()=>{
-     console.log({...this.props.task});
-this.setState({...this.props.task});
+    this.setState({...this.props.selectedTask,prevTask:this.props.selectedTask.id});
    }
+
+
+  //  componentDidUpdate=(prevProps, prevState, snapshot)=>{
+  //    console.log(this.state.id+":"+prevState.prevTask);
+  //   if(this.state.prevTask!=prevState.prevTask)
+  //   this.setState({...this.props.selectedTask,prevTask:this.props.selectedTask.id});
+
+  //  }
 
    onSubmitHandler=()=>{
      const submitedState = this.state
@@ -50,8 +50,14 @@ this.setState({...this.props.task});
      })
    }
 
+   update=()=>{
+
+this.setState({...this.props.selectedTask});
+
+   }
+
    render(){
-     console.log(this.state);
+
      return (
         <div className="addTask formUI">
             <h4 className="formUI__heading addTask__modifier2">Update Project Task</h4>
