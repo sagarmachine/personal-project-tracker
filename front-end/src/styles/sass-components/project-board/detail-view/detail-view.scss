@@ -1,24 +1,58 @@
 .detailView{
-  display: flex;
-  width: 25vw;
-  height: 70vh;
+
+  &__head{
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  line-height: 2;
+  margin: 0 1rem;
+  width: 50vw;
+  height: 88vh;
   border: none;
-  box-shadow: 0rem 0rem 2rem rgba($color-link,.5);
+  box-shadow: 0rem 0rem 2rem rgba($color-link,.9);
   background: $color-link;
-  padding: 1rem;
   color: $color-warning;
   text-shadow: 0rem 0rem 2.5rem rgba($color-warning,.1);
   position: fixed;
   z-index: 200;
-  right:1%;
-  top: 20%;
-  font-size: 3rem;
+  right: 0;
+  top: 10%;
+  font-size: 2rem;
   overflow-y: scroll;
   &::-webkit-scrollbar{
     display: none;
   }
-  padding: 1rem 2rem;
+  padding: 4rem 3rem;
   @include respond(tab-port){
-    position: static;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    height: 7rem;
+    width:15%;
+    position: fixed;
+    top: 10.9%;
+    right: 1%;
+    transition: all .5s;
+    &__para{
+      display: none;
+    }
+    &:hover{
+      right: 0;
+      margin: 0;
+      // align-self: flex-start;
+      justify-content: flex-start;
+      height: 25vh;
+      width:100%;
+      & .detailView__para{
+        display: block;
+      }
+    }
+  }
+  @include respond(phone){
+    width: 15rem;
+    height: 4rem;
   }
 }

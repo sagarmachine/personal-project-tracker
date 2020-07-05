@@ -48,7 +48,14 @@ import Spinner from "../../UI/Spinner/Spinner"
      console.log(this.props.location.state);
      let todo = null;
      if(this.state.data.length===0){
-         todo = <Spinner />
+         todo = <Link to={{
+           pathname:"/addTask",
+           state:{
+             projectIdentifier:this.props.location.state.projectIdentifier,
+             projectName:this.props.location.state.projectName
+        }}}>
+            <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
+        </Link>
      }else{
          todo = <ul className="projectBoard__ul">
            {this.state.data.map(data=>{
@@ -71,7 +78,14 @@ import Spinner from "../../UI/Spinner/Spinner"
 
      let inDevelopment = null;
      if(this.state.data.length===0){
-         inDevelopment = <Spinner />
+         inDevelopment = <Link to={{
+           pathname:"/addTask",
+           state:{
+             projectIdentifier:this.props.location.state.projectIdentifier,
+             projectName:this.props.location.state.projectName
+        }}}>
+            <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
+        </Link>
      }else{
          inDevelopment = <ul className="projectBoard__ul">
            {this.state.data.map(data=>{
@@ -94,7 +108,14 @@ import Spinner from "../../UI/Spinner/Spinner"
 
      let completed = null;
      if(this.state.data.length===0){
-         completed = <Spinner />
+         completed = <Link to={{
+           pathname:"/addTask",
+           state:{
+             projectIdentifier:this.props.location.state.projectIdentifier,
+             projectName:this.props.location.state.projectName
+        }}}>
+            <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
+        </Link>
      }else{
          completed = <ul className="projectBoard__ul">
            {this.state.data.map(data=>{

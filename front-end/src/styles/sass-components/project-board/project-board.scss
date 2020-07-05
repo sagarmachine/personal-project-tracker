@@ -12,12 +12,16 @@
     display: flex;
     align-items: center;
     position: relative;
-    width: 50vw;
+    width: 35vw;
     margin-bottom: 2rem;
     position: relative;
     left: 7rem;
     @include respond(phone){
       left: -3rem;
+      width: 75vw;
+    }
+    @include respond(tab-port){
+      width: 75vw;
     }
    &::before {
      content: "|";
