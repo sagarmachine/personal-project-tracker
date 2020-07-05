@@ -1,12 +1,12 @@
 .formUI{
-  min-height: 40rem;
+  // min-height: 40rem;
   box-shadow: 1px 1px 10px rgba($color-link,.4);
   width:30%;
   display: flex;
   // display: inline-block;
   padding:auto;
   border-radius: 8px;
-  overflow: hidden;
+  // overflow: hidden;
   @include respond(tab-port){
     width:50%;
   }

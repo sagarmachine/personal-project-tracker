@@ -4,15 +4,23 @@ import axios from "axios"
 
  class UpdateTask extends Component{
 
+   // state={
+   //         id:this.props.location.state.id,
+   //         summary:this.props.location.state.summary,
+   //         status: this.props.location.state.status,
+   //         preference:this.props.location.state.preference,
+   //         startDate:"",
+   //         endDate:""
+   //      }
+
    state={
-           id:this.props.location.state.id,
-           summary:this.props.location.state.summary,
-           status: this.props.location.state.status,
-           preference:this.props.location.state.preference,
+           id:"id",
+           summary:"summary",
+           status: "DONE",
+           preference:"HIGH",
            startDate:"",
            endDate:""
         }
-
 
    onChangeHandler=(e)=>{
      const name = e.target.name
@@ -45,18 +53,8 @@ import axios from "axios"
      console.log(this.state);
      return (
         <div className="addTask formUI">
-            <Link
-            to={{
-              pathname:"/projectBoard",
-              state:{
-                projectIdentifier:this.props.location.state.projectIdentifier
-               }
-            }}
-            className="formUI__heading addTask__modifier1">
-                Back to Project Board
-            </Link>
-            <h4 className="formUI__heading">Add /Update Project Task</h4>
-            <p className="formUI__heading addTask__modifier2">{"ID: "+this.props.location.state.projectIdentifier}</p>
+            <h4 className="formUI__heading addTask__modifier2">Add /Update Project Task</h4>
+            <p className="formUI__heading addTask__modifier2">{"ID: "}</p>
             <div className="formUI__details">
                 <textarea
                     value={this.state.summary}

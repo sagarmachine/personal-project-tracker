@@ -5,9 +5,10 @@
     margin-bottom: 1.5rem;
   }
   & h6{
+    text-transform: uppercase;
     color: $color-white;
     margin: 1rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 100;
     margin-bottom: 0;
   }
@@ -15,18 +16,23 @@
   position: relative;
   align-self: flex-start;
   height: 100%;
-  width: 100%;
-  margin: 20rem;
+  width: 35%;
+  margin: 5rem;
+  @include respond(tab-port){
+    width: 60%;
+    margin:5rem 0rem;
+  }
   @include respond(phone){
+    width: 100%;
     margin:5rem 0rem;
   }
   &__heading{
-    background: rgba($color-grey-dark-3,.9);
-    text-transform: lowercase;
+    background: rgba($color-link,.9);
+    text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 100;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     padding: 2.5rem 0;
     color: $color-white;
   }
@@ -35,13 +41,14 @@
     &-name,&-id,&-des,&-date{
       @include respond(tab-port){
         width: 100%;
+        height: 10rem;
       }
+      height: 5rem;
+      background: rgba($color-white,.1);
       border: none;
       padding: 1rem;
       color: $color-white;
-      background: rgba($color-grey-dark-2,.5);
-      height: 3rem;
-      width: 47%;
+      width:100%;
       border-left: 5px solid transparent;
       &:focus{
         border-left: 5px solid $color-white;
@@ -55,17 +62,4 @@
 
     }
   }
-}
-.addProject__img{
-   height: 80%;
-   background-size: cover;
-   background-position: bottom;
-   background-image:linear-gradient(to right,rgba($color-grey-dark-3,.9),rgba($color-grey-dark-3,.9)), url("../../../assets/images/add-project-image.jpg");
-   position:absolute;
-   top: 8rem;
-   right: 1rem;
-   width: 50%;
-   @include respond(tab-port){
-     display: none;
-   }
 }

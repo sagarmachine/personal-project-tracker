@@ -1,24 +1,80 @@
 .detailView{
-  display: flex;
-  width: 25vw;
-  height: 70vh;
+  &__head{
+    color: $color-orangered;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    position: fixed;
+    display: none;
+    transition: all .2s;
+    z-index: 9000;
+    @include respond(tab-port){
+      right: 2rem;
+      font-size: 5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  line-height: 2;
+  margin: 0 1rem;
+  width: 50vw;
+  height: 88vh;
   border: none;
-  box-shadow: 0rem 0rem 2rem rgba($color-link,.5);
+  box-shadow: 0rem 0rem 2rem rgba($color-link,.9);
   background: $color-link;
-  padding: 1rem;
   color: $color-warning;
   text-shadow: 0rem 0rem 2.5rem rgba($color-warning,.1);
   position: fixed;
   z-index: 200;
-  right:1%;
-  top: 20%;
-  font-size: 3rem;
+  right: 0;
+  top: 10%;
   overflow-y: scroll;
+  font-size: 2rem;
+
   &::-webkit-scrollbar{
-    display: none;
+    width: 1.5rem;
   }
-  padding: 1rem 2rem;
+  padding: 4rem 3rem;
   @include respond(tab-port){
-    position: static;
+    padding: 1rem 3rem;
+    // display: flex;
+    // flex-flow: column;
+    justify-content: center;
+    // height: 7rem;
+    // width:20%;
+    position: fixed;
+    top: 10.9%;
+    right: 1%;
+    transition: all .5s;
+  }
+
+}
+.detailViewClose{
+  @include respond(tab-port){
+      display: none;
+    & .detailView__para{
+      display: none;
+    }
+  }
+  @include respond(phone){
+    width: 20rem;
+    height: 5.1rem;
+  }
+}
+.detailViewOpen{
+  @include respond(tab-port){
+    display: block;
+    right: 0;
+    margin: 0;
+    height: 80vh;
+    width:100%;
+    top:10vh;
+    & .detailView__para{
+      display: block;
+    }
+  }
+}
+.detailView{
+  & > *{
+    margin: 1rem;
   }
 }
