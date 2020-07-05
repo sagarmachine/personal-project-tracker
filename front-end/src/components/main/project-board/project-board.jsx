@@ -78,14 +78,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
      let inDevelopment = null;
      if(this.state.data.length===0){
-         inDevelopment = <Link to={{
-           pathname:"/addTask",
-           state:{
-             projectIdentifier:this.props.location.state.projectIdentifier,
-             projectName:this.props.location.state.projectName
-        }}}>
-            <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
-        </Link>
+         inDevelopment = null;
      }else{
          inDevelopment = <ul className="projectBoard__ul">
            {this.state.data.map(data=>{
@@ -108,14 +101,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
      let completed = null;
      if(this.state.data.length===0){
-         completed = <Link to={{
-           pathname:"/addTask",
-           state:{
-             projectIdentifier:this.props.location.state.projectIdentifier,
-             projectName:this.props.location.state.projectName
-        }}}>
-            <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
-        </Link>
+         completed = null
      }else{
          completed = <ul className="projectBoard__ul">
            {this.state.data.map(data=>{
@@ -136,18 +122,17 @@ import Spinner from "../../UI/Spinner/Spinner"
          </ul>
      }
 
-  //   console.log(this.props.location.state);
      return (
        <div className="projectBoard">
              <DetailView />
-             <Link to={{
+             {(this.state.data.length!==0)?<Link to={{
                pathname:"/addTask",
                state:{
                  projectIdentifier:this.props.location.state.projectIdentifier,
                  projectName:this.props.location.state.projectName
             }}}>
                 <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
-            </Link>
+            </Link>:null}
 
             <div className='projectBoard__chart'>
                 <div
