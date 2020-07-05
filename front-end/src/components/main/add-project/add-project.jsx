@@ -93,10 +93,10 @@ import axios from "axios"
                     <input
                     onClick={this.onSubmitHandler}
                     type="submit"
-                    className="submitBtn" />
+                    className="submitBtn dark-btn" />
           </div>
-          <div className="addProject__img">
-          </div>
+          {/*<div className="addProject__img">
+          </div>*/}
         </div>
      )
    }

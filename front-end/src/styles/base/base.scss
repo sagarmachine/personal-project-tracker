@@ -5,8 +5,8 @@
 }
 
 ::selection{
-  color: white;
-  background: $color-grey-dark-3;
+  color:$color-link;
+  background: $color-warning;
 }
 
 ::-webkit-scrollbar{
