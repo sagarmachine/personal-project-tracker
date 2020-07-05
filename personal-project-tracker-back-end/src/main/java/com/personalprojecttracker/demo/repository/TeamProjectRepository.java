@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TeamProjectRepository extends JpaRepository<TeamProject,Integer>{
 
+    TeamProject findByProjectIdentifier(String projectIdentifier);
+
 }
 

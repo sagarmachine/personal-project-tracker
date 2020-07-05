@@ -4,6 +4,7 @@ package com.personalprojecttracker.demo.service;
 import com.personalprojecttracker.demo.exception.ProjectNotFoundException;
 import com.personalprojecttracker.demo.model.Backlog;
 import com.personalprojecttracker.demo.model.Project;
+import com.personalprojecttracker.demo.model.TeamBacklog;
 import com.personalprojecttracker.demo.model.User;
 import com.personalprojecttracker.demo.repository.ProjectRepository;
 import com.personalprojecttracker.demo.repository.UserRepository;
@@ -35,6 +36,7 @@ public class ProjectServiceImp implements  IProjectService {
 
 //        Project projectTemp =projectRepository.findByProjectIdentifier(project.getProjectIdentifier());
         User user = userRepository.findByEmail(principal.getName());
+
         project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
 
         if(project.getId()!=0)
@@ -87,4 +89,6 @@ public class ProjectServiceImp implements  IProjectService {
         userRepository.save(user);
         projectRepository.deleteByProjectIdentifier(id.toUpperCase());
     }
+
+
 }

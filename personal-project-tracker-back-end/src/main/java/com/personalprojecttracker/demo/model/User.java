@@ -71,6 +71,23 @@ public class User implements UserDetails {
         projectsCreated.add(teamProject);
     }
 
+    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH},orphanRemoval = true)
+    @JsonIgnore
+    Set<UserTeamProjectTask> userTeamProjectTasks= new HashSet<>();
+
+    public void addUserTeamProjectTask(UserTeamProjectTask userTeamProjectTask){
+        userTeamProjectTasks.add(userTeamProjectTask);
+    }
+
+    @OneToMany(mappedBy = "createdBy",cascade ={CascadeType.REFRESH},orphanRemoval = true)
+    @JsonIgnore
+    Set<TeamProjectTask> createdTeamProjectTasks= new HashSet<>();
+
+    public void addCreatedTeamProjectTask(TeamProjectTask teamProjectTask){
+        createdTeamProjectTasks.add(teamProjectTask);
+    }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

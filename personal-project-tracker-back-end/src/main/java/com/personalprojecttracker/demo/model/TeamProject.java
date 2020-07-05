@@ -61,6 +61,8 @@ public class TeamProject {
         this.updatedDate=new Date();
     }
 
+    @OneToOne(mappedBy ="teamProject",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    TeamBacklog teamBacklog;
 
     @OneToMany(mappedBy = "teamProject",cascade ={CascadeType.ALL},orphanRemoval = true,fetch = FetchType.EAGER)
     Set<TeamProjectMember> teamProjectMembers= new HashSet<>();

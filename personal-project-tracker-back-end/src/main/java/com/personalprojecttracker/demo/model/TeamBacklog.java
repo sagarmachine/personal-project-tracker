@@ -25,18 +25,16 @@ public class TeamBacklog {
 
     int projectTaskSequence=0;
 
-//    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
-//    @JoinColumn(nullable = false)
-//    @JsonIgnore
-//    Project project;
-//
-//    @OneToMany(mappedBy = "backlog",fetch = FetchType.EAGER,cascade = {CascadeType.ALL,CascadeType.REFRESH},orphanRemoval = true)
-//    Set<ProjectTask> projectTasks;
-//
-//    public void addProjectTask(ProjectTask projectTask){
-//        if(projectTasks==null)
-//            projectTasks=new HashSet<>();
-//        projectTasks.add(projectTask);
-//    }
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @JoinColumn(nullable = false)
+    @JsonIgnore
+    TeamProject teamProject;
+
+    @OneToMany(mappedBy = "teamBacklog",fetch = FetchType.EAGER,cascade = {CascadeType.ALL,CascadeType.REFRESH},orphanRemoval = true)
+    Set<TeamProjectTask> teamProjectTasks=new HashSet<>();;
+
+    public void addProjectTask(TeamProjectTask teamProjectTask){
+        teamProjectTasks.add(teamProjectTask);
+    }
 
 }
