@@ -3,6 +3,8 @@ import {Link} from "react-router-dom"
 import TodoTask from "./todo-task/todo-task"
 import InDevelopmentTask from "./in-development-task/in-development-task"
 import CompletedTask from "./completed-task/completed-task"
+import UpdateTask from "./update-task/update-task"
+import AddTask  from "./add-task/add-task"
 import DetailView from "./detail-view/detail-view"
 import axios from "axios";
 import Spinner from "../../UI/Spinner/Spinner"
@@ -14,7 +16,21 @@ import Spinner from "../../UI/Spinner/Spinner"
      todoToggle:"visible",
      inDevelopmentToggle:"hidden",
      completedToggle:"hidden",
-     data:[]
+     data:[],
+     active:"detailViewClose"
+   }
+
+   activeHandler=()=>{
+      let newState = this.state;
+      if(newState.active==="detailViewClose"){
+         this.setState({
+           active:"detailViewOpen"
+         })
+      }else{
+        this.setState({
+          active:"detailViewClose"
+        })
+      }
    }
 
    onClickHandler=(name)=>{
@@ -62,6 +78,7 @@ import Spinner from "../../UI/Spinner/Spinner"
              return (data.status==="TO_DO")?
                     <li  className="projectBoard__li">
                         <TodoTask
+                            activeHandler={this.activeHandler}
                             summary={data.summary}
                             status={data.status}
                             preference={data.preference}
@@ -124,7 +141,17 @@ import Spinner from "../../UI/Spinner/Spinner"
 
      return (
        <div className="projectBoard">
-             <DetailView />
+        <div onClick={this.activeHandler} className="detailView__head">
+            {(this.state.active==="detailViewOpen")
+                ?<i className="fa fa-toggle-on" aria-hidden="true"></i>
+                :<i className="fa fa-toggle-off" aria-hidden="true"></i>
+              }
+         </div>
+             <DetailView activeClass={this.state.active}>
+                   <div style={{color:"white"}}>
+                       <UpdateTask />
+                   </div>
+             </DetailView>
              {(this.state.data.length!==0)?<Link to={{
                pathname:"/addTask",
                state:{

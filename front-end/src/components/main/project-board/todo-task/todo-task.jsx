@@ -36,20 +36,8 @@ import {Link} from "react-router-dom"
                 <div className={"projectBoard__head "+classPriority}>{"ID: "+this.props.id+" PREFRENCE: "+preference}</div>
                 <div className="projectBoard__body">{this.props.summary}</div>
                 <div className="projectBoard__foot">
-                     <Link to={{
-                       pathname:"/updateTask",
-                       state:{
-                         summary:this.props.summary,
-                         status:this.props.status,
-                         preference:this.props.preference,
-                         id:this.props.updateID,
-                         updateID:this.props.id,
-                         projectIdentifier:this.props.projectIdentifier
-                       }
-                     }}>
-                     <div className="projectBoard__foot-modifier1 submitBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-                    </Link >
-                    <div onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i class="fa fa-trash" aria-hidden="true"></i></div>
+                     <div onClick={this.props.activeHandler} props={this.props} className="projectBoard__foot-modifier1 submitBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</div>
+                    <div onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i class="fa fa-trash" aria-hidden="true"></i> Delete</div>
                 </div>
             </div>
          </div>

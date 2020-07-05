@@ -22,7 +22,8 @@
 }
 
 ::-webkit-scrollbar-thumb{
-    background-image: linear-gradient(to bottom, $color-grey,$color-link, $color-grey);
+    // background-image: linear-gradient(to bottom, $color-grey,$color-warning, $color-cyan,$color-orangered);
+    background: $color-orangered;
 }
 
 html{
