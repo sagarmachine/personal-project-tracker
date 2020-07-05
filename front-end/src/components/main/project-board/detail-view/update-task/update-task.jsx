@@ -33,12 +33,12 @@ import axios from "axios"
    }
 
 
-  //  componentDidUpdate=(prevProps, prevState, snapshot)=>{
-  //    console.log(this.state.id+":"+prevState.prevTask);
-  //   if(this.state.prevTask!=prevState.prevTask)
-  //   this.setState({...this.props.selectedTask,prevTask:this.props.selectedTask.id});
+   componentDidUpdate=(prevProps, prevState, snapshot)=>{
+     console.log(this.state.id+":"+prevState.prevTask);
+    if(this.state.prevTask!=this.props.selectedTask.id)
+    this.setState({...this.props.selectedTask,prevTask:this.props.selectedTask.id});
 
-  //  }
+   }
 
    onSubmitHandler=()=>{
      const submitedState = this.state
