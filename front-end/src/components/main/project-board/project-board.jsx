@@ -3,11 +3,11 @@ import {Link} from "react-router-dom"
 import TodoTask from "./todo-task/todo-task"
 import InDevelopmentTask from "./in-development-task/in-development-task"
 import CompletedTask from "./completed-task/completed-task"
-import UpdateTask from "./update-task/update-task"
-import AddTask  from "./add-task/add-task"
+import UpdateTask from "./detail-view/update-task/update-task"
 import DetailView from "./detail-view/detail-view"
 import axios from "axios";
 import Spinner from "../../UI/Spinner/Spinner"
+
 
  class ProjectBoard extends Component{
 
@@ -17,12 +17,14 @@ import Spinner from "../../UI/Spinner/Spinner"
      inDevelopmentToggle:"hidden",
      completedToggle:"hidden",
      data:[],
-     active:"detailViewClose"
+     active:"detailViewClose",
+     detailViewIndex:1,
+     loadingTasks:false,
+     selectedTask:0,
    }
 
    activeHandler=()=>{
-      let newState = this.state;
-      if(newState.active==="detailViewClose"){
+      if(this.state.active==="detailViewClose"){
          this.setState({
            active:"detailViewOpen"
          })
@@ -31,6 +33,7 @@ import Spinner from "../../UI/Spinner/Spinner"
           active:"detailViewClose"
         })
       }
+      
    }
 
    onClickHandler=(name)=>{
@@ -40,19 +43,26 @@ import Spinner from "../../UI/Spinner/Spinner"
        }else{
          newState = "hidden"
        }
+
        this.setState({
          [name]:newState
        })
    }
 
-   componentDidMount=()=>{
-     const identifier = "/v1/project/"+this.props.location.state.projectIdentifier+"/projecttask"
-     console.log(identifier);
-     axios.get(identifier)
+   reloadTaskHandler=()=>{
+    this.setState({loadingTasks:true})
+
+   }
+
+
+   componentDidUpdate=()=>{
+    const identifier = "/v1/project/"+this.props.location.state.projectIdentifier+"/projecttask"
+    if(this.state.loadingTasks)
+    axios.get(identifier)
      .then(res=>{
-       console.log(res);
        this.setState({
-         data:res.data
+         data:res.data,
+         loadingTasks:false
        })
      }).catch(e=>{
        console.log(e);
@@ -60,24 +70,38 @@ import Spinner from "../../UI/Spinner/Spinner"
    }
 
 
+   componentDidMount=()=>{
+     this.setState({loadingTasks:true})
+   }
+
+
+   openProjectDetailViewHandler=()=>{
+     this.setState({detailViewIndex:1});
+   }
+   openTaskDetailViewHandler=(index)=>{
+    this.setState({detailViewIndex:2,selectedTask:index});
+  }
+  openAddTaskDetailViewHandler=()=>{
+    this.setState({detailViewIndex:3});
+  }
+  openUpdateTaskDetailViewHandler=(index)=>{
+    this.setState({detailViewIndex:4,selectedTask:index});
+  
+  }
+
+
    render(){
-     console.log(this.props.location.state);
      let todo = null;
      if(this.state.data.length===0){
-         todo = <Link to={{
-           pathname:"/addTask",
-           state:{
-             projectIdentifier:this.props.location.state.projectIdentifier,
-             projectName:this.props.location.state.projectName
-        }}}>
-            <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
-        </Link>
+          todo =<div  onClick={this.openAddTaskDetailViewHandler}>{"Add Task Button 123"} </div>
+         
      }else{
          todo = <ul className="projectBoard__ul">
-           {this.state.data.map(data=>{
+           {this.state.data.map((data,index)=>{
              return (data.status==="TO_DO")?
                     <li  className="projectBoard__li">
                         <TodoTask
+                            index={index}
                             activeHandler={this.activeHandler}
                             summary={data.summary}
                             status={data.status}
@@ -85,6 +109,8 @@ import Spinner from "../../UI/Spinner/Spinner"
                             id={data.projectTaskIdentifier}
                             updateID={data.id}
                             projectIdentifier={this.props.location.state.projectIdentifier}
+                            openTaskDetailView={this.openTaskDetailViewHandler}
+                            openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
                             />
                    </li>
                    :null
@@ -147,19 +173,37 @@ import Spinner from "../../UI/Spinner/Spinner"
                 :<i className="fa fa-toggle-off" aria-hidden="true"></i>
               }
          </div>
-             <DetailView activeClass={this.state.active}>
-                   <div style={{color:"white"}}>
-                       <UpdateTask />
-                   </div>
-             </DetailView>
-             {(this.state.data.length!==0)?<Link to={{
-               pathname:"/addTask",
-               state:{
-                 projectIdentifier:this.props.location.state.projectIdentifier,
-                 projectName:this.props.location.state.projectName
-            }}}>
-                <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
-            </Link>:null}
+
+
+
+             <DetailView activeClass={this.state.active} 
+                         detailViewIndex={this.state.detailViewIndex}
+                          projectIdentifier={this.props.location.state.projectIdentifier}
+                          reloadTasks={this.reloadTaskHandler}
+                          task={this.state.data[this.state.selectedTask]}
+                          openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
+                          selectedTask={this.state.selectedTask}
+
+             />
+
+
+
+
+
+
+
+
+             {(this.state.data.length!==0)?
+             <div onClick={this.openAddTaskDetailViewHandler}>Add Task Button</div>
+            //  <Link to={{
+            //    pathname:"/addTask",
+            //    state:{
+            //      projectIdentifier:this.props.location.state.projectIdentifier,
+            //      projectName:this.props.location.state.projectName
+            // }}}>
+            //     <div className="dark-btn dark-btn--modifier"><i className="fa fa-plus" aria-hidden="true"></i> create a task</div>
+            // </Link>
+            :null}
 
             <div className='projectBoard__chart'>
                 <div

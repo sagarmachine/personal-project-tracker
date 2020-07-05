@@ -33,10 +33,10 @@ import {Link} from "react-router-dom"
      return (
          <div className="projectBoard__todo ">
             <div className="projectBoard__anatomy">
-                <div className={"projectBoard__head "+classPriority}>{"ID: "+this.props.id+" PREFRENCE: "+preference}</div>
+                <div className={"projectBoard__head "+classPriority} onClick={()=>this.props.openTaskDetailView(this.props.index)} >{"ID: "+this.props.id+" PREFRENCE: "+preference}</div>
                 <div className="projectBoard__body">{this.props.summary}</div>
                 <div className="projectBoard__foot">
-                     <div onClick={this.props.activeHandler} props={this.props} className="projectBoard__foot-modifier1 submitBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</div>
+                     <div onClick={()=>this.props.openUpdateTaskDetailView(this.props.index)} props={this.props} className="projectBoard__foot-modifier1 submitBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</div>
                     <div onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i class="fa fa-trash" aria-hidden="true"></i> Delete</div>
                 </div>
             </div>

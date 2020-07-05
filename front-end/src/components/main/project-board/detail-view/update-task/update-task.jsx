@@ -35,15 +35,16 @@ import axios from "axios"
      })
    }
 
+   componentDidMount=()=>{
+     console.log({...this.props.task});
+this.setState({...this.props.task});
+   }
+
    onSubmitHandler=()=>{
      const submitedState = this.state
-     axios.put("/v1/projecttask/"+this.props.location.state.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
+     axios.put("/v1/projecttask/"+this.props.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
      .then(res=>{
-       // console.log("success");
-       this.props.history.push("/projectBoard",{
-         projectIdentifier:this.props.location.state.projectIdentifier,
-         projectName:this.props.location.state.projectName
-       })
+       this.props.reloadTasks();
      }).catch(e=>{
        console.log("failure");
      })
@@ -53,7 +54,7 @@ import axios from "axios"
      console.log(this.state);
      return (
         <div className="addTask formUI">
-            <h4 className="formUI__heading addTask__modifier2">Add /Update Project Task</h4>
+            <h4 className="formUI__heading addTask__modifier2">Update Project Task</h4>
             <p className="formUI__heading addTask__modifier2">{"ID: "}</p>
             <div className="formUI__details">
                 <textarea

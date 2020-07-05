@@ -6,8 +6,6 @@ import Background from "../UI/background/background"
 import Dashboard from "./dashboard/dashboard"
 import AddProject from "./add-project/add-project"
 import ProjectBoard from "./project-board/project-board"
-import AddTask from "./project-board/add-task/add-task";
-import UpdateTask from "./project-board/update-task/update-task";
 
  class Main extends Component{
 
@@ -22,8 +20,6 @@ import UpdateTask from "./project-board/update-task/update-task";
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/addProject" component={AddProject}/>
               <Route exact path="/projectBoard" component={ProjectBoard}/>
-              <Route exact path="/addTask" component={AddTask}/>
-              <Route exact path="/updateTask" component={UpdateTask}/>
           </Switch>
         </div>
      )

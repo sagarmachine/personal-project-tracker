@@ -28,13 +28,9 @@ import axios from "axios"
 
    onSubmitHandler=()=>{
      const submitedState = this.state
-     axios.post("/v1/projecttask/"+this.props.location.state.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
+     axios.post("/v1/projecttask/"+this.props.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
      .then(res=>{
-       console.log("success");
-       this.props.history.push("/projectBoard",{
-         projectIdentifier:this.props.location.state.projectIdentifier,
-         projectName:this.props.location.state.projectName
-       })
+      this.props.reloadTasks();
      }).catch(e=>{
        console.log("failure");
      })
@@ -43,7 +39,7 @@ import axios from "axios"
    render(){
      return (
         <div className="addTask formUI">
-            <Link
+            {/* <Link
             to={{
               pathname:"/projectBoard",
               state:{
@@ -52,9 +48,9 @@ import axios from "axios"
             }}
             className="formUI__heading addTask__modifier1">
                 Back to Project Board
-            </Link>
-            <h4 className="formUI__heading">Add /Update Project Task</h4>
-            <p className="formUI__heading addTask__modifier2">{"Name: "+this.props.location.state.projectName+" ID: "+this.props.location.state.projectIdentifier}</p>
+            </Link> */}
+            <h4 className="formUI__heading">Add  Project Task</h4>
+            <p className="formUI__heading addTask__modifier2">{"Name:"+ this.props.projectIdentifier+"  ID: "}</p>
             <div className="formUI__details">
                 <textarea
                     onChange={this.onChangeHandler}
