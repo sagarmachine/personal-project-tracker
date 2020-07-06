@@ -20,6 +20,7 @@
   loginHandler=()=>{
     this.setState({authenticating:true})
     this.props.email(this.state.email)
+    this.props.logIn()
   }
 
    onChangeHandler=(e)=>{

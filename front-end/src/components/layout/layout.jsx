@@ -38,13 +38,13 @@ class Layout extends Component{
    }
 
    logInHandler=()=>{
-   this.setState({login :true})
-      alert("Clicked login")
+     this.setState({login :true})
+     alert("Clicked login")
    }
 
 
    logOutHandler=()=>{
-      this.setState({logInName:""})
+      this.setState({logInName:"",login :false})
       axios.defaults.headers.common['Authentication'] = null;
       alert("done");
    }
@@ -67,14 +67,13 @@ class Layout extends Component{
      return (
        <Fragment>
           <Toolbar
-           logIn={this.logInHandler}
            logOut={this.logOutHandler}
            email={this.state.logInName}
            classes={this.state.toolbar}
            toggleSideDrawer={this.sideDrawerToggleHandler}/>
             {sideDrawer}
            {/*<div>modal</div>*/}
-          <Main email={(email)=>this.logInNameHandler(email)}/>
+          <Main logIn={this.logInHandler} email={(email)=>this.logInNameHandler(email)}/>
        </Fragment>
      )
   }

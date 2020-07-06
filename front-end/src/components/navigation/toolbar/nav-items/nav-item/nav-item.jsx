@@ -35,6 +35,7 @@
                         }}
                         exact
                         to="/login"
+                        onClick={this.props.logIn}
                         className="nav__items-item">
                            logIn
                         </NavLink>
