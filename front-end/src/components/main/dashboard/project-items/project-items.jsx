@@ -11,6 +11,7 @@ import {Link} from "react-router-dom"
      deleting :0,
      deletingID:"",
      loadingProjects:0,
+     searchedProjects:[],
 
    }
 
@@ -37,7 +38,7 @@ import {Link} from "react-router-dom"
    if(this.state.deleting===1){
         axios.delete("/v1/project/"+this.state.deletingID).then(res=>{
           setTimeout(()=>{
-            this.setState({totalProjects:this.state.totalProjects-1,deleting:0,deletingID:""})
+            this.setState({totalProjects:this.state.totalProjects-1,deleting:0,deletingID:"",loadingProjects:1})
           },400)
    }).catch(e=>{
         console.log(e);
@@ -50,6 +51,7 @@ if(this.state.loadingProjects===1)
        this.setState({
          totalProjects:response.data.length,
          projects:response.data,
+         searchedProjects:response.data,
          loadingProjects:0
        })
        // console.log(this.state.totalProjects);
@@ -61,6 +63,28 @@ if(this.state.loadingProjects===1)
    componentDidMount=()=>{
     this.setState({loadingProjects:1});
    }
+
+
+searchProjectHandler=(search)=>{
+
+  if(search===""){
+  this.setState({searchedProjects:this.state.projects})
+  return;  
+}
+//  let a="";
+//  a.toUp
+// console.log(this.state)
+  let newSearchedProject=this.state.projects.filter(project=>{
+    //console.log(project.projectName.toUpperCase().indexOf(search.toUpperCase()));
+              return (project.projectIdentifier.toUpperCase().indexOf(search.toUpperCase())>=0 ||
+               project.projectName.toUpperCase().indexOf(search.toUpperCase())>=0)})
+
+               console.log(newSearchedProject)
+      this.setState({searchedProjects:newSearchedProject});
+
+}
+
+
 
    render(){
      let projectItem = null;
@@ -79,22 +103,35 @@ if(this.state.loadingProjects===1)
       if(this.state.deleting){
         projectItem = <Spinner/>
       }else{
-        projectItem =  this.state.projects.map((project,i)=>(
+        projectItem =  
+        <React.Fragment>
+        <input onChange={(event)=>this.searchProjectHandler(event.target.value)} type="text" style={{height:"6rem",
+        width:"40rem",
+        background:"black",
+        color:"orangered",
+        margin:"3rem auto",
+        display:"block",
+        textAlign:"center",
+        border:".1rem solid orangered"
+      }}/>
+      {this.state.searchedProjects.map((project,i)=>(
           <ProjectItem
           key={project.projectName+i}
           index={i}
           delete={this.deleteProjectHandler}
           name={project.projectName} des={project.projectDescription}
           identifier={project.projectIdentifier}/>
-          // console.log(arr)
-        ))
-      }
+         ))
+         }
+      </React.Fragment>
+      
     }
-     return (
-       projectItem
-     )
+   
    }
+   return (
+    projectItem
+  )
  }
-
+ }
 
 export default ProjectItems;

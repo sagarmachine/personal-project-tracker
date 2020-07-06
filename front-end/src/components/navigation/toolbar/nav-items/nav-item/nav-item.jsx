@@ -10,7 +10,7 @@
        navItem = <div className="nav__items">
                         {/*<NavLink
                         activeStyle={{
-                          background:"rgba(255,255,255,.5)",
+                          background:"orangered",
                           color:"black",
                           transition:"all .4s"
                         }}
@@ -21,7 +21,7 @@
                         </NavLink>*/}
                         <NavLink
                         activeStyle={{
-                          background:"rgba(255,255,255,.5)",
+                          background:"orangered",
                           color:"black",
                           transition:"all .4s"
                         }}
@@ -29,7 +29,7 @@
                         to="/" className="nav__items-item">signUp</NavLink>
                         <NavLink
                         activeStyle={{
-                          background:"rgba(255,255,255,.5)",
+                          background:"orangered",
                           color:"black",
                           transition:"all .4s"
                         }}
@@ -45,7 +45,7 @@
        navItem = <div className="nav__items">
                         <NavLink
                         activeStyle={{
-                          background:"rgba(255,255,255,.5)",
+                          background:"orangered",
                           color:"black",
                           transition:"all .4s"
                         }}
@@ -56,7 +56,7 @@
                         </NavLink>
                         <NavLink
                         activeStyle={{
-                          background:"rgba(255,255,255,.5)",
+                          background:"orangered",
                           color:"black",
                           transition:"all .4s"
                         }}
