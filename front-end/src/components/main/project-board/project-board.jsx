@@ -33,7 +33,7 @@ import Spinner from "../../UI/Spinner/Spinner"
           active:"detailViewClose"
         })
       }
-      
+
    }
 
    onClickHandler=(name)=>{
@@ -87,22 +87,22 @@ import Spinner from "../../UI/Spinner/Spinner"
   openUpdateTaskDetailViewHandler=(index)=>{
     console.log(index)
     this.setState({detailViewIndex:4,selectedTaskIndex:index});
-  
+
   }
 
 
    render(){
      let todo = null;
      if(this.state.data.length===0){
-          todo =<div  onClick={this.openAddTaskDetailViewHandler}>{"Add Task Button 123"} </div>
-         
+          todo =<div  onClick={this.openAddTaskDetailViewHandler}>{<div className="dark-btn submitBtn">Add Task</div>} </div>
+
      }else{
          todo = <ul className="projectBoard__ul">
            {this.state.data.map((data,index)=>{
              return (data.status==="TO_DO")?
                     <li  className="projectBoard__li">
                         <TodoTask
-                           
+
                             activeHandler={this.activeHandler}
                             summary={data.summary}
                             status={data.status}
@@ -184,7 +184,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
 
 
-             <DetailView activeClass={this.state.active} 
+             <DetailView activeClass={this.state.active}
                          detailViewIndex={this.state.detailViewIndex}
                           projectIdentifier={this.props.location.state.projectIdentifier}
                           reloadTasks={this.reloadTaskHandler}
