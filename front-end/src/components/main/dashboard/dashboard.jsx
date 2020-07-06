@@ -9,7 +9,6 @@ import ProjectItems from "./project-items/project-items"
        <div className="dashboard">
             <h1 className="dashboard__heading">Projects</h1>
             <CreateProjectBtn /><br />
-            <input type="text" className="search-btn"/>
             <ProjectItems/>
        </div>
      )
