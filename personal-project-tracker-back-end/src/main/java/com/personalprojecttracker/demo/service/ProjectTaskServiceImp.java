@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -116,7 +117,11 @@ return backlog.getProjectTasks();
         if(projectTask.getId()==0 && !projectTaskRepository.findById(projectTask.getId()).isPresent() )
             throw  new ProjectNotFoundException("no project task found with project id=\""+projectTask.getId()+"\"");
 
-        ProjectTask projectTaskTemp=projectTaskRepository.findById(projectTask.getId()).get();
+        Optional<ProjectTask> projectTaskOptional = projectTaskRepository.findById(projectTask.getId());
+       if(!projectTaskOptional.isPresent())
+           throw  new ProjectNotFoundException("no project task found with project id=\""+projectTask.getId()+"\"");
+
+        ProjectTask projectTaskTemp=projectTaskOptional.get();
         if( !principal.getName().equals(projectTaskTemp.getBacklog().getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project task found with project id=\""+projectTask.getId()+"\"");
 
@@ -130,6 +135,7 @@ return backlog.getProjectTasks();
             projectTask.addNote(note);
             // noteRepository.save(note);
         }
+
 
         for (UsefullLinkRequestDto usefullLinkTemp:projectTaskRequestDto.getUsefullLinks()){
             UsefullLink usefullLink = new UsefullLink();
@@ -145,6 +151,7 @@ return backlog.getProjectTasks();
         projectTask.setCreatedDate(projectTaskTemp.getCreatedDate());
         projectTask.setProjectTaskIdentifier(projectTaskTemp.getProjectTaskIdentifier());
         userRepository.save(user);
+        projectTaskRepository.save(projectTask);
         return projectTask;
    }
 }

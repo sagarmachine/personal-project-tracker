@@ -15,10 +15,10 @@ axios.interceptors.response.use(response =>{
   return response;});
 // axios.interceptors.request.use(request=>{console.log("3"+authentication);
 //                                        return request;})
-axios.interceptors.request.use(request=>{console.log("2"+request.headers.Authentication);
-                                       return request;})
- axios.interceptors.request.use(request=>{console.log("1"+JSON.stringify(request.headers));
-                                        return request;})
+// axios.interceptors.request.use(request=>{console.log("2"+request.headers.Authentication);
+//                                        return request;})
+//  axios.interceptors.request.use(request=>{console.log("1"+JSON.stringify(request.headers));
+//                                         return request;})
 //  axios.interceptors.request.use(request =>function (config) {
 //   const token = authentication;
 //   config.headers.Authentication =  token;
