@@ -44,6 +44,7 @@ import axios from "axios"
      const submitedState = this.state
      axios.put("/v1/projecttask/"+this.props.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
      .then(res=>{
+       console.log(res);
        this.props.reloadTasks();
      }).catch(e=>{
        console.log("failure");
