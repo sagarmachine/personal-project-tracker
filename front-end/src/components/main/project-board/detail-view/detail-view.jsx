@@ -13,7 +13,7 @@ import TaskDetailView from "./task-detail-view/task-detail-view";
      let detailView=null;
      let detailViewIndex=this.props.detailViewIndex;
      if(detailViewIndex===1)
-     detailView=<ProjectDetailView/>
+     detailView=<ProjectDetailView />
      else if(detailViewIndex===2)
      detailView=<TaskDetailView  selectedTask={this.props.selectedTask} selectedTaskIndex={this.props.selectedTaskIndex} openUpdateTaskDetailView={this.props.openUpdateTaskDetailView} />
      else if(detailViewIndex===3)
@@ -32,7 +32,7 @@ import TaskDetailView from "./task-detail-view/task-detail-view";
             <p className="detailView__para">
                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis delectus soluta tenetur atque, temporibus adipisci, officia eligendi quam, modi facilis, sunt nulla! Dicta tenetur dolorum mollitia expedita dolore illum maxime architecto perspiciatis fuga amet accusantium nemo, molestiae asperiores alias corporis, ullam explicabo unde! Praesentium animi quisquam fuga perspiciatis! Mollitia, similique.
             </p> */}
-            
+
            {detailView}
           </div>
      )

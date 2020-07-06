@@ -77,17 +77,20 @@ import Spinner from "../../UI/Spinner/Spinner"
 
    openProjectDetailViewHandler=()=>{
      this.setState({detailViewIndex:1});
+     this.activeHandler();
    }
    openTaskDetailViewHandler=(index)=>{
     this.setState({detailViewIndex:2,selectedTaskIndex:index});
+    this.activeHandler();
   }
   openAddTaskDetailViewHandler=()=>{
     this.setState({detailViewIndex:3});
+    this.activeHandler();
   }
   openUpdateTaskDetailViewHandler=(index)=>{
     console.log(index)
     this.setState({detailViewIndex:4,selectedTaskIndex:index});
-
+    this.activeHandler();
   }
 
 
@@ -102,7 +105,6 @@ import Spinner from "../../UI/Spinner/Spinner"
              return (data.status==="TO_DO")?
                     <li  className="projectBoard__li">
                         <TodoTask
-
                             activeHandler={this.activeHandler}
                             summary={data.summary}
                             status={data.status}

@@ -1,0 +1,19 @@
+.search-btn{
+  height:6rem;
+  width:40rem;
+  background:black;
+  color:$color-orangered;
+  margin:3rem auto;
+  display:block;
+  text-align:center;
+  border:.2rem solid $color-orangered;
+  font-size: 3rem;
+  transition: all 1s;
+  @include respond(phone){
+      width:30rem;
+  }
+  &:focus{
+    outline:none;
+    border: .2rem solid orange;
+  }
+}
