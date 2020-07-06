@@ -8,7 +8,7 @@ import ProjectItems from "./project-items/project-items"
      return (
        <div className="dashboard">
             <h1 className="dashboard__heading">Projects</h1>
-            <CreateProjectBtn /><br />
+            <CreateProjectBtn />
             <ProjectItems/>
        </div>
      )

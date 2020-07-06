@@ -9,6 +9,11 @@ import axios from "axios"
       projectDescription: "",
       startingDate: "",
       endingDate: "",
+      addNote:"",
+      notes:[],
+      links:[],
+      addLinkFullLink:"",
+      addLinkComment:""
     }
 
     onChangeHandler=(e)=>{
@@ -39,13 +44,58 @@ import axios from "axios"
        })
     }
 
+    removeNoteHandler=(noteIndex)=>{
+      let newState= this.state
+      newState.notes.splice(noteIndex,1);
+
+      this.setState({
+         ...newState
+      })
+    }
+
+    addNoteHandler=()=>{
+      let newState= this.state
+      if(newState.addNote.length!==0){
+        newState.notes.push(newState.addNote);
+        newState.addNote="";
+        this.setState({
+          ...newState
+        })
+      }
+    }
+
+    removeLinkHandler=(linkIndex)=>{
+      let newState= this.state
+      newState.links.splice(linkIndex,1);
+      this.setState({
+         ...newState
+      })
+    }
+
+    addLinkHandler=()=>{
+      let newState= this.state
+      let link={
+        fullLink:newState.addLinkFullLink,
+        comment:newState.addLinkComment
+      }
+      if(newState.addLinkFullLink.length!==0 && newState.addLinkComment.length!==0){
+        newState.links.push(link);
+        newState.addLinkFullLink=""
+        newState.addLinkComment=""
+        this.setState({
+          ...newState
+        })
+      }
+    }
+
+
    render(){
 
      return (
         <div className="addProject">
           <h5 className="addProject__heading">Create / Edit Project form</h5>
 <hr />
-          <div className="addProject__item">
+          <div className="addProject__item addProject__item1">
                 <input
                 type="text"
                 className="addProject__item-name"
@@ -54,7 +104,7 @@ import axios from "axios"
                 value={this.state.projectName}
                 onChange={this.onChangeHandler}/>
           </div>
-          <div className="addProject__item">
+          <div className="addProject__item addProject__item1">
                 <input
                 type="text"
                 className="addProject__item-id"
@@ -71,8 +121,9 @@ import axios from "axios"
                 value={this.state.projectDescription}
                 onChange={this.onChangeHandler}></textarea>
           </div>
-          <h6>Start Date</h6>
-          <div className="addProject__item">
+          <div className="rowMaker">
+          <div className="addProject__item addProject__item1">
+                <h6>Start Date</h6>
                 <input
                 type="date"
                 className="addProject__item-date"
@@ -80,8 +131,8 @@ import axios from "axios"
                 value={this.state.startingDate}
                 onChange={this.onChangeHandler}/>
           </div>
-          <h6>Estimated End Date</h6>
-          <div className="addProject__item">
+          <div className="addProject__item addProject__item1">
+                <h6>Estimated End Date</h6>
                 <input
                 type="date"
                 className="addProject__item-date"
@@ -89,14 +140,75 @@ import axios from "axios"
                 value={this.state.endingDate}
                 onChange={this.onChangeHandler}/>
           </div>
+          </div>
+          <div className="rowMaker">
+          <div className="addProject__item addProject__item1 addProject__item3">
+                {this.state.notes.map((note,noteIndex)=>(
+                  <div className="noteBox">
+                      <input
+                      type="text"
+                      className="addProject__item-name addNote "
+                      name="projectName"
+                      value={note}
+                      disabled="true"/>
+                      <i onClick={()=>this.removeNoteHandler(noteIndex)} className="fa fa-remove fa-4x removeIcon" aria-hidden="true"></i>
+                  </div>
+                ))}
+                <div>
+                <input
+                type="text"
+                className="addProject__item-name addNote"
+                placeholder="add a Note"
+                name="addNote"
+                value={this.state.addNote}
+                onChange={this.onChangeHandler}
+                />
+                <i onClick={this.addNoteHandler}  className="fa fa-plus fa-4x addIcon addIcon1" aria-hidden="true"></i>
+                </div>
+          </div>
+          <div className="addProject__item addProject__item1 addProject__item3">
+                {this.state.links.map((link,linkIndex)=>(
+                  <div className="linkBox">
+                      <input
+                      type="text"
+                      className="addProject__item-name addLink-fullLink"
+                      value={link.fullLink}
+                      disabled="true"/>
+                      <i onClick={()=>this.removeLinkHandler(linkIndex)} className="fa fa-remove fa-4x removeIcon removeIcon2" aria-hidden="true"></i>
+                      <input
+                      type="text"
+                      className="addProject__item-name addLink-comment"
+                      value={link.comment}
+                      disabled="true"/>
+                  </div>
+                ))}
+                <div>
+                <input
+                type="text"
+                className="addProject__item-name addLink-fullLink"
+                placeholder="add a Link"
+                name="addLinkFullLink"
+                value={this.state.addLinkFullLink}
+                onChange={this.onChangeHandler}
+                />
+                <input
+                type="text"
+                className="addProject__item-name addLink-comment"
+                placeholder="add a comment"
+                name="addLinkComment"
+                value={this.state.addLinkComment}
+                onChange={this.onChangeHandler}
+                />
+                <i onClick={this.addLinkHandler}  className="fa fa-plus fa-4x addIcon addIcon2" aria-hidden="true"></i>
+                </div>
+          </div>
+          </div>
           <div className="addProject__item">
                     <input
                     onClick={this.onSubmitHandler}
                     type="submit"
-                    className="submitBtn dark-btn" />
+                    className="submitBtn dark-btn"/>
           </div>
-          {/*<div className="addProject__img">
-          </div>*/}
         </div>
      )
    }

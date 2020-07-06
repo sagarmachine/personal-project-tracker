@@ -69,7 +69,7 @@ searchProjectHandler=(search)=>{
 
   if(search===""){
   this.setState({searchedProjects:this.state.projects})
-  return;  
+  return;
 }
 //  let a="";
 //  a.toUp
@@ -103,17 +103,9 @@ searchProjectHandler=(search)=>{
       if(this.state.deleting){
         projectItem = <Spinner/>
       }else{
-        projectItem =  
+        projectItem =
         <React.Fragment>
-        <input onChange={(event)=>this.searchProjectHandler(event.target.value)} type="text" style={{height:"6rem",
-        width:"40rem",
-        background:"black",
-        color:"orangered",
-        margin:"3rem auto",
-        display:"block",
-        textAlign:"center",
-        border:".1rem solid orangered"
-      }}/>
+        <input onChange={(event)=>this.searchProjectHandler(event.target.value)} className="search-btn" type="text"/>
       {this.state.searchedProjects.map((project,i)=>(
           <ProjectItem
           key={project.projectName+i}
@@ -124,9 +116,9 @@ searchProjectHandler=(search)=>{
          ))
          }
       </React.Fragment>
-      
+
     }
-   
+
    }
    return (
     projectItem
