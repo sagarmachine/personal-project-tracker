@@ -1,6 +1,7 @@
 package com.personalprojecttracker.demo.controller;
 
 
+import com.personalprojecttracker.demo.dto.ProjectRequestDto;
 import com.personalprojecttracker.demo.model.Project;
 import com.personalprojecttracker.demo.model.User;
 import com.personalprojecttracker.demo.repository.ProjectRepository;
@@ -46,7 +47,7 @@ public class ProjectController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> postNewProject(@Valid @RequestBody Project project, BindingResult result,Principal principal){
+    public ResponseEntity<?> postNewProject(@Valid @RequestBody ProjectRequestDto project, BindingResult result, Principal principal){
         if(result.hasErrors())
              return bindingResultErrorService.getErrorResponse(result);
 
@@ -60,7 +61,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, BindingResult result,Principal principal){
+    public ResponseEntity<?> updateProject(@Valid @RequestBody ProjectRequestDto project, BindingResult result,Principal principal){
         if(result.hasErrors())
             return bindingResultErrorService.getErrorResponse(result);
 

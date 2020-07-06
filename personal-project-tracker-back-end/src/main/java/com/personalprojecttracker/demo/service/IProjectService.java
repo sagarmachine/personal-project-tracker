@@ -1,12 +1,13 @@
 package com.personalprojecttracker.demo.service;
 
+import com.personalprojecttracker.demo.dto.ProjectRequestDto;
 import com.personalprojecttracker.demo.model.Project;
 
 import java.security.Principal;
 
 public interface IProjectService {
 
-    Project saveOrUpdateProject(Project project, Principal principal);
+    Project saveOrUpdateProject(ProjectRequestDto projectRequestDto, Principal principal);
 
     Project getProjectById(String id,Principal principal);
 

@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -15,7 +17,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Project {
+public class
+Project {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -62,6 +65,21 @@ public class Project {
     @JoinColumn
     @JsonIgnore
     User user;
+
+
+    @OneToMany(mappedBy = "project",cascade ={CascadeType.ALL},orphanRemoval = true)
+    Set<UsefullLink> usefullLinks= new HashSet<>();
+
+    public void addUsefullLink(UsefullLink usefullLink){
+        usefullLinks.add(usefullLink);
+    }
+
+    @OneToMany(mappedBy = "project",cascade ={CascadeType.ALL},orphanRemoval = true)
+    Set<Note> notes= new HashSet<>();
+
+    public void addNote(Note note){
+        notes.add(note);
+    }
 
 }
 

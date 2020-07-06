@@ -7,6 +7,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -24,20 +26,15 @@ public class ProjectTask {
 
     String projectTaskIdentifier;
 
-    @NotNull(message = "preference can't be null")
     int preference;
 
-    @NotNull(message = "task summary cant be null")
     String summary;
 
-    @NotNull(message = "status can't be null")
     String status;
 
-   @NotNull(message="start date can't be null")
     @JsonFormat(pattern = "dd-mm-yyyy")
     Date startDate;
 
-    @NotNull(message="endDate can't be null")
     @JsonFormat(pattern = "dd-mm-yyyy")
     Date endDate;
 
@@ -63,5 +60,19 @@ public class ProjectTask {
     @JsonIgnore
     Backlog backlog;
 
+
+    @OneToMany(mappedBy = "projectTask",cascade ={CascadeType.ALL},orphanRemoval = true)
+    Set<UsefullLink> usefullLinks= new HashSet<>();
+
+    public void addUsefullLink(UsefullLink usefullLink){
+        usefullLinks.add(usefullLink);
+    }
+
+    @OneToMany(mappedBy = "projectTask",cascade ={CascadeType.ALL},orphanRemoval = true)
+    Set<Note> notes= new HashSet<>();
+
+    public void addNote(Note note){
+        notes.add(note);
+    }
 
 }
