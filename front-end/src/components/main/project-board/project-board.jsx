@@ -51,7 +51,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
    reloadTaskHandler=()=>{
     this.setState({loadingTasks:true})
-
+   
    }
 
 
@@ -63,7 +63,12 @@ import Spinner from "../../UI/Spinner/Spinner"
        this.setState({
          data:res.data,
          loadingTasks:false
-       })
+       });
+       if(this.state.selectedTaskIndex>=0)
+       this.openTaskDetailViewHandler(this.state.selectedTaskIndex);
+       else{
+         this.openProjectDetailViewHandler();
+       }
      }).catch(e=>{
        console.log(e);
      })
@@ -84,7 +89,7 @@ import Spinner from "../../UI/Spinner/Spinner"
     this.activeHandler();
   }
   openAddTaskDetailViewHandler=()=>{
-    this.setState({detailViewIndex:3});
+    this.setState({detailViewIndex:3,selectedTaskIndex:-1});
     this.activeHandler();
   }
   openUpdateTaskDetailViewHandler=(index)=>{
@@ -193,6 +198,7 @@ import Spinner from "../../UI/Spinner/Spinner"
                           selectedTask={this.state.data[this.state.selectedTaskIndex]}
                           openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
                           selectedTaskIndex={this.state.selectedTaskIndex}
+                          openTaskDetailView={this.openTaskDetailViewHandler}
 
              />
 

@@ -47,6 +47,8 @@ class Layout extends Component{
       this.setState({logInName:"",login :false})
       axios.defaults.headers.common['Authentication'] = null;
       alert("done");
+      window.location.href = "http://localhost:3000";
+
    }
 
    logInNameHandler=(email)=>{

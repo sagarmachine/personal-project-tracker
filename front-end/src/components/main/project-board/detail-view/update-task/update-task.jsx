@@ -46,6 +46,7 @@ import axios from "axios"
      .then(res=>{
        console.log(res);
        this.props.reloadTasks();
+      // this.props.openTaskDetailView(this.props.selectedTaskIndex);
      }).catch(e=>{
        console.log("failure");
      })

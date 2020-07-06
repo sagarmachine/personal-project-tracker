@@ -6,6 +6,7 @@ import Background from "../UI/background/background"
 import Dashboard from "./dashboard/dashboard"
 import AddProject from "./add-project/add-project"
 import ProjectBoard from "./project-board/project-board"
+import LandingPage from "./landing-page/landing-page";
 
  class Main extends Component{
 
@@ -15,7 +16,8 @@ import ProjectBoard from "./project-board/project-board"
         <div className="main">
              <Background />
           <Switch>
-              <Route exact path="/"><SignUp email={(email)=>this.props.email(email)}/></Route>
+              <Route exact path="/" ><LandingPage/></Route>
+               <Route exact path="/signUp"><SignUp email={(email)=>this.props.email(email)}/></Route>
               <Route exact path="/login"><LogIn logIn={this.props.logIn} email={(email)=>this.props.email(email)}/></Route>
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/addProject" component={AddProject}/>

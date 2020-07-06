@@ -19,6 +19,13 @@
                         className="nav__items-item">
                           Dashboard
                         </NavLink>*/}
+                        <NavLink  activeStyle={{
+                          background:"orangered",
+                          color:"black",
+                          transition:"all .4s"
+                        }}
+                        exact
+                        to="/" className="nav__items-item">ABOUT TRACKER</NavLink>
                         <NavLink
                         activeStyle={{
                           background:"orangered",
@@ -26,7 +33,7 @@
                           transition:"all .4s"
                         }}
                         exact
-                        to="/" className="nav__items-item">signUp</NavLink>
+                        to="/signUp" className="nav__items-item">signUp</NavLink>
                         <NavLink
                         activeStyle={{
                           background:"orangered",
@@ -44,6 +51,13 @@
                  </div>
      }else{
        navItem = <div className="nav__items">
+           <NavLink  activeStyle={{
+                          background:"orangered",
+                          color:"black",
+                          transition:"all .4s"
+                        }}
+                        exact
+                        to="/" className="nav__items-item">ABOUT TRACKER</NavLink>
                         <NavLink
                         activeStyle={{
                           background:"orangered",
