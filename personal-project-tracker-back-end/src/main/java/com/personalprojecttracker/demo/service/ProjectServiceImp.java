@@ -1,14 +1,15 @@
 package com.personalprojecttracker.demo.service;
 
 
+import com.personalprojecttracker.demo.dto.ProjectRequestDto;
+import com.personalprojecttracker.demo.dto.UsefullLinkRequestDto;
 import com.personalprojecttracker.demo.exception.ProjectNotFoundException;
-import com.personalprojecttracker.demo.model.Backlog;
-import com.personalprojecttracker.demo.model.Project;
-import com.personalprojecttracker.demo.model.TeamBacklog;
-import com.personalprojecttracker.demo.model.User;
+import com.personalprojecttracker.demo.model.*;
+import com.personalprojecttracker.demo.repository.NoteRepository;
 import com.personalprojecttracker.demo.repository.ProjectRepository;
 import com.personalprojecttracker.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,13 +32,19 @@ public class ProjectServiceImp implements  IProjectService {
     @Autowired
     ProjectRepository projectRepository;
 
+    @Autowired
+    NoteRepository noteRepository;
+
     @Override
-    public Project saveOrUpdateProject(Project project, Principal principal) {
+    public Project saveOrUpdateProject(ProjectRequestDto projectRequestDto, Principal principal) {
 
 //        Project projectTemp =projectRepository.findByProjectIdentifier(project.getProjectIdentifier());
         User user = userRepository.findByEmail(principal.getName());
 
-        project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+        projectRequestDto.setProjectIdentifier(projectRequestDto.getProjectIdentifier().toUpperCase());
+
+        ModelMapper mapper = new ModelMapper();
+        Project project = mapper.map(projectRequestDto,Project.class);
 
         if(project.getId()!=0)
         {
@@ -56,16 +63,39 @@ public class ProjectServiceImp implements  IProjectService {
             Backlog backlog= new Backlog();
             backlog.setProjectIdentifier(project.getProjectIdentifier());
             backlog.setProject(project);
-            log.info("-->"+backlog.toString());
+         //   log.info("-->"+backlog.toString());
             project.setBacklog(backlog);
             user.addProject(project);
             project.setUser(user);
 
+
         }
+   for (String noteTemp:projectRequestDto.getNotes()){
+            Note note = new Note();
+            log.info("note --->"+noteTemp);
+            note.setNote(noteTemp);
+            note.setUser(user);
+            note.setProject(project);
+            user.addNote(note);
+            project.addNote(note);
+           // noteRepository.save(note);
+        }
+
+        for (UsefullLinkRequestDto usefullLinkTemp:projectRequestDto.getUsefullLinks()){
+            UsefullLink usefullLink = new UsefullLink();
+            usefullLink.setComment(usefullLinkTemp.getComment());
+            usefullLink.setLink(usefullLinkTemp.getLink());
+            usefullLink.setUser(user);
+            usefullLink.setProject(project);
+            user.addUsefullLink(usefullLink);
+            project.addUsefullLink(usefullLink);
+           }
+
+log.info("!11111111111");
        userRepository.save(user);
       //  projectRepository.save(project);
        //projectRepository.save(project);
-        return project;
+        return projectRepository.findByProjectIdentifier(projectRequestDto.getProjectIdentifier());
     }
 
     @Override

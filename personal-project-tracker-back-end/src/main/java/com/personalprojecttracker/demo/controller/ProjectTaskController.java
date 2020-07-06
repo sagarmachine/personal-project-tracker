@@ -1,5 +1,6 @@
 package com.personalprojecttracker.demo.controller;
 
+import com.personalprojecttracker.demo.dto.ProjectTaskRequestDto;
 import com.personalprojecttracker.demo.model.ProjectTask;
 import com.personalprojecttracker.demo.service.IBindingResultErrorService;
 import com.personalprojecttracker.demo.service.IProjectTaskService;
@@ -25,7 +26,7 @@ public class ProjectTaskController {
 
   @PostMapping("/projecttask/{projectIdentifier}")
     ResponseEntity<?> addNewProjectTask(@PathVariable String  projectIdentifier,
-                                         @Valid @RequestBody ProjectTask projectTask,
+                                         @Valid @RequestBody ProjectTaskRequestDto projectTask,
                                         BindingResult bindingResult, Principal principal){
 
       if(bindingResult.hasErrors())
@@ -45,7 +46,7 @@ public class ProjectTaskController {
 
   @PutMapping("/projecttask/{projectTaskIdentifier}")
     ResponseEntity<?> updateProjectTaskByProjectTaskIdentifier(@PathVariable String projectTaskIdentifier,
-                                                               @Valid @RequestBody ProjectTask projectTask,
+                                                               @Valid @RequestBody ProjectTaskRequestDto projectTask,
                                                                BindingResult bindingResult,Principal principal){
       if(bindingResult.hasErrors())
           return bindingResultErrorService.getErrorResponse(bindingResult);
