@@ -184,8 +184,8 @@ import Spinner from "../../UI/Spinner/Spinner"
        <div className="projectBoard">
         <div onClick={this.activeHandler} className="detailView__head">
             {(this.state.active==="detailViewOpen")
-                ?<i className="fa fa-toggle-on" aria-hidden="true"></i>
-                :<i className="fa fa-toggle-off" aria-hidden="true"></i>
+                ?<i className="onOffTogler fa fa-toggle-on" aria-hidden="true"></i>
+                :<i className="onOffTogler fa fa-toggle-off" aria-hidden="true"></i>
               }
          </div>
 
@@ -210,7 +210,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
 
              {(this.state.data.length!==0)?
-             <div onClick={this.openAddTaskDetailViewHandler}>Add Task Button</div>
+             <div style={{display:"inline-block"}} className="submitBtn" onClick={this.openAddTaskDetailViewHandler}>Add Task Button</div>
             //  <Link to={{
             //    pathname:"/addTask",
             //    state:{

@@ -92,10 +92,10 @@ searchProjectHandler=(search)=>{
        textTransform:"uppercase",
        fontSize:"2rem",
        textAlign:"center",
-       color:"black",
+       color:"orangered",
        padding:"3rem 0",
        border:"1px solid none",
-       background:"rgba(255,255,255,.3)",
+       background:"rgba(0,0,0,.3)",
      }
      if(this.state.totalProjects===0){
       projectItem = <Link to="/addProject"><h1 style={style}><i className="fa fa-plus" aria-hidden="true"></i> Add a project</h1></Link>

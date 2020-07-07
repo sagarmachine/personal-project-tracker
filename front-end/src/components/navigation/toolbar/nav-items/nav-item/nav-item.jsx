@@ -25,7 +25,7 @@
                           transition:"all .4s"
                         }}
                         exact
-                        to="/" className="nav__items-item">ABOUT TRACKER</NavLink>
+                        to="/" className="nav__items-item"><i className="fa fa-info-circle iconSize" aria-hidden="true"></i></NavLink>
                         <NavLink
                         activeStyle={{
                           background:"orangered",
@@ -33,7 +33,7 @@
                           transition:"all .4s"
                         }}
                         exact
-                        to="/signUp" className="nav__items-item">signUp</NavLink>
+                        to="/signUp" className="nav__items-item"><i className="fa fa-registered iconSize" aria-hidden="true"></i></NavLink>
                         <NavLink
                         activeStyle={{
                           background:"orangered",
@@ -44,7 +44,7 @@
                         to="/login"
                         onClick={this.props.logIn}
                         className="nav__items-item">
-                           logIn
+                           <i className="fa fa-sign-in iconSize" aria-hidden="true"></i>
                         </NavLink>
                         {/*Landing Component GET-STARTED login:false
                           logout onClick={logoutHadler()}  */}
@@ -57,7 +57,7 @@
                           transition:"all .4s"
                         }}
                         exact
-                        to="/" className="nav__items-item">ABOUT TRACKER</NavLink>
+                        to="/" className="nav__items-item"><i className="fa fa-info-circle iconSize" aria-hidden="true"></i></NavLink>
                         <NavLink
                         activeStyle={{
                           background:"orangered",
@@ -67,7 +67,7 @@
                         exact
                         to="/dashboard"
                         className="nav__items-item">
-                          Dashboard
+                          <i className="fa fa-tachometer iconSize" aria-hidden="true"></i>
                         </NavLink>
                         <NavLink
                         activeStyle={{
@@ -78,12 +78,12 @@
                         exact
                         to="/profile"
                         className="nav__items-item">
-                          {this.props.email}
+                          <i class="fa fa-user iconSize" aria-hidden="true"></i>{" "+this.props.email.split("@").shift()}
                         </NavLink>
                         <div
                         onClick={this.props.logOut}
                         className="nav__items-item logOut">
-                          logOut
+                          <i class="fa fa-sign-out iconSize" aria-hidden="true"></i>
                         </div>
                         {/*Landing Component GET-STARTED login:false
                           logout onClick={logoutHadler()}  */}

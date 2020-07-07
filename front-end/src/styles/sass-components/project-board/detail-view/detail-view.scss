@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   &__head{
     color: $color-orangered;
     margin-bottom: 1rem;
@@ -12,10 +12,14 @@
     transition: all .2s;
     z-index: 9000;
     @include respond(tab-port){
-      right: 2rem;
+      right: 3rem;
+      // top:16.5%;
       font-size: 5rem;
       display: flex;
       justify-content: flex-end;
+    }
+    @include respond(phone){
+
     }
   }
   line-height: 2;
@@ -50,23 +54,25 @@
     right: 1%;
     transition: all .5s;
   }
-
 }
 .detailViewClose{
+
   @include respond(tab-port){
-      display: none;
+    display: none;
     & .detailView__para{
       display: none;
     }
   }
   @include respond(phone){
-    width: 20rem;
-    height: 5.1rem;
+    display: none;
   }
 }
 .detailViewOpen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include respond(tab-port){
-    display: block;
+    // display: block;
     right: 0;
     margin: 0;
     height: 80vh;
@@ -75,6 +81,9 @@
     & .detailView__para{
       display: block;
     }
+  }
+  @include respond(phone){
+    top:7vh;
   }
 }
 .detailView{

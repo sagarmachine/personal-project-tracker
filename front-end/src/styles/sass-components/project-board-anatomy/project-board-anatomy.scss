@@ -4,30 +4,53 @@
    height: 100%;
    font-size: 1.5rem;
    color: $color-link;
+   letter-spacing:2px;
   }
   &__head{
     padding: 1.5rem 2.5rem;
+    font-weight:800;
+    @include respond(phone){
+      padding: 1rem 2rem;
+      font-size:2.1rem;
+    }
   }
   &__body{
     padding: 1.5rem 2.5rem;
     text-transform:capitalize;
+    background-image:linear-gradient(90deg, rgba(19,62,2,1) 0%, rgba(15,94,93,1) 81%, rgba(15,92,103,1) 100%);
+    font-weight:700;
+    @include respond(phone){
+      padding: 1rem 2rem;
+      font-size:2rem;
+    }
+//
+//
+//
+//
+//
+//
+//
   }
   &__foot{
     padding: .1rem 2.5rem;
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;
-    background: $color-grey-dark-2;
+    background: $color-link;
     font-size: 30rem;
+    font-weight:bolder;
+    @include respond(phone){
+      font-size:2.1rem;
+    }
     &-modifier{
 
       &1{
         background: rgba($color-cyan,.9);
-        color: $color-secondary-pink;
+        color: $color-link;
       }
       &2{
         background: rgba($color-red,.9);
-        color: $color-secondary-pink;
+        color: $color-link;
         margin-left: 2rem;
       }
       &1,&2{

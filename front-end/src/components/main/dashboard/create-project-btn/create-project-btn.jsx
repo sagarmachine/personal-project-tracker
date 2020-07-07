@@ -7,7 +7,7 @@ import {Link} from "react-router-dom"
 
      return (
        <Fragment>
-           <Link to="/addProject" className="dark-btn">
+           <Link to="/addProject" className="dark-btn submitBtn">
                Create a Project
            </Link>
        </Fragment>

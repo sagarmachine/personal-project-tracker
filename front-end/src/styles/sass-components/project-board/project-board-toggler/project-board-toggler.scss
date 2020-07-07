@@ -4,7 +4,7 @@
   height: 8rem;
   box-sizing: content-box;
   border: 1rem solid $color-secondary-pink;
-  box-shadow: 0rem 0rem 20pt $color-secondary-pink;
+  // box-shadow: 0rem 0rem 20pt $color-secondary-pink;
   outline-offset: 1rem;
   margin: 4rem 2rem;
   justify-content: center;
@@ -17,23 +17,28 @@
   color: transparent;
   transition: all .2s;
   position: relative;
+  @include respond(phone){
+    font-size: 4rem;
+    width: 6rem;
+    height: 6rem;
+  }
   &:hover{
-    border: 1rem solid #0b2624;
+    border: 1rem solid $color-orangered;
     background: $color-link;
     // background-clip: none;
     color: $color-green;
   }
   &__todo{
        border: 1rem solid $color-grey;
-       box-shadow: 0rem 0rem 20pt $color-grey;
+       // box-shadow: 0rem 0rem 20pt $color-grey;
   }
   &__inDevelopment{
        border: 1rem solid $color-purple;
-       box-shadow: 0rem 0rem 20pt $color-purple;
+       // box-shadow: 0rem 0rem 20pt $color-purple;
   }
   &__completed{
       border: 1rem solid $color-green;
-      box-shadow: 0rem 0rem 20pt $color-green;
+      // box-shadow: 0rem 0rem 20pt $color-green;
   }
 }
 

@@ -1,22 +1,47 @@
 .HIGH{
-  background: rgba($color-secondary-red,.9);
+  background: rgba($color-red,1);
   color:$color-link;
-  // &:hover{
-  //  transform:scale(1.005);
-  // //
-  // //
-  // //
-  // //
-  // //
-  // //
-  // //
-  //    }
+  transition: all .5s;
+  &:hover{
+   // transform:scale(1.005);
+   background: $color-orangered;
+      cursor:pointer;
+  //
+  //
+  //
+  //
+  //
+  //
+     }
 }
 .MEDIUM{
-  background: rgba($color-secondary-warning,.9);
+  transition: all .5s;
+  background: rgba($color-warning,1);
   color:$color-link;
+  &:hover{
+   // transform:scale(1.005);
+   background: $color-orangered;
+   cursor:pointer;
+  //
+  //
+  //
+  //
+  //
+     }
 }
 .LOW{
-  background: rgba($color-secondary-blue,.9);
+  transition: all .5s;
+  background: rgba($color-secondary-blue,1);
   color:$color-link;
+  &:hover{
+   // transform:scale(1.005);
+   background: $color-orangered;
+      cursor:pointer;
+  //
+  //
+  //
+  //
+  //
+  //
+     }
 }

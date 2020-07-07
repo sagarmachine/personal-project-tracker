@@ -12,7 +12,7 @@ import axios from "axios"
            preference:"HIGH",
            startDate:"",
            endDate:"",
-          //prevTask:"",   
+          //prevTask:"",
              }
 
    onChangeHandler=(e)=>{
@@ -118,7 +118,7 @@ this.setState({...this.props.selectedTask});
             <input
             onClick={this.onSubmitHandler}
             type="submit"
-            className="dark-btn addTask__modifier3" />
+            className="submitBtn dark-btn addTask__modifier3" />
 
         </div>
      )

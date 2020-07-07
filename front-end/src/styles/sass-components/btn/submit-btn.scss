@@ -1,4 +1,6 @@
 .submitBtn{
+  background: $color-link;
+  color: $color-orangered;
   padding: 1rem 3.5rem;
   margin: 1rem 0;
   border: none;
@@ -11,6 +13,8 @@
   }
   &:hover{
    animation: shake .5s ease-out;
+   background: $color-orangered;
+   color: $color-link;
   }
 }
 @keyframes shake {

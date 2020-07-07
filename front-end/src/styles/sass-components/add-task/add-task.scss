@@ -14,11 +14,12 @@
     & .formUI__name-input{
       margin: 0;
       margin-bottom: 2rem;
+      background-color: rgba($color-white,.1);
     }
   }
   & > * > *,::placeholder{
     font-size: 2rem;
-    color: $color-link;
+    color: $color-orangered;
   }
   &__modifier{
     &2{

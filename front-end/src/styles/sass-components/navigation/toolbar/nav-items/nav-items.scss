@@ -1,11 +1,14 @@
 .nav{
   display: flex;
   justify-content: space-between;
+  color: $color-orangered;
   &__items{
     display: flex;
     align-items: center;
     transform: rotate(0deg);
+    height: 100%;
     &-item{
+        color: $color-orangered;
        padding: 3rem 2rem;
        padding-top: 2.2rem;
        height: 100%;
@@ -13,7 +16,8 @@
        text-transform: capitalize;
        transition: all .2s;
        &:hover{
-         background: $color-grey;
+         background: $color-orangered;
+         color: $color-link;
        }
     }
   }
@@ -23,8 +27,15 @@
     transition: transform .6s,margin-left .6s, background .2s;
     z-index: 100;
     &:hover{
-      background: $color-grey;
+      background: $color-orangered;
+      color: $color-link;
     }
 
+  }
+}
+.iconSize{
+  font-size: 2rem;
+  @include respond(phone){
+    font-size: 3rem;
   }
 }

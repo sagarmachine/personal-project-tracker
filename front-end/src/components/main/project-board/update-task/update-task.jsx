@@ -109,7 +109,7 @@ import axios from "axios"
             <input
             onClick={this.onSubmitHandler}
             type="submit"
-            className="dark-btn addTask__modifier3" />
+            className="submitBtn addTask__modifier3" />
 
         </div>
      )
