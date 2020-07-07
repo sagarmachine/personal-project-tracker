@@ -1,4 +1,8 @@
 package com.personalprojecttracker.demo.repository;
 
-public interface UsefullLinkRepository {
+import com.personalprojecttracker.demo.model.UsefullLink;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UsefullLinkRepository extends JpaRepository<UsefullLink,Integer> {
+
 }

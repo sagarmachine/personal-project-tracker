@@ -65,6 +65,6 @@ public class ProjectController {
         if(result.hasErrors())
             return bindingResultErrorService.getErrorResponse(result);
 
-        return new ResponseEntity<>(projectService.saveOrUpdateProject(project,principal), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(projectService.updateProject(project,principal), HttpStatus.ACCEPTED);
     }
 }

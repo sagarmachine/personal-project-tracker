@@ -13,6 +13,7 @@ public interface IProjectService {
 
     void deleteProjectById(String id,Principal principal);
 
-    
+    Project updateProject(ProjectRequestDto projectRequestDto, Principal principal);
+
 
 }
