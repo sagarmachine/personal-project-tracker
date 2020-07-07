@@ -38,7 +38,7 @@ public class User implements UserDetails {
     @NotNull(message = "password cant be null")
     String password;
 
-    @NotNull(message = "confirm password cant be null")
+    //@NotNull(message = "confirm password cant be null")
     @Transient
     String confirmPassword;
 
@@ -87,7 +87,7 @@ public class User implements UserDetails {
         createdTeamProjectTasks.add(teamProjectTask);
     }
 
-    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE},orphanRemoval = true)
+    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE})
     @JsonIgnore
     Set<UsefullLink> usefullLinks= new HashSet<>();
 
@@ -95,7 +95,7 @@ public class User implements UserDetails {
         usefullLinks.add(usefullLink);
     }
 
-    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE},orphanRemoval = true)
+    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE})
     @JsonIgnore
     Set<Note> notes= new HashSet<>();
 
