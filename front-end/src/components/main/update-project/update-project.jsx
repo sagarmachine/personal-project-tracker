@@ -2,19 +2,27 @@
 import axios from "axios"
 // import {Link} from "react-router-dom"
 
- class AddProject extends Component{
+ class UpdateProject extends Component{
     state={
-      projectName: "",
-      projectIdentifier: "",
-      projectDescription: "",
-      startingDate: "",
-      endingDate: "",
+      projectName: this.props.location.state.data.projectName,
+      projectIdentifier: this.props.location.state.data.projectIdentifier,
+      projectDescription: this.props.location.state.data.projectDescription,
+      startingDate: this.props.location.state.data.startingDate,
+      endingDate: this.props.location.state.data.endingDate,
       addNote:"",
       notes:[],
       links:[],
       addLinkFullLink:"",
       addLinkComment:""
     }
+
+     componentDidMount=()=>{
+       let notes= this.props.location.state.data.notes.map(note=>note.note);
+       let links = this.props.location.state.data.usefullLinks.map(link=>({link:link.link,comment:link.comment}));
+       this.setState({
+         notes:notes,links:links
+       })
+     }
 
     onChangeHandler=(e)=>{
       const value = e.target.value
@@ -28,7 +36,8 @@ import axios from "axios"
     onSubmitHandler=()=>{
 
       console.log(this.props);
-       const newProject= {
+       const newProject = {
+         id:this.props.location.state.data.id,
          projectName:this.state.projectName,
          projectIdentifier:this.state.projectIdentifier,
          projectDescription:this.state.projectDescription,
@@ -38,7 +47,7 @@ import axios from "axios"
          usefullLinks:this.state.links
        }
 
-       axios.post("/v1/project",newProject,{headers:{"Content-Type":"application/json"}}).then(response=>{
+       axios.put("/v1/project/"+this.props.location.state.data.projectIdentifier,newProject,{headers:{"Content-Type":"application/json"}}).then(response=>{
            console.log(response);
            this.props.history.push("/dashboard");
        }).catch(e=>{
@@ -92,8 +101,8 @@ import axios from "axios"
 
 
    render(){
-
-     return (
+     
+    return (
         <div className="addProject">
           <h5 className="addProject__heading">Create / Edit Project form</h5>
 <hr />
@@ -217,4 +226,4 @@ import axios from "axios"
  }
 
 
-export default AddProject;
+export default UpdateProject;

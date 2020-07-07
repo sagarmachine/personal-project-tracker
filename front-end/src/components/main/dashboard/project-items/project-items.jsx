@@ -54,7 +54,7 @@ if(this.state.loadingProjects===1)
          searchedProjects:response.data,
          loadingProjects:0
        })
-       // console.log(this.state.totalProjects);
+       console.log(response.data);
      }).catch(e=>{
        // console.log(e);
      })
@@ -110,6 +110,7 @@ searchProjectHandler=(search)=>{
           <ProjectItem
           key={project.projectName+i}
           index={i}
+          data={project}
           delete={this.deleteProjectHandler}
           name={project.projectName} des={project.projectDescription}
           identifier={project.projectIdentifier}/>

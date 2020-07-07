@@ -64,8 +64,8 @@
                    name="password"
                    value={this.state.password}/>
                </div>
-               <input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
-               <Link to="/dashboard">
+                  <input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
+                  <Link to="/dashboard">
                </Link>
            </div>
 

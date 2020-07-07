@@ -29,9 +29,16 @@ import {Link} from "react-router-dom"
                                     <i className="fa fa-flag-checkered pr-1"> Project Board</i>
                                 </li>
                               </Link>
+                              <Link to={{
+                                pathname:"/updateProject",
+                                state:{
+                                  data:this.props.data
+                                }
+                              }}>
                                 <li className="projectItem__edits-update projectItem__edits-item">
                                     <i className="fa fa-edit pr-1"> Update Project Info</i>
                                 </li>
+                              </Link>
                                 <li onClick={()=>this.props.delete(this.props.identifier,this.props.index)} className="projectItem__edits-delete projectItem__edits-item">
                                     <i className="fa fa-minus-circle pr-1"> Delete Project</i>
                                 </li>

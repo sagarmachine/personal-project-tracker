@@ -5,6 +5,7 @@ import LogIn from "./log-in/log-in";
 import Background from "../UI/background/background"
 import Dashboard from "./dashboard/dashboard"
 import AddProject from "./add-project/add-project"
+import UpdateProject from "./update-project/update-project"
 import ProjectBoard from "./project-board/project-board"
 import LandingPage from "./landing-page/landing-page";
 
@@ -21,6 +22,7 @@ import LandingPage from "./landing-page/landing-page";
               <Route exact path="/login"><LogIn logIn={this.props.logIn} email={(email)=>this.props.email(email)}/></Route>
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/addProject" component={AddProject}/>
+              <Route exact path="/updateProject" component={UpdateProject}/>
               <Route exact path="/projectBoard" component={ProjectBoard}/>
           </Switch>
         </div>

@@ -17,7 +17,7 @@ import Spinner from "../../UI/Spinner/Spinner"
      inDevelopmentToggle:"hidden",
      completedToggle:"hidden",
      data:[],
-     active:"detailViewClose",
+     active:"detailViewOpen",
      detailViewIndex:1,
      loadingTasks:false,
      selectedTaskIndex:-1,
@@ -51,7 +51,7 @@ import Spinner from "../../UI/Spinner/Spinner"
 
    reloadTaskHandler=()=>{
     this.setState({loadingTasks:true})
-   
+
    }
 
 

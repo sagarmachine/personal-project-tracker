@@ -40,6 +40,7 @@ class Layout extends Component{
    logInHandler=()=>{
      this.setState({login :true})
      alert("Clicked login")
+     
    }
 
 
