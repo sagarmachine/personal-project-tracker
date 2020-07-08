@@ -62,16 +62,6 @@
 
     }
   }
-.rowMaker{
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    flex-grow: 1;
-    margin: .6rem .6rem;
-    & > *{
-      flex-basis: 47.5%;
-    }
-  }
 }
 
 .addProject__item3{

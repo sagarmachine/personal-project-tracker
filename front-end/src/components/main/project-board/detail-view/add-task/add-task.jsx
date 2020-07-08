@@ -9,7 +9,75 @@ import axios from "axios"
         status: "TODO",
         preference:"3",
         startDate:"",
-        endDate:""
+        endDate:"",
+        addNote:"",
+        notes:[],
+        usefullLinks:[],
+        addLinkFullLink:"",
+        addLinkComment:""
+   }
+
+   onSubmitHandler=()=>{
+     const submitedState = {
+       summary:this.state.summary,
+       status:this.state.status,
+       preference:this.state.preference,
+       startDate: this.state.startDate,
+       endDate: this.state.endDate,
+       notes:this.state.notes,
+       usefullLinks:this.state.usefullLinks
+     }
+     axios.post("/v1/projecttask/"+this.props.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
+     .then(res=>{
+       console.log(res);
+      this.props.reloadTasks();
+     }).catch(e=>{
+       console.log("failure");
+     })
+   }
+
+   removeNoteHandler=(noteIndex)=>{
+     let newState= this.state
+     newState.notes.splice(noteIndex,1);
+
+     this.setState({
+        ...newState
+     })
+   }
+
+   addNoteHandler=()=>{
+     let newState= this.state
+     if(newState.addNote.length!==0){
+       newState.notes.push(newState.addNote);
+       newState.addNote="";
+       this.setState({
+         ...newState
+       })
+     }
+   }
+
+   removeLinkHandler=(linkIndex)=>{
+     let newState= this.state
+     newState.links.splice(linkIndex,1);
+     this.setState({
+        ...newState
+     })
+   }
+
+   addLinkHandler=()=>{
+     let newState= this.state
+     let link={
+       link:newState.addLinkFullLink,
+       comment:newState.addLinkComment
+     }
+     if(newState.addLinkFullLink.length!==0 && newState.addLinkComment.length!==0){
+       newState.usefullLinks.push(link);
+       newState.addLinkFullLink=""
+       newState.addLinkComment=""
+       this.setState({
+         ...newState
+       })
+     }
    }
 
 
@@ -26,15 +94,7 @@ import axios from "axios"
      })
    }
 
-   onSubmitHandler=()=>{
-     const submitedState = this.state
-     axios.post("/v1/projecttask/"+this.props.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
-     .then(res=>{
-      this.props.reloadTasks();
-     }).catch(e=>{
-       console.log("failure");
-     })
-   }
+
 
    render(){
      return (
@@ -59,23 +119,6 @@ import axios from "axios"
                     name="summary">
                 </textarea>
             </div>
-
-            <h6 className="formUI__heading">Start Date</h6>
-            <div className="formUI__details">
-                <input
-                onChange={this.onChangeHandler}
-                type="date"
-                className="addProject__item-date"
-                name="startDate" />
-            </div>
-            <h6 className="formUI__heading">End Date</h6>
-            <div className="formUI__details">
-                <input
-                onChange={this.onChangeHandler}
-                type="date"
-                className="addProject__item-date"
-                name="endDate" />
-            </div>
             <div className="formUI__details">
                 <select
                     onChange={this.onChangeHandler}
@@ -87,6 +130,88 @@ import axios from "axios"
                         <option value={3}>Low</option>
                 </select>
             </div>
+            <div className="rowMaker rowMaker--marginRemover">
+                <div className="formUI__details">
+                <h6 className="formUI__heading addTask__dateLabelFixer">Start Date</h6>
+                <input
+                onChange={this.onChangeHandler}
+                type="date"
+                className="addProject__item-date  addTask__dateLabelFixer"
+                name="startDate" />
+                </div>
+                <div className="formUI__details">
+                <h6 className="formUI__heading addTask__dateLabelFixer">End Date</h6>
+                <input
+                onChange={this.onChangeHandler}
+                type="date"
+                className="addProject__item-date  addTask__dateLabelFixer"
+                name="endDate" />
+                </div>
+            </div>
+            <div className="rowMaker rowMaker--marginRemover">
+            <div className="addProject__item addProject__item1 addProject__item3 parentFixer">
+                    {this.state.notes.map((note,noteIndex)=>(
+                        <div className="noteBox">
+                              <input
+                              type="text"
+                              className="addProject__item-name addNote addNote-fixer "
+                              name="projectName"
+                              value={note}
+                              disabled="true"/>
+                              <i onClick={()=>this.removeNoteHandler(noteIndex)} className="fa fa-remove fa-4x removeIcon removeIcon-fixer" aria-hidden="true"></i>
+                        </div>
+                    ))}
+                  <div>
+                  <input
+                  type="text"
+                  className="addProject__item-name addNote addNote-fixer"
+                  placeholder="add a Note"
+                  name="addNote"
+                  value={this.state.addNote}
+                  onChange={this.onChangeHandler}
+                  />
+                <i onClick={this.addNoteHandler}  className="fa fa-plus fa-4x addIcon addIcon-fixer addIcon1" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div className="addProject__item addProject__item1 addProject__item3 parentFixer">
+                    {this.state.usefullLinks.map((link,linkIndex)=>(
+                      <div className="linkBox">
+                          <input
+                          type="text"
+                          className="addProject__item-name addLink-fullLink"
+                          value={link.link}
+                          disabled="true"/>
+                          <i onClick={()=>this.removeLinkHandler(linkIndex)} className="fa fa-remove fa-4x removeIcon removeIcon-fixer removeIcon2" aria-hidden="true"></i>
+                          <input
+                          type="text"
+                          className="addProject__item-name addLink-comment"
+                          value={link.comment}
+                          disabled="true"/>
+                      </div>
+                    ))}
+                    <div>
+                    <input
+                    type="text"
+                    className="addProject__item-name addLink-fullLink"
+                    placeholder="add a Link"
+                    name="addLinkFullLink"
+                    value={this.state.addLinkFullLink}
+                    onChange={this.onChangeHandler}
+                    />
+                    <input
+                    type="text"
+                    className="addProject__item-name addLink-comment"
+                    placeholder="add a comment"
+                    name="addLinkComment"
+                    value={this.state.addLinkComment}
+                    onChange={this.onChangeHandler}
+                    />
+                    <i onClick={this.addLinkHandler}  className="fa fa-plus fa-4x addIcon  addIcon-fixer addIcon2" aria-hidden="true"></i>
+                    </div>
+              </div>
+
+            </div>
+
 
             {/*/ <Link to={{
             //   pathname:"/projectBoard",
@@ -99,7 +224,7 @@ import axios from "axios"
                 <input
                     onClick={this.onSubmitHandler}
                     type="submit"
-                    className="dark-btn addTask__modifier3" />
+                    className="submitBtn dark-btn addTask__modifier3" />
 
         </div>
      )

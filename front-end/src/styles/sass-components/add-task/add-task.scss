@@ -38,4 +38,27 @@
       }
     }
   }
+  &__dateLabelFixer{
+    margin-bottom: 0;
+    border: 1px solid $color-orangered;
+  }
+}
+.addIcon-fixer{
+  font-size: 4rem;
+}
+.removeIcon-fixer{
+  font-size: 4rem;
+  padding-top: 2rem;
+}
+.addNote-fixer{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.parentFixer{
+  height: 100%;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid $color-orangered;
 }

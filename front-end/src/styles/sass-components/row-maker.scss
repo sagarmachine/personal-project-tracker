@@ -1,0 +1,22 @@
+.rowMaker{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    flex-grow: 1;
+    margin: .6rem .6rem;
+    & > *{
+      flex-basis: 47.5%;
+    }
+    &--marginRemover{
+      margin: 0;
+      & > *{
+        flex-basis: 50%;
+      }
+      @include respond(phone){
+        flex-direction: column;
+        & > *{
+          width: 100%;
+        }
+      }
+    }
+  }

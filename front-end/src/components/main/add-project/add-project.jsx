@@ -144,27 +144,27 @@ import axios from "axios"
           </div>
           </div>
           <div className="rowMaker">
-          <div className="addProject__item addProject__item1 addProject__item3">
-                {this.state.notes.map((note,noteIndex)=>(
-                  <div className="noteBox">
-                      <input
-                      type="text"
-                      className="addProject__item-name addNote "
-                      name="projectName"
-                      value={note}
-                      disabled="true"/>
-                      <i onClick={()=>this.removeNoteHandler(noteIndex)} className="fa fa-remove fa-4x removeIcon" aria-hidden="true"></i>
-                  </div>
-                ))}
-                <div>
-                <input
-                type="text"
-                className="addProject__item-name addNote"
-                placeholder="add a Note"
-                name="addNote"
-                value={this.state.addNote}
-                onChange={this.onChangeHandler}
-                />
+            <div className="addProject__item addProject__item1 addProject__item3">
+                    {this.state.notes.map((note,noteIndex)=>(
+                        <div className="noteBox">
+                              <input
+                              type="text"
+                              className="addProject__item-name addNote "
+                              name="projectName"
+                              value={note}
+                              disabled="true"/>
+                              <i onClick={()=>this.removeNoteHandler(noteIndex)} className="fa fa-remove fa-4x removeIcon" aria-hidden="true"></i>
+                        </div>
+                    ))}
+                  <div>
+                  <input
+                  type="text"
+                  className="addProject__item-name addNote"
+                  placeholder="add a Note"
+                  name="addNote"
+                  value={this.state.addNote}
+                  onChange={this.onChangeHandler}
+                  />
                 <i onClick={this.addNoteHandler}  className="fa fa-plus fa-4x addIcon addIcon1" aria-hidden="true"></i>
                 </div>
           </div>

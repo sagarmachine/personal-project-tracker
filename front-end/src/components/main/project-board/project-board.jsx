@@ -17,7 +17,7 @@ import Spinner from "../../UI/Spinner/Spinner"
      inDevelopmentToggle:"hidden",
      completedToggle:"hidden",
      data:[],
-     active:"detailViewOpen",
+     active:"detailViewClose",
      detailViewIndex:1,
      loadingTasks:false,
      selectedTaskIndex:-1,
