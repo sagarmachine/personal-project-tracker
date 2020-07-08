@@ -65,7 +65,7 @@ public class ProjectServiceImp implements  IProjectService {
             note.setUser(user);
             note.setProject(project);
             notes.add(note);
-          //  noteRepository.save(note);
+       //    noteRepository.save(note);
         }
         user.setNotes(notes);
         project.setNotes(notes);

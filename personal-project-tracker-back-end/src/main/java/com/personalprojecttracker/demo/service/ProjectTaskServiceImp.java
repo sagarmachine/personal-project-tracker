@@ -4,9 +4,7 @@ import com.personalprojecttracker.demo.dto.ProjectTaskRequestDto;
 import com.personalprojecttracker.demo.dto.UsefullLinkRequestDto;
 import com.personalprojecttracker.demo.exception.ProjectNotFoundException;
 import com.personalprojecttracker.demo.model.*;
-import com.personalprojecttracker.demo.repository.BacklogRepository;
-import com.personalprojecttracker.demo.repository.ProjectTaskRepository;
-import com.personalprojecttracker.demo.repository.UserRepository;
+import com.personalprojecttracker.demo.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,6 +31,12 @@ import java.util.Set;
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    NoteRepository noteRepository;
+
+    @Autowired
+    UsefullLinkRepository usefullLinkRepository;
+
     @Override
     public ProjectTask addProjectTask(String projectIdentifier, ProjectTaskRequestDto projectTaskRequestDto, Principal principal) {
         Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier.toUpperCase());
@@ -47,28 +52,41 @@ import java.util.Set;
         projectTask.setStatus("TO_DO");
         projectTask.setBacklog(backlog);
         backlog.addProjectTask(projectTask);
+
+
+        Set<Note> notes = new HashSet<>();
         for (String noteTemp:projectTaskRequestDto.getNotes()){
             Note note = new Note();
-            log.info("note --->"+noteTemp);
             note.setNote(noteTemp);
             note.setUser(user);
             note.setProjectTask(projectTask);
-            user.addNote(note);
-            projectTask.addNote(note);
-            // noteRepository.save(note);
+//            user.addNote(note);
+            //projectTask.addNote(note);
+             noteRepository.save(note);
         }
+        user.setNotes(notes);
+        projectTask.setNotes(notes);
 
+
+
+        Set<UsefullLink> usefullLinks= new HashSet<>();
         for (UsefullLinkRequestDto usefullLinkTemp:projectTaskRequestDto.getUsefullLinks()){
             UsefullLink usefullLink = new UsefullLink();
             usefullLink.setComment(usefullLinkTemp.getComment());
             usefullLink.setLink(usefullLinkTemp.getLink());
             usefullLink.setUser(user);
             usefullLink.setProjectTask(projectTask);
-            user.addUsefullLink(usefullLink);
-            projectTask.addUsefullLink(usefullLink);
+            usefullLinkRepository.save(usefullLink);
+//            user.addUsefullLink(usefullLink);
+//            projectTask.addUsefullLink(usefullLink);
         }
 
-   userRepository.save(user);
+        user.setUsefullLinks(usefullLinks);
+        projectTask.setUsefullLinks(usefullLinks);
+
+        projectTaskRepository.save(projectTask);
+         userRepository.save(user);
+
        // backlogRepository.save(backlog);
         return projectTask;
     }
@@ -85,7 +103,7 @@ import java.util.Set;
     @Override
     public Set<ProjectTask> getAllTaskByProjectIdentifier(String projectIdentifier, Principal principal) {
         Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier.toUpperCase());
-        if(backlog==null || !principal.getName().equals(backlog.getProject().getUser().getEmail()))
+        if(backlog==null || principal==null || !principal.getName().equals(backlog.getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project found with projectIdentifier=\""+projectIdentifier.toUpperCase()+"\"");
 return backlog.getProjectTasks();
     }
@@ -125,33 +143,46 @@ return backlog.getProjectTasks();
         if( !principal.getName().equals(projectTaskTemp.getBacklog().getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project task found with project id=\""+projectTask.getId()+"\"");
 
+
+        projectTask.setId(projectTaskRequestDto.getId());
+        projectTask.setBacklog(projectTaskTemp.getBacklog());
+        projectTask.setCreatedDate(projectTaskTemp.getCreatedDate());
+        projectTask.setProjectTaskIdentifier(projectTaskTemp.getProjectTaskIdentifier());
+
+        Set<Note> notes = new HashSet<>();
         for (String noteTemp:projectTaskRequestDto.getNotes()){
             Note note = new Note();
-            log.info("note --->"+noteTemp);
             note.setNote(noteTemp);
             note.setUser(user);
             note.setProjectTask(projectTask);
             user.addNote(note);
             projectTask.addNote(note);
-            // noteRepository.save(note);
+             noteRepository.save(note);
         }
+      //  user.setNotes(notes);
+    //    projectTask.setNotes(notes);
 
 
+
+        Set<UsefullLink> usefullLinks= new HashSet<>();
         for (UsefullLinkRequestDto usefullLinkTemp:projectTaskRequestDto.getUsefullLinks()){
             UsefullLink usefullLink = new UsefullLink();
             usefullLink.setComment(usefullLinkTemp.getComment());
             usefullLink.setLink(usefullLinkTemp.getLink());
             usefullLink.setUser(user);
             usefullLink.setProjectTask(projectTask);
-            user.addUsefullLink(usefullLink);
-            projectTask.addUsefullLink(usefullLink);
+            usefullLinkRepository.save(usefullLink);
+
+           user.addUsefullLink(usefullLink);
+           projectTask.addUsefullLink(usefullLink);
         }
 
-        projectTask.setBacklog(projectTaskTemp.getBacklog());
-        projectTask.setCreatedDate(projectTaskTemp.getCreatedDate());
-        projectTask.setProjectTaskIdentifier(projectTaskTemp.getProjectTaskIdentifier());
-        userRepository.save(user);
+//        user.setUsefullLinks(usefullLinks);
+  //      projectTask.setUsefullLinks(usefullLinks);
+
+
         projectTaskRepository.save(projectTask);
+        userRepository.save(user);
         return projectTask;
    }
 }
