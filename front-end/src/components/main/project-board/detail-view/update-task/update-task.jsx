@@ -41,7 +41,7 @@ import axios from "axios"
 
         removeLinkHandler=(linkIndex)=>{
           let newState= this.state
-          newState.links.splice(linkIndex,1);
+          newState.usefullLinks.splice(linkIndex,1);
           this.setState({
              ...newState
           })
@@ -98,7 +98,8 @@ import axios from "axios"
    // }
 
    onSubmitHandler=()=>{
-     const submitedState = this.state
+     const submitedState ={...this.state}
+     console.log("log before submiting "+ submitedState);
      axios.put("/v1/projecttask/"+this.props.projectIdentifier,submitedState,{headers:{"Content-Type":"application/json"}})
      .then(res=>{
        console.log(res);
