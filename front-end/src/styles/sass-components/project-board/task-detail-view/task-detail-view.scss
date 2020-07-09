@@ -1,0 +1,85 @@
+.taskDetailView{
+  border: 1px solid $color-orangered;
+  padding: 1rem 2rem;
+  margin-top: 5rem;
+  color:$color-orangered;
+  align-self: flex-start;
+  width: 100%;
+  @include respond(phone){
+
+  }
+  &__head{
+     border: 1px solid $color-orangered;
+     @include respond(phone){
+
+     }
+  }
+  &__date{
+    padding: .2rem 1rem;
+    @include respond(phone){
+
+    }
+  }
+  &__createdOn{
+    text-align: right;
+    @include respond(phone){
+
+    }
+  }
+  &__identifier{
+    text-align: center;
+    @include respond(phone){
+
+    }
+  }
+  &__notes{
+    border: 1px solid $color-orangered;
+    padding: .1rem 2rem;
+    margin-bottom: 1rem;
+    max-height: 20rem;
+    overflow-y: auto;
+    @include respond(phone){
+
+    }
+  }
+  &__note{
+
+    @include respond(phone){
+
+    }
+  }
+  &__links{
+    border: 1px solid $color-orangered;
+    padding: .1rem 2rem;
+    max-height: 20rem;
+    overflow-y: auto;
+    &  > *{
+      border: 1px dashed $color-orangered;
+      margin: 1rem 0;
+      padding-left: .5rem;
+    }
+    @include respond(phone){
+
+    }
+  }
+  &__linkURL{
+
+    @include respond(phone){
+
+    }
+  }
+  &__comment{
+
+    @include respond(phone){
+
+    }
+  }
+  &__btn{
+    display: flex;
+    justify-content: space-between;
+    &>*{
+      padding: .1rem 2rem;
+
+    }
+  }
+}
