@@ -8,8 +8,8 @@ export default class ProjectDetailView extends Component {
 
     render() {
         return (
-            <div>
-                      Project Detail View       
+            <div className="ProjectDetailView">
+                <div></div>
             </div>
         )
     }

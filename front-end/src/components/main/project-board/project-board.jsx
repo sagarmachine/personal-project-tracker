@@ -191,15 +191,15 @@ import Spinner from "../../UI/Spinner/Spinner"
 
 
 
-             <DetailView activeClass={this.state.active}
-                         detailViewIndex={this.state.detailViewIndex}
+             <DetailView  activeClass={this.state.active}
+                          detailViewIndex={this.state.detailViewIndex}
                           projectIdentifier={this.props.location.state.projectIdentifier}
                           reloadTasks={this.reloadTaskHandler}
                           selectedTask={this.state.data[this.state.selectedTaskIndex]}
                           openUpdateTaskDetailView={this.openUpdateTaskDetailViewHandler}
                           selectedTaskIndex={this.state.selectedTaskIndex}
                           openTaskDetailView={this.openTaskDetailViewHandler}
-
+                          projectData={this.props.location.state.data}
              />
 
 
