@@ -49,7 +49,7 @@ public class UserServiceImp implements  IUserService{
             userRepository.save(user);
         }
         catch(Exception ex){
-            throw  new UserAlreadyExist("user already exists with email ="+user.getEmail()+"   "+ex.getMessage());
+            throw  new UserAlreadyExist("user already exists with email = " +user.getEmail());
         }
        String jwt= jwtUtil.generateToken(new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),new ArrayList<>()));
 
