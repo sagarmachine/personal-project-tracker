@@ -24,7 +24,7 @@ export default class TaskDetailView extends Component {
                 <div className="taskDetailView__notes">
                    {this.props.selectedTask.notes.map((note,i)=>(
                      <div key={"note"+i} className="taskDetailView__note">
-                        {note.note}
+                        {note}
                      </div>
                    ))}
                 </div>
