@@ -22,7 +22,8 @@ import axios from "axios"
         this.props.email(this.state.email);
         this.props.history.push("/dashboard")
       }).catch(error=>{
-         alert(error.response.data.errors[0].user)
+         alert(error.response.data[0])
+         console.log(error.response);
 
         this.setState({
           name:"",
