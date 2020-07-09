@@ -3,12 +3,12 @@
    position: absolute;
    height: 100%;
    width: 100%;
-   background: $color-link;
+   background: $color-postman-background;
    &__circle{
      height: 10rem;
      width: 10rem;
      border-radius: 100px;
-     background: $color-grey-dark-3;
+     // background: $color-grey-dark-3;
    }
     &__circle1{
       height: 17.5rem;
@@ -18,8 +18,8 @@
       left: 10%;
     }
     &__circle2{
-      height: 17.5rem;
-      width: 17.5rem;
+      height: 25rem;
+      width: 25rem;
       position:absolute;
       top:20%;
       left: 50%;
@@ -42,8 +42,11 @@
       position:absolute;
       bottom:40%;
       right: 10%;
+
     }
     &__circle{
-
+      background-image: url("../../../assets/images/postman-image.svg");
+      background-position:center;
+      background-size: cover;
     }
  }
