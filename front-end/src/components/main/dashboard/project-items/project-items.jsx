@@ -54,7 +54,6 @@ if(this.state.loadingProjects===1)
          searchedProjects:response.data,
          loadingProjects:0
        })
-       console.log(response.data);
      }).catch(e=>{
        // console.log(e);
      })

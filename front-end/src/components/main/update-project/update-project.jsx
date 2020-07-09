@@ -1,6 +1,6 @@
  import React, {Component} from "react"
 import axios from "axios"
-// import {Link} from "react-router-dom"
+import LayoutContext from "../../layout/layout-context"
 
  class UpdateProject extends Component{
     state={
@@ -15,6 +15,8 @@ import axios from "axios"
       addLinkFullLink:"",
       addLinkComment:""
     }
+
+    static contextType= LayoutContext;
 
      componentDidMount=()=>{
        let notes= this.props.location.state.data.notes.map(note=>note);
@@ -101,6 +103,9 @@ import axios from "axios"
 
 
    render(){
+    if(this.context.authenticated==false)
+    window.location.href = "http://localhost:3000/login";
+
 
     return (
         <div className="addProject">

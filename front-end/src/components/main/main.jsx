@@ -18,8 +18,8 @@ import LandingPage from "./landing-page/landing-page";
              <Background />
           <Switch>
               <Route exact path="/" ><LandingPage/></Route>
-               <Route exact path="/signUp"><SignUp email={(email)=>this.props.email(email)}/></Route>
-              <Route exact path="/login"><LogIn logIn={this.props.logIn} email={(email)=>this.props.email(email)}/></Route>
+               <Route exact path="/signUp"><SignUp email={this.props.email}/></Route>
+              <Route exact path="/login"><LogIn test={"test"} email={this.props.email}/></Route>
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/addProject" component={AddProject}/>
               <Route exact path="/updateProject" component={UpdateProject}/>

@@ -6,7 +6,7 @@ import CompletedTask from "./completed-task/completed-task"
 import UpdateTask from "./detail-view/update-task/update-task"
 import DetailView from "./detail-view/detail-view"
 import axios from "axios";
-import Spinner from "../../UI/Spinner/Spinner"
+import LayoutContext from "../../layout/layout-context"
 
 
  class ProjectBoard extends Component{
@@ -23,6 +23,7 @@ import Spinner from "../../UI/Spinner/Spinner"
      selectedTaskIndex:-1,
    }
 
+   static contextType= LayoutContext
    activeHandler=()=>{
       if(this.state.active==="detailViewClose"){
          this.setState({
@@ -100,6 +101,10 @@ import Spinner from "../../UI/Spinner/Spinner"
 
 
    render(){
+
+    if(this.context.authenticated==false)
+    window.location.href = "http://localhost:3000/login";
+
      let todo = null;
      if(this.state.data.length===0){
           todo =<div  onClick={this.openAddTaskDetailViewHandler}>{<div className="dark-btn submitBtn">Add Task</div>} </div>

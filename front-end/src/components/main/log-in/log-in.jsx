@@ -1,6 +1,6 @@
  import React, {Component} from "react"
+ import { withRouter } from 'react-router';
  import axios from "axios"
- import {Link} from "react-router-dom";
 
  class LogIn extends Component{
    state={
@@ -11,33 +11,33 @@
 
    componentDidUpdate=()=>{
     if(this.state.authenticating===true)
-    axios.post("/v1/user/login",this.state)
-    .then(data=>{
-      console.log(data);
-      this.setState({authenticating:false})});
+    axios.post("/v1/user/login",this.state).
+    then(data=>{
+      this.props.email(this.state.email);
+      this.setState({authenticating:false});
+      this.props.history.push("/dashboard")}).
+    catch(ex=>{alert("credentials are invlaid");
+         this.setState({email:"",password:"",authenticating:false})});
      }
+
 
   loginHandler=()=>{
     this.setState({authenticating:true})
-    this.props.email(this.state.email)
-    this.props.logIn()
   }
 
    onChangeHandler=(e)=>{
      let name = e.target.name
      let value = e.target.value
-     // let newState = this.state;
      this.setState((prevState)=>{
        return (
          {...prevState,[name]:value}
        )
      })
      setTimeout(()=>{
-     //  console.log(this.state);
      },0)
    }
    render(){
-
+ console.log("login --> "+ JSON.stringify(this.props.history))
      return (
        <div className="formUI">
            <div className="formUI__heading">
@@ -65,8 +65,7 @@
                    value={this.state.password}/>
                </div>
                   <input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
-                  <Link to="/dashboard">
-               </Link>
+                 
            </div>
 
        </div>
@@ -75,4 +74,4 @@
  }
 
 
-export default LogIn;
+export default withRouter(LogIn);
