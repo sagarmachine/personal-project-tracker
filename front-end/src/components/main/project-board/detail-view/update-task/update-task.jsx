@@ -78,7 +78,7 @@ import axios from "axios"
    }
 
    componentDidMount=()=>{
-     let notes= this.props.selectedTask.notes.map(note=>note.note);
+     let notes= this.props.selectedTask.notes.map(note=>note);
      let links = this.props.selectedTask.usefullLinks.map(link=>({link:link.link,comment:link.comment}));
      console.log(notes);
     this.setState({
