@@ -13,23 +13,23 @@
     // background: $color-warning;
       padding: 1rem 2rem;
     & h3{
-      display: inline-block;
-      background-image: linear-gradient(to right bottom,$color-warning,$color-red );
+      display: block;
+      background-image: linear-gradient(to right bottom,$color-orangered,$color-orangered );
       color:transparent;
       background-clip: text;
       letter-spacing: 1.5px;
       font-size: 4rem;
       font-weight: lighter;
-      margin-bottom: 1rem; 
+      margin-bottom: 1rem;
       @include respond(phone){
         letter-spacing: 1px;
         font-size: 2.5rem;
       }
     }
     & p{
-      display: inline-block;
+      display: block;
       background-clip: text;
-      background-image: linear-gradient(to right bottom,$color-warning,$color-red );
+      background-image: linear-gradient(to right bottom,$color-orangered,$color-orangered );
       color:transparent;
       letter-spacing: 1.5px;
       font-size: 1.5rem;
@@ -52,24 +52,24 @@
       transition: all .2s;
     }
     &-board{
-      color: $color-green;
+      color: $color-Spring-green;
       background-clip: text;
       &:hover{
-        background: rgba($color-green,.75);
+        background: rgba($color-Spring-green,.75);
         color: $color-white;
       }
     }
     &-update{
-      color: $color-blue;
+      color: $color-react-blue;
       &:hover{
-        background: rgba($color-blue,.75);
+        background: rgba($color-react-blue,.75);
         color: $color-white;
       }
     }
     &-delete{
-      color: $color-red;
+      color: $color-sass-pink;
       &:hover{
-            background: rgba($color-red,.75);
+            background: rgba($color-sass-pink,.75);
             color: $color-white;
       }
     }

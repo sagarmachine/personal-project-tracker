@@ -1,5 +1,5 @@
 .HIGH{
-  background: rgba($color-red,1);
+  background: rgba($color-sass-pink,1);
   color:$color-link;
   transition: all .5s;
   &:hover{
@@ -16,7 +16,7 @@
 }
 .MEDIUM{
   transition: all .5s;
-  background: rgba($color-warning,1);
+  background: rgba($color-Spring-green,1);
   color:$color-link;
   &:hover{
    // transform:scale(1.005);
@@ -31,7 +31,7 @@
 }
 .LOW{
   transition: all .5s;
-  background: rgba($color-secondary-blue,1);
+  background: rgba($color-react-blue,1);
   color:$color-link;
   &:hover{
    // transform:scale(1.005);

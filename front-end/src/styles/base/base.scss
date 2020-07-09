@@ -6,7 +6,7 @@
 
 ::selection{
   color:$color-link;
-  background: $color-orangered; 
+  background: $color-orangered;
 }
 
 ::-webkit-scrollbar{
@@ -39,7 +39,7 @@ html{
     font-size: 50%;
   }
   @include respond(phone){
-    font-size: 35%;
+    font-size: 45%;
   }
   @include respond(big-desktop){
     font-size: 75%;

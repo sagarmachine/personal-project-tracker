@@ -8,28 +8,15 @@
      let navItem = null
      if(this.props.email===""){
        navItem = <div className="nav__items">
-                        
-                        <NavLink  activeStyle={{
-                          background:"orangered",
-                          color:"black",
-                          transition:"all .4s"
-                        }}
+
+                        <NavLink
                         exact
                         to="/" className="nav__items-item"><i className="fa fa-info-circle iconSize" aria-hidden="true"></i></NavLink>
                         <NavLink
-                        activeStyle={{
-                          background:"orangered",
-                          color:"black",
-                          transition:"all .4s"
-                        }}
+
                         exact
                         to="/signUp" className="nav__items-item"><i className="fa fa-registered iconSize" aria-hidden="true"></i></NavLink>
                         <NavLink
-                        activeStyle={{
-                          background:"orangered",
-                          color:"black",
-                          transition:"all .4s"
-                        }}
                         exact
                         to="/login"
                         onClick={this.props.logIn}
@@ -41,30 +28,18 @@
                  </div>
      }else{
        navItem = <div className="nav__items">
-           <NavLink  activeStyle={{
-                          background:"orangered",
-                          color:"black",
-                          transition:"all .4s"
-                        }}
+           <NavLink
                         exact
                         to="/" className="nav__items-item"><i className="fa fa-info-circle iconSize" aria-hidden="true"></i></NavLink>
                         <NavLink
-                        activeStyle={{
-                          background:"orangered",
-                          color:"black",
-                          transition:"all .4s"
-                        }}
+
                         exact
                         to="/dashboard"
                         className="nav__items-item">
                           <i className="fa fa-tachometer iconSize" aria-hidden="true"></i>
                         </NavLink>
                         <NavLink
-                        activeStyle={{
-                          background:"orangered",
-                          color:"black",
-                          transition:"all .4s"
-                        }}
+                        
                         exact
                         to="/profile"
                         className="nav__items-item">

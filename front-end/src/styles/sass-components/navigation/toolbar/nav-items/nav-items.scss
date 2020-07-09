@@ -14,8 +14,8 @@
        height: 100%;
        letter-spacing: 2px;
        text-transform: capitalize;
-       transition: all .2s;
-       &:hover{
+       transition: all .3s;
+       &:hover,&:active,&:focus{
          background: $color-orangered;
          color: $color-link;
        }
