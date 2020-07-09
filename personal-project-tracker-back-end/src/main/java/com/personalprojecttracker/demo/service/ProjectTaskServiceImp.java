@@ -31,11 +31,11 @@ import java.util.Set;
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    NoteRepository noteRepository;
-
-    @Autowired
-    UsefullLinkRepository usefullLinkRepository;
+//    @Autowired
+//    NoteRepository noteRepository;
+//
+//    @Autowired
+//    UsefullLinkRepository usefullLinkRepository;
 
     @Override
     public ProjectTask addProjectTask(String projectIdentifier, ProjectTaskRequestDto projectTaskRequestDto, Principal principal) {
@@ -54,37 +54,41 @@ import java.util.Set;
         backlog.addProjectTask(projectTask);
 
 
-        Set<Note> notes = new HashSet<>();
-        for (String noteTemp:projectTaskRequestDto.getNotes()){
-            Note note = new Note();
-            note.setNote(noteTemp);
-            note.setUser(user);
-            note.setProjectTask(projectTask);
-//            user.addNote(note);
-            //projectTask.addNote(note);
-             noteRepository.save(note);
-        }
-        user.setNotes(notes);
-        projectTask.setNotes(notes);
+//        Set<Note> notes = new HashSet<>();
+//        for (String noteTemp:projectTaskRequestDto.getNotes()){
+//            Note note = new Note();
+//            note.setNote(noteTemp);
+//            note.setUser(user);
+//            note.setProjectTask(projectTask);
+////            user.addNote(note);
+//            //projectTask.addNote(note);
+//             noteRepository.save(note);
+//        }
+//        user.setNotes(notes);
+//        projectTask.setNotes(notes);
+//
+//
+//
+//        Set<UsefullLink> usefullLinks= new HashSet<>();
+//        for (UsefullLinkRequestDto usefullLinkTemp:projectTaskRequestDto.getUsefullLinks()){
+//            UsefullLink usefullLink = new UsefullLink();
+//            usefullLink.setComment(usefullLinkTemp.getComment());
+//            usefullLink.setLink(usefullLinkTemp.getLink());
+//            usefullLink.setUser(user);
+//            usefullLink.setProjectTask(projectTask);
+//            usefullLinkRepository.save(usefullLink);
+////            user.addUsefullLink(usefullLink);
+////            projectTask.addUsefullLink(usefullLink);
+//        }
 
+//        user.setUsefullLinks(usefullLinks);
+//        projectTask.setUsefullLinks(usefullLinks);
 
+       // projectTaskRepository.save(projectTask);
 
-        Set<UsefullLink> usefullLinks= new HashSet<>();
-        for (UsefullLinkRequestDto usefullLinkTemp:projectTaskRequestDto.getUsefullLinks()){
-            UsefullLink usefullLink = new UsefullLink();
-            usefullLink.setComment(usefullLinkTemp.getComment());
-            usefullLink.setLink(usefullLinkTemp.getLink());
-            usefullLink.setUser(user);
-            usefullLink.setProjectTask(projectTask);
-            usefullLinkRepository.save(usefullLink);
-//            user.addUsefullLink(usefullLink);
-//            projectTask.addUsefullLink(usefullLink);
-        }
+        projectTask.setNotes(projectTaskRequestDto.getNotes());
+        projectTask.setUsefullLinks(projectTaskRequestDto.getUsefullLinks());
 
-        user.setUsefullLinks(usefullLinks);
-        projectTask.setUsefullLinks(usefullLinks);
-
-        projectTaskRepository.save(projectTask);
          userRepository.save(user);
 
        // backlogRepository.save(backlog);
@@ -148,34 +152,35 @@ return backlog.getProjectTasks();
         projectTask.setBacklog(projectTaskTemp.getBacklog());
         projectTask.setCreatedDate(projectTaskTemp.getCreatedDate());
         projectTask.setProjectTaskIdentifier(projectTaskTemp.getProjectTaskIdentifier());
-
-        Set<Note> notes = new HashSet<>();
-        for (String noteTemp:projectTaskRequestDto.getNotes()){
-            Note note = new Note();
-            note.setNote(noteTemp);
-            note.setUser(user);
-            note.setProjectTask(projectTask);
-            user.addNote(note);
-            projectTask.addNote(note);
-             noteRepository.save(note);
-        }
-      //  user.setNotes(notes);
-    //    projectTask.setNotes(notes);
-
-
-
-        Set<UsefullLink> usefullLinks= new HashSet<>();
-        for (UsefullLinkRequestDto usefullLinkTemp:projectTaskRequestDto.getUsefullLinks()){
-            UsefullLink usefullLink = new UsefullLink();
-            usefullLink.setComment(usefullLinkTemp.getComment());
-            usefullLink.setLink(usefullLinkTemp.getLink());
-            usefullLink.setUser(user);
-            usefullLink.setProjectTask(projectTask);
-            usefullLinkRepository.save(usefullLink);
-
-           user.addUsefullLink(usefullLink);
-           projectTask.addUsefullLink(usefullLink);
-        }
+        projectTask.setNotes(projectTaskRequestDto.getNotes());
+        projectTask.setUsefullLinks(projectTaskRequestDto.getUsefullLinks());
+//        Set<Note> notes = new HashSet<>();
+//        for (String noteTemp:projectTaskRequestDto.getNotes()){
+//            Note note = new Note();
+//            note.setNote(noteTemp);
+//            note.setUser(user);
+//            note.setProjectTask(projectTask);
+//            user.addNote(note);
+//            projectTask.addNote(note);
+//             noteRepository.save(note);
+//        }
+//      //  user.setNotes(notes);
+//    //    projectTask.setNotes(notes);
+//
+//
+//
+//        Set<UsefullLink> usefullLinks= new HashSet<>();
+//        for (UsefullLinkRequestDto usefullLinkTemp:projectTaskRequestDto.getUsefullLinks()){
+//            UsefullLink usefullLink = new UsefullLink();
+//            usefullLink.setComment(usefullLinkTemp.getComment());
+//            usefullLink.setLink(usefullLinkTemp.getLink());
+//            usefullLink.setUser(user);
+//            usefullLink.setProjectTask(projectTask);
+//            usefullLinkRepository.save(usefullLink);
+//
+//           user.addUsefullLink(usefullLink);
+//           projectTask.addUsefullLink(usefullLink);
+//        }
 
 //        user.setUsefullLinks(usefullLinks);
   //      projectTask.setUsefullLinks(usefullLinks);

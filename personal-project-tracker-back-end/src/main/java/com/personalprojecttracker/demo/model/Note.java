@@ -9,29 +9,29 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Note {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    int id;
 
    // @Column(nullable = false)
     String note;
 
-    @ManyToOne
-    @JsonIgnore
-    User user;
-
-    @ManyToOne
-    @JsonIgnore
-    Project project;
-
-    @ManyToOne
-    @JsonIgnore
-    ProjectTask projectTask;
+//    @ManyToOne
+//    @JsonIgnore
+//    User user;
+//
+//    @ManyToOne
+//    @JsonIgnore
+//    Project project;
+//
+//    @ManyToOne
+//    @JsonIgnore
+//    ProjectTask projectTask;
 
 }

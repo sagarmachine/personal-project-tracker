@@ -6,9 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Setter
@@ -61,18 +59,18 @@ public class ProjectTask {
     Backlog backlog;
 
 
-    @OneToMany(mappedBy = "projectTask",cascade ={CascadeType.ALL},orphanRemoval = true)
-    Set<UsefullLink> usefullLinks= new HashSet<>();
+    @ElementCollection
+    @CollectionTable(name = "project_task_notes", joinColumns = @JoinColumn(name="project_task_id"))
+    List<String> notes= new ArrayList<>();
 
-    public void addUsefullLink(UsefullLink usefullLink){
-        usefullLinks.add(usefullLink);
-    }
 
-    @OneToMany(mappedBy = "projectTask",cascade ={CascadeType.ALL},orphanRemoval = true)
-    Set<Note> notes= new HashSet<>();
+    @ElementCollection
+    @CollectionTable(name = "project_task_use_full_links", joinColumns = @JoinColumn(name="project_task_id"))
+    List<UsefullLink> usefullLinks= new ArrayList<>();
 
-    public void addNote(Note note){
-        notes.add(note);
-    }
+
+//    public void addNote(Note note){
+//        notes.add(note);
+//    }
 
 }

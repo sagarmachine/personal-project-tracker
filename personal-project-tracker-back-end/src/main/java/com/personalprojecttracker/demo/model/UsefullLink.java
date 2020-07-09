@@ -10,32 +10,17 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Embeddable
 public class UsefullLink {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
 
-   // @Column(nullable = false)
     String link;
 
     String comment;
 
-    @ManyToOne
-     @JsonIgnore
-    User user;
-
-    @ManyToOne
-    @JsonIgnore
-    Project project;
-
-    @ManyToOne
-    @JsonIgnore
-    ProjectTask projectTask;
 
 }

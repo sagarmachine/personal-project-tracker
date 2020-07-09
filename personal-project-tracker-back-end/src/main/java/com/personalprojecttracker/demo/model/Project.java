@@ -7,9 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Setter
@@ -67,19 +65,28 @@ Project {
     User user;
 
 
-    @OneToMany(mappedBy = "project",cascade ={CascadeType.ALL},orphanRemoval = true)
-    Set<UsefullLink> usefullLinks= new HashSet<>();
+    @ElementCollection
+    @CollectionTable(name = "project_notes", joinColumns = @JoinColumn(name="project_id"))
+    List<String> notes= new ArrayList<>();
 
-    public void addUsefullLink(UsefullLink usefullLink){
-        usefullLinks.add(usefullLink);
-    }
 
-    @OneToMany(mappedBy = "project",cascade ={CascadeType.ALL},orphanRemoval = true)
-    Set<Note> notes= new HashSet<>();
+    @ElementCollection
+    @CollectionTable(name = "project_use_full_links", joinColumns = @JoinColumn(name="project_id"))
+    List <UsefullLink> usefullLinks= new ArrayList<>();
 
-    public void addNote(Note note){
-        notes.add(note);
-    }
+//    @OneToMany(mappedBy = "project",cascade ={CascadeType.ALL},orphanRemoval = true)
+//    Set<UsefullLink> usefullLinks= new HashSet<>();
+//
+//    public void addUsefullLink(UsefullLink usefullLink){
+//        usefullLinks.add(usefullLink);
+//    }
+//
+//    @OneToMany(mappedBy = "project",cascade ={CascadeType.ALL},orphanRemoval = true)
+//    Set<Note> notes= new HashSet<>();
+
+//    public void addNote(Note note){
+//        notes.add(note);
+//    }
 
 }
 
