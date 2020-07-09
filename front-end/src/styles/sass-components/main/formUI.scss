@@ -41,13 +41,13 @@
       letter-spacing: 2px;
       width: 100%;
       font-weight: bolder;
-      font-size: 1.5rem;
+      font-size: 2rem;
       margin-top: 1rem;
-      padding: 1rem 1rem;
+      padding: .1rem 1rem;
       border: none;
       background: $color-link;
       border-right: 6px solid transparent;
-      color:$color-orangered;
+      color:$color-white;
       transition: all .2s;
       &:focus{
         border-right: 6px solid $color-orangered;
@@ -57,5 +57,5 @@
   }
 }
 ::placeholder{
-    color: $color-orangered;
+    color: $color-grey-light;
 }

@@ -63,7 +63,7 @@ class Layout extends Component{
 
      }
      return (
-       <LayoutContext.Provider value={{authenticated:this.state.logIn}}>
+       <LayoutContext.Provider value={{authenticated:true}}>
        <Fragment>
           <Toolbar
            logOut={this.logOutHandler}

@@ -1,4 +1,5 @@
  import React, {Component} from "react"
+ import {withRouter} from "react-router-dom"
 import axios from "axios"
 
 
@@ -15,7 +16,22 @@ import axios from "axios"
     componentDidUpdate=()=>{
       if(this.state.registering===true)
       axios.post("/v1/user/register",this.state)
-      .then(data=>{console.log(data);                                                                                   this.setState({registering:false})});
+      .then(data=>{
+        console.log(data);
+        this.setState({registering:false})
+        this.props.email(this.state.email);
+        this.props.history.push("/dashboard")
+      }).catch(error=>{
+         alert(error.response.data.errors[0].user)
+
+        this.setState({
+          name:"",
+          email:"",
+          password:"",
+          confirmPassword:"",
+          registering:false,
+        })
+      })
     }
 
     onChangeHandler=(e)=>{
@@ -34,8 +50,7 @@ import axios from "axios"
 
     onSubmitHandler=()=>{
       this.setState({registering:true})
-      this.props.email(this.state.email);
-    }
+        }
 
    render(){
 
@@ -66,7 +81,8 @@ import axios from "axios"
                    type="email"
                    className="formUI__email-input"
                    placeholder="Email Address"
-                   name="email" />
+                   name="email"
+                   value={this.state.email} />
                </div>
                <div className="formUI__pass">
                    <input
@@ -75,6 +91,7 @@ import axios from "axios"
                    type="password"
                    className="formUI__pass-input"
                    placeholder="Password"
+                   value={this.state.password}
                    name="password" />
                </div>
                <div className="formUI__pass2">
@@ -83,6 +100,7 @@ import axios from "axios"
                    type="password"
                    className="formUI__pass2-input"
                    placeholder="Confirm Password"
+                   value={this.state.confirmPassword}
                    name="confirmPassword" />
                </div>
                <input onClick={this.onSubmitHandler} type="submit" className="submitBtn" />
@@ -95,4 +113,27 @@ import axios from "axios"
  }
 
 
-export default SignUp;
+export default withRouter(SignUp);
+
+
+
+// if (error.response) {
+//     /*
+//      * The request was made and the server responded with a
+//      * status code that falls out of the range of 2xx
+//      */
+//     console.log(error.response.data);
+//     console.log(error.response.status);
+//     console.log(error.response.headers);
+// } else if (error.request) {
+//     /*
+//      * The request was made but no response was received, `error.request`
+//      * is an instance of XMLHttpRequest in the browser and an instance
+//      * of http.ClientRequest in Node.js
+//      */
+//     console.log(error.request);
+// } else {
+//     // Something happened in setting up the request and triggered an Error
+//     console.log('Error', error.message);
+// }
+// console.log(error.config);

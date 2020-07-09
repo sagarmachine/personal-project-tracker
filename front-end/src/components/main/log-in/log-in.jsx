@@ -65,7 +65,7 @@
                    value={this.state.password}/>
                </div>
                   <input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
-                 
+
            </div>
 
        </div>

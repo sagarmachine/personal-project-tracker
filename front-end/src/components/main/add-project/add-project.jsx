@@ -94,12 +94,12 @@ import LayoutContext from "../../layout/layout-context"
 
 
    render(){
-    if(this.context.authenticated==false)
+    if(this.context.authenticated===false)
     window.location.href = "http://localhost:3000/login";
 
      return (
         <div className="addProject">
-          <h5 className="addProject__heading">Create / Edit Project form</h5>
+          <h5 className="addProject__heading">Create Project</h5>
 <hr />
           <div className="addProject__item addProject__item1">
                 <input
@@ -127,7 +127,7 @@ import LayoutContext from "../../layout/layout-context"
                 value={this.state.projectDescription}
                 onChange={this.onChangeHandler}></textarea>
           </div>
-          <div className="rowMaker">
+          <div className="rowMaker rowMaker--marginRemover">
           <div className="addProject__item addProject__item1">
                 <h6>Start Date</h6>
                 <input
@@ -147,8 +147,9 @@ import LayoutContext from "../../layout/layout-context"
                 onChange={this.onChangeHandler}/>
           </div>
           </div>
-          <div className="rowMaker">
+          <div className="">
             <div className="addProject__item addProject__item1 addProject__item3">
+                 <h6>Notes</h6>
                     {this.state.notes.map((note,noteIndex)=>(
                         <div className="noteBox">
                               <input
@@ -173,6 +174,7 @@ import LayoutContext from "../../layout/layout-context"
                 </div>
           </div>
           <div className="addProject__item addProject__item1 addProject__item3">
+              <h6>usefull Links</h6>
                 {this.state.links.map((link,linkIndex)=>(
                   <div className="linkBox">
                       <input
@@ -186,6 +188,7 @@ import LayoutContext from "../../layout/layout-context"
                       className="addProject__item-name addLink-comment"
                       value={link.comment}
                       disabled="true"/>
+                      <span className="comment__span">comment :</span>
                   </div>
                 ))}
                 <div>
@@ -205,6 +208,7 @@ import LayoutContext from "../../layout/layout-context"
                 value={this.state.addLinkComment}
                 onChange={this.onChangeHandler}
                 />
+                <span className="comment__span">comment :</span>
                 <i onClick={this.addLinkHandler}  className="fa fa-plus fa-4x addIcon addIcon2" aria-hidden="true"></i>
                 </div>
           </div>

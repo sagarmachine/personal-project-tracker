@@ -109,7 +109,7 @@ import LayoutContext from "../../layout/layout-context"
 
     return (
         <div className="addProject">
-          <h5 className="addProject__heading">Create / Edit Project form</h5>
+          <h5 className="addProject__heading">Edit Project</h5>
 <hr />
           <div className="addProject__item addProject__item1">
                 <input
