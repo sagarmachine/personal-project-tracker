@@ -1,9 +1,9 @@
-import React, {Component,Fragment} from "react"
+import React, {Component,Fragment,Provider} from "react"
 import Toolbar from "../navigation/toolbar/toolbar";
 import SideDrawer from "../navigation/side-drawer/side-drawer";
 import Main from "../main/main";
 import axios from "axios";
-
+import LayoutContext from "./layout-context"
 
 
 
@@ -37,12 +37,6 @@ class Layout extends Component{
      }
    }
 
-   logInHandler=()=>{
-     this.setState({login :true})
-     alert("Clicked login")
-     
-   }
-
 
    logOutHandler=()=>{
       this.setState({logInName:"",login :false})
@@ -55,6 +49,7 @@ class Layout extends Component{
    logInNameHandler=(email)=>{
      const newState = this.state;
      newState.logInName = email;
+     newState.logIn=true;
      this.setState({
        ...newState
      })
@@ -68,6 +63,7 @@ class Layout extends Component{
 
      }
      return (
+       <LayoutContext.Provider value={{authenticated:this.state.logIn}}>
        <Fragment>
           <Toolbar
            logOut={this.logOutHandler}
@@ -75,9 +71,9 @@ class Layout extends Component{
            classes={this.state.toolbar}
            toggleSideDrawer={this.sideDrawerToggleHandler}/>
             {sideDrawer}
-           {/*<div>modal</div>*/}
-          <Main logIn={this.logInHandler} email={(email)=>this.logInNameHandler(email)}/>
+          <Main  email={this.logInNameHandler}/>
        </Fragment>
+       </LayoutContext.Provider>
      )
   }
 }

@@ -8,7 +8,7 @@ import axios from 'axios';
 let authentication;
 
 axios.interceptors.response.use(response =>{
-  console.log("intercept->"+response.headers.authentication);
+ // console.log("intercept->"+response.headers.authentication);
   authentication=response.headers.authentication;
   if(authentication)
   axios.defaults.headers.common['Authentication'] = authentication;

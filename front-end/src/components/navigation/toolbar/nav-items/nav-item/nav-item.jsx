@@ -8,17 +8,7 @@
      let navItem = null
      if(this.props.email===""){
        navItem = <div className="nav__items">
-                        {/*<NavLink
-                        activeStyle={{
-                          background:"orangered",
-                          color:"black",
-                          transition:"all .4s"
-                        }}
-                        exact
-                        to="/dashboard"
-                        className="nav__items-item">
-                          Dashboard
-                        </NavLink>*/}
+                        
                         <NavLink  activeStyle={{
                           background:"orangered",
                           color:"black",
