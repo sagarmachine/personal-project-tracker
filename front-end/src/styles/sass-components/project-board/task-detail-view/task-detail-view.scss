@@ -79,7 +79,11 @@
     justify-content: space-between;
     &>*{
       padding: .1rem 2rem;
-
+    }
+    &--modifier{
+      &>*{
+        padding: .1rem 0rem;
+      }
     }
   }
 }

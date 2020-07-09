@@ -13,7 +13,7 @@ import TaskDetailView from "./task-detail-view/task-detail-view";
      let detailView=null;
      let detailViewIndex=this.props.detailViewIndex;
      if(detailViewIndex===1)
-     detailView=<ProjectDetailView />
+     detailView=<ProjectDetailView projectData={this.props.projectData}/>
      else if(detailViewIndex===2)
      detailView=<TaskDetailView  selectedTask={this.props.selectedTask}
                                   selectedTaskIndex={this.props.selectedTaskIndex}
@@ -23,7 +23,7 @@ import TaskDetailView from "./task-detail-view/task-detail-view";
                                      reloadTasks={this.props.reloadTasks}/>
      else if(detailViewIndex===4)
      detailView=<UpdateTask    openTaskDetailView={this.openTaskDetailView}
-                               selectedTask={this.props.selectedTask} 
+                               selectedTask={this.props.selectedTask}
                                  projectIdentifier={this.props.projectIdentifier}
                                 reloadTasks={this.props.reloadTasks}
                                 selectedTaskIndex={this.props.selectedTaskIndex}

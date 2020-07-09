@@ -22,7 +22,8 @@ import {Link} from "react-router-dom"
                                 pathname:"/projectBoard",
                                 state:{
                                   projectIdentifier:this.props.identifier,
-                                  projectName:this.props.name
+                                  projectName:this.props.name,
+                                  data:this.props.data
                                 }
                               }}>
                                 <li className="projectItem__edits-board projectItem__edits-item">
