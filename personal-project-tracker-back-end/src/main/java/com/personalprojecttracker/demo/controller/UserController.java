@@ -52,7 +52,7 @@ public class UserController {
         if(bindingResult.hasErrors())
             return bindingResultErrorService.getErrorResponse(bindingResult);
         if(!user.getPassword().equals(user.getConfirmPassword()))
-        return new ResponseEntity<>("password does not match", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new String[]{"password does not match"}, HttpStatus.BAD_REQUEST);
 
 
         return    userService.saveUser(user);

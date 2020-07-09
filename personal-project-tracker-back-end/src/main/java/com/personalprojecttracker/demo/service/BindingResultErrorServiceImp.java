@@ -15,17 +15,17 @@ import java.util.HashMap;
 public class BindingResultErrorServiceImp implements IBindingResultErrorService {
     @Override
     public ResponseEntity<?> getErrorResponse(BindingResult result) {
-        HashMap hashMap= new HashMap();
-        hashMap.put("totalErrors",result.getAllErrors().size());
-        ArrayList <HashMap<String, String>>errors= new ArrayList<>();
+       // HashMap hashMap= new HashMap();
+       // hashMap.put("totalErrors",result.getAllErrors().size());
+        ArrayList <String>errors= new ArrayList<>();
         for(ObjectError error:result.getFieldErrors()){
-            HashMap<String,String> e=new HashMap<>();
-            e.put(error.getObjectName(),error.getDefaultMessage());
-            errors.add(e);
+//            HashMap<String,String> e=new HashMap<>();
+//            e.put(error.getObjectName(),error.getDefaultMessage());
+            errors.add(error.getDefaultMessage());
         }
-        hashMap.put("errors",errors);
+       // hashMap.put("errors",errors);
 
-        return new ResponseEntity<HashMap>(hashMap, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(errors, HttpStatus.BAD_REQUEST);
 
     }
 

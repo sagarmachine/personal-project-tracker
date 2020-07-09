@@ -50,7 +50,6 @@ public class ProjectServiceImp implements  IProjectService {
             Backlog backlog= new Backlog();
             backlog.setProjectIdentifier(project.getProjectIdentifier());
             backlog.setProject(project);
-         //   log.info("-->"+backlog.toString());
             project.setBacklog(backlog);
             user.addProject(project);
             project.setUser(user);
@@ -59,7 +58,6 @@ public class ProjectServiceImp implements  IProjectService {
         project.setUsefullLinks(projectRequestDto.getUsefullLinks());
 
       userRepository.save(user);
-     // projectRepository.save(project);
         return projectRepository.findByProjectIdentifier(projectRequestDto.getProjectIdentifier());
     }
 
