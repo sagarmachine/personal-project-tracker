@@ -17,7 +17,7 @@ import axios from "axios"
     }
 
      componentDidMount=()=>{
-       let notes= this.props.location.state.data.notes.map(note=>note.note);
+       let notes= this.props.location.state.data.notes.map(note=>note);
        let links = this.props.location.state.data.usefullLinks.map(link=>({link:link.link,comment:link.comment}));
        this.setState({
          notes:notes,links:links
@@ -101,7 +101,7 @@ import axios from "axios"
 
 
    render(){
-     
+
     return (
         <div className="addProject">
           <h5 className="addProject__heading">Create / Edit Project form</h5>
