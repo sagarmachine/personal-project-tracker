@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
@@ -109,7 +107,12 @@ import java.util.Set;
         Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier.toUpperCase());
         if(backlog==null || principal==null || !principal.getName().equals(backlog.getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project found with projectIdentifier=\""+projectIdentifier.toUpperCase()+"\"");
-return backlog.getProjectTasks();
+        Set<ProjectTask> projectTasks=backlog.getProjectTasks();
+        Set<ProjectTask> projectTasksSorted= new HashSet<>();
+
+        projectTasks.stream().sorted(Comparator.comparingInt(ProjectTask::getPreference).reversed())
+                .forEach(projectTask -> {projectTasksSorted.add(projectTask);});
+        return projectTasksSorted;
     }
 
     @Override
