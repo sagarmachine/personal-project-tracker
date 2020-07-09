@@ -9,7 +9,6 @@ import TaskDetailView from "./task-detail-view/task-detail-view";
 
    render(){
 
-      console.log(this.props.detailViewIndex)
      let detailView=null;
      let detailViewIndex=this.props.detailViewIndex;
      if(detailViewIndex===1)
