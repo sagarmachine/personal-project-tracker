@@ -6,7 +6,6 @@
   // display: inline-block;
   padding:auto;
   border-radius: 8px;
-  // overflow: hidden;
   @include respond(tab-port){
     width:50%;
   }
