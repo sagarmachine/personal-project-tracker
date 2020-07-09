@@ -1,12 +1,15 @@
 package com.personalprojecttracker.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.personalprojecttracker.demo.model.UsefullLink;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -32,9 +35,9 @@ public class ProjectTaskRequestDto {
     @JsonFormat(pattern = "dd-mm-yyyy")
     Date endDate;
 
-    String []notes= new String [0];
+    List<String> notes=new ArrayList();
 
-    UsefullLinkRequestDto[] usefullLinks= new UsefullLinkRequestDto[0];
+    List<UsefullLink> usefullLinks= new ArrayList<>();
 
 
 }

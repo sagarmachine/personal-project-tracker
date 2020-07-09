@@ -64,7 +64,7 @@ public class ProjectController {
     public ResponseEntity<?> updateProject(@Valid @RequestBody ProjectRequestDto project, BindingResult result,Principal principal){
         if(result.hasErrors())
             return bindingResultErrorService.getErrorResponse(result);
-
+//return null;
         return new ResponseEntity<>(projectService.updateProject(project,principal), HttpStatus.ACCEPTED);
     }
 }

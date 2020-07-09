@@ -87,21 +87,21 @@ public class User implements UserDetails {
         createdTeamProjectTasks.add(teamProjectTask);
     }
 
-    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE})
-    @JsonIgnore
-    Set<UsefullLink> usefullLinks= new HashSet<>();
+//    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE})
+//    @JsonIgnore
+//    Set<UsefullLink> usefullLinks= new HashSet<>();
+//
+//    public void addUsefullLink(UsefullLink usefullLink){
+//        usefullLinks.add(usefullLink);
+//    }
+//
+//    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE})
+//    @JsonIgnore
+//    Set<Note> notes= new HashSet<>();
 
-    public void addUsefullLink(UsefullLink usefullLink){
-        usefullLinks.add(usefullLink);
-    }
-
-    @OneToMany(mappedBy = "user",cascade ={CascadeType.REFRESH,CascadeType.REMOVE})
-    @JsonIgnore
-    Set<Note> notes= new HashSet<>();
-
-    public void addNote(Note note){
-        notes.add(note);
-    }
+//    public void addNote(Note note){
+//        notes.add(note);
+//    }
 
 
 

@@ -31,7 +31,8 @@ public class ProjectTaskController {
 
       if(bindingResult.hasErrors())
           return bindingResultErrorService.getErrorResponse(bindingResult);
-      return new ResponseEntity<>(projectTaskService.addProjectTask(projectIdentifier,projectTask,principal), HttpStatus.ACCEPTED);
+      //return null;
+       return new ResponseEntity<>(projectTaskService.addProjectTask(projectIdentifier,projectTask,principal), HttpStatus.ACCEPTED);
   }
 
   @GetMapping("/project/{projectIdentifier}/projecttask")
@@ -51,7 +52,8 @@ public class ProjectTaskController {
       if(bindingResult.hasErrors())
           return bindingResultErrorService.getErrorResponse(bindingResult);
 
-      return new ResponseEntity<>(projectTaskService.updateProjectTaskByProjectTaskIdentifier(projectTaskIdentifier,projectTask,principal),HttpStatus.ACCEPTED);
+    //  return null;
+     return new ResponseEntity<>(projectTaskService.updateProjectTaskByProjectTaskIdentifier(projectTaskIdentifier,projectTask,principal),HttpStatus.ACCEPTED);
 
   }
 

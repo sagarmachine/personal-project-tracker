@@ -5,9 +5,7 @@ import com.personalprojecttracker.demo.dto.ProjectRequestDto;
 import com.personalprojecttracker.demo.dto.UsefullLinkRequestDto;
 import com.personalprojecttracker.demo.exception.ProjectNotFoundException;
 import com.personalprojecttracker.demo.model.*;
-import com.personalprojecttracker.demo.repository.NoteRepository;
 import com.personalprojecttracker.demo.repository.ProjectRepository;
-import com.personalprojecttracker.demo.repository.UsefullLinkRepository;
 import com.personalprojecttracker.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -33,11 +31,11 @@ public class ProjectServiceImp implements  IProjectService {
     @Autowired
     ProjectRepository projectRepository;
 
-    @Autowired
-    NoteRepository noteRepository;
-
-    @Autowired
-    UsefullLinkRepository usefullLinkRepository;
+//    @Autowired
+//    NoteRepository noteRepository;
+//
+//    @Autowired
+//    UsefullLinkRepository usefullLinkRepository;
 
     @Override
     public Project saveOrUpdateProject(ProjectRequestDto projectRequestDto, Principal principal) {
@@ -57,34 +55,11 @@ public class ProjectServiceImp implements  IProjectService {
             user.addProject(project);
             project.setUser(user);
 
-
-        Set<Note> notes = new HashSet<>();
-          for (String noteTemp:projectRequestDto.getNotes()){
-            Note note= new Note();
-            note.setNote(noteTemp);
-            note.setUser(user);
-            note.setProject(project);
-            notes.add(note);
-       //    noteRepository.save(note);
-        }
-        user.setNotes(notes);
-        project.setNotes(notes);
-
-        Set<UsefullLink> usefullLinks= new HashSet<>();
-        for (UsefullLinkRequestDto usefullLinkTemp:projectRequestDto.getUsefullLinks()){
-            UsefullLink usefullLink = new UsefullLink();
-            usefullLink.setComment(usefullLinkTemp.getComment());
-            usefullLink.setLink(usefullLinkTemp.getLink());
-            usefullLink.setUser(user);
-            usefullLink.setProject(project);
-            usefullLinks.add(usefullLink);
-           // usefullLinkRepository.save(usefullLink);
-          }
-        user.setUsefullLinks(usefullLinks);
-        project.setUsefullLinks(usefullLinks);
+        project.setNotes(projectRequestDto.getNotes());
+        project.setUsefullLinks(projectRequestDto.getUsefullLinks());
 
       userRepository.save(user);
-    //  projectRepository.save(project);
+     // projectRepository.save(project);
         return projectRepository.findByProjectIdentifier(projectRequestDto.getProjectIdentifier());
     }
 
@@ -127,32 +102,34 @@ public class ProjectServiceImp implements  IProjectService {
 
         Project projectTemp =projectTempOptional.get();
 
-        Set<Note> notes = new HashSet<>();
+//        Set<Note> notes = new HashSet<>();
+//
+//        for (String noteTemp:projectRequestDto.getNotes()){
+//            Note note= new Note();
+//            note.setNote(noteTemp);
+//            note.setUser(user);
+//            note.setProject(project);
+//            notes.add(note);
+//            noteRepository.save(note);
+//        }
+//        user.setNotes(notes);
+//        project.setNotes(notes);
+//
+//        Set<UsefullLink> usefullLinks= new HashSet<>();
+//        for (UsefullLinkRequestDto usefullLinkTemp:projectRequestDto.getUsefullLinks()){
+//            UsefullLink usefullLink = new UsefullLink();
+//            usefullLink.setComment(usefullLinkTemp.getComment());
+//            usefullLink.setLink(usefullLinkTemp.getLink());
+//            usefullLink.setUser(user);
+//            usefullLink.setProject(project);
+//            usefullLinks.add(usefullLink);
+//          usefullLinkRepository.save(usefullLink);
+//        }
+//        user.setUsefullLinks(usefullLinks);
+//        project.setUsefullLinks(usefullLinks);
 
-        for (String noteTemp:projectRequestDto.getNotes()){
-            Note note= new Note();
-            note.setNote(noteTemp);
-            note.setUser(user);
-            note.setProject(project);
-            notes.add(note);
-            noteRepository.save(note);
-        }
-        user.setNotes(notes);
-        project.setNotes(notes);
-
-        Set<UsefullLink> usefullLinks= new HashSet<>();
-        for (UsefullLinkRequestDto usefullLinkTemp:projectRequestDto.getUsefullLinks()){
-            UsefullLink usefullLink = new UsefullLink();
-            usefullLink.setComment(usefullLinkTemp.getComment());
-            usefullLink.setLink(usefullLinkTemp.getLink());
-            usefullLink.setUser(user);
-            usefullLink.setProject(project);
-            usefullLinks.add(usefullLink);
-          usefullLinkRepository.save(usefullLink);
-        }
-        user.setUsefullLinks(usefullLinks);
-        project.setUsefullLinks(usefullLinks);
-
+        project.setNotes(projectRequestDto.getNotes());
+        project.setUsefullLinks(projectRequestDto.getUsefullLinks());
         project.setId(projectTemp.getId());
         project.setCreatedDate(projectTemp.getCreatedDate());
         project.setUser(user);
