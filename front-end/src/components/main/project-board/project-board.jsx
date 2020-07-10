@@ -202,7 +202,9 @@ import LayoutContext from "../../layout/layout-context"
          }
          </ul>
      }
-
+     if(this.state.loadingTasks===true){
+       return null;
+     }
      return (
        <div className="projectBoard">
         <div onClick={this.activeHandler} className="detailView__head">

@@ -9,6 +9,10 @@ export default class ProjectDetailView extends Component {
      }
 
     componentDidMount=()=>{
+      this.countHandler()
+    }
+
+    countHandler=()=>{
        let todo=0;
        let progress=0;
        let done=0;
@@ -34,44 +38,55 @@ export default class ProjectDetailView extends Component {
 
         return (
             <div className="taskDetailView">
-               <div className="ProjectDetailView__flexer">
-                   <div className="taskDetailView__btn taskDetailView__btn--modifier">
-                       <div className="ProjectDetailView__name">PROJECT NAME: <strong>{this.props.projectData.projectName}</strong></div>
-                       <div className="ProjectDetailView__identifier">PROJECT IDENTIFIER: <strong>{this.props.projectData.projectIdentifier}</strong></div>
+               <div id="ProjectDetailView__flexer-head" className="ProjectDetailView__flexer ProjectDetailView__flexer-first">
+                   <div className="PDWFirst">
+                       <div className="ProjectDetailView__name ProjectDetailView__name1"><strong>{this.props.projectData.projectName}</strong></div>
+                       <div className="ProjectDetailView__identifier">id: <strong>{this.props.projectData.projectIdentifier}</strong></div>
                    </div>
-                   <div className="taskDetailView__btn taskDetailView__btn--modifier">
-                       <div className="ProjectDetailView__name">CREATED ON: <strong>{this.props.projectData.createdDate}</strong></div>
-                       <div className="ProjectDetailView__identifier">UPDATED DATE: <strong>{this.props.projectData.updatedDate}</strong></div>
+                   <div className="PDWSecond">
+                       <div className="ProjectDetailView__name">created on: <strong>{this.props.projectData.createdDate}</strong></div>
+                       <div className="ProjectDetailView__identifier">updated on: <strong>{this.props.projectData.updatedDate?this.props.projectData.updatedDate:"N/A"}</strong></div>
                    </div>
                </div>
-
-                <div className="taskDetailView__btn taskDetailView__btn--modifier">
-                    <div className="ProjectDetailView__name">START DATE: <strong>{this.props.projectData.startingDate}</strong></div>
-                    <div className="ProjectDetailView__identifier">END DATE: <strong>{this.props.projectData.endingDate}</strong></div>
-                </div>
-                <div className="taskDetailView__btn taskDetailView__btn--modifier">
-                    <div className="ProjectDetailView__name">TODO: <strong>{this.state.todoNo}</strong></div>
-                    <div className="ProjectDetailView__name">IN PROGRESS: <strong>{this.state.inProgressNo}</strong></div>
-                    <div className="ProjectDetailView__name">IN PROGRESS: <strong>{this.state.completedNo}</strong></div>
-                </div>
-                <h4>DESCRIPTION</h4>
-                <div className="ProjectDetailView__des">{this.props.projectData.projectDescription}</div>
-                <h4>NOTES</h4>
-                <div className="taskDetailView__notes">
-                   {this.props.projectData.notes.map((note,i)=>(
-                     <div key={"note"+i} className="taskDetailView__note">
-                        {note}
-                     </div>
-                   ))}
-                </div>
-                <h4>LINKS</h4>
-                <div className="taskDetailView__links">
-                  {this.props.projectData.usefullLinks.map((link,i)=>(
-                    <div key={"link"+i} className="taskDetailView__link">
-                       <div className="taskDetailView__linkUR">{link.link}</div>
-                       <div className="taskDetailView__comment">{link.comment}</div>
+               <hr/>
+              <div className="ProjectDetailView__flexer ProjectDetailView__flexer-second">
+                    <div className="PDWFirst">
+                        <div className="ProjectDetailView__name">start date: <strong>{this.props.projectData.startingDate?this.props.projectData.startingDate:"N/A"}</strong></div>
+                        <div className="ProjectDetailView__identifier">end date: <strong>{this.props.projectData.endingDate?this.props.projectData.endingDate:"N/A"}</strong></div>
                     </div>
-                  ))}
+                    <div className="PDWSecond">
+                        <div className="ProjectDetailView__name">todo: <strong>{this.state.todoNo}</strong></div>
+                        <div className="ProjectDetailView__name">in progress: <strong>{this.state.inProgressNo}</strong></div>
+                        <div className="ProjectDetailView__name">done: <strong>{this.state.completedNo}</strong></div>
+                    </div>
+                </div>
+                <hr/>
+                <div className="">
+                   <h5>Description</h5>
+                    <div className="ProjectDetailView__des ProjectDetailView__flexer ProjectDetailView__flexer-main">{this.props.projectData.projectDescription}</div>
+              <hr/>
+                    <h5>Notes</h5>
+                    <div className="taskDetailView__notes">
+                    <ol>
+                           {this.props.projectData.notes.map((note,i)=>(
+                             <li key={"note"+i} className="taskDetailView__note">
+                                {note}
+                             </li>
+                           ))}
+                       </ol>
+                    </div>
+<hr/>
+                    <h5>Links</h5>
+                    <div className="taskDetailView__links">
+                    <ol>
+                          {this.props.projectData.usefullLinks.map((link,i)=>(
+                            <li key={"link"+i} className="taskDetailView__link">
+                               <a href={link.link} target="_blank" className="taskDetailView__linkUR">{link.link}</a>
+                               <div className="taskDetailView__comment">{link.comment}</div>
+                            </li>
+                          ))}
+                      </ol>
+                </div>
                 </div>
             </div>
         )
