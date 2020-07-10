@@ -21,6 +21,7 @@ import LayoutContext from "../../layout/layout-context"
      detailViewIndex:1,
      loadingTasks:false,
      selectedTaskIndex:-1,
+     updating:false,
 
    }
 
@@ -74,6 +75,10 @@ import LayoutContext from "../../layout/layout-context"
      }).catch(e=>{
        console.log(e);
      })
+
+     if(this.state.updating)
+     this.setState({updating:false})
+
    }
 
 
@@ -106,7 +111,19 @@ import LayoutContext from "../../layout/layout-context"
         let newData = [...this.state.data]
         newData.splice(index,1);
         console.log(newData);
-        this.setState({data:newData})
+        let selectedTaskIndexTemp=this.state.selectedTaskIndex;
+        let detailViewIndexTemp =this.state.detailViewIndex;
+        if(this.state.selectedTaskIndex>index)
+              selectedTaskIndexTemp -=1;
+         if(detailViewIndexTemp===1)
+         { 
+           detailViewIndexTemp=2;
+          selectedTaskIndexTemp=0;
+        
+        } 
+        this.setState({data:newData,selectedTaskIndex:selectedTaskIndexTemp,detailViewIndex:detailViewIndexTemp})
+        
+               
        }).catch(e=>{
          alert(e);
        })
@@ -206,6 +223,9 @@ import LayoutContext from "../../layout/layout-context"
        return null;
      }
      return (
+
+
+
        <div className="projectBoard">
         <div onClick={this.activeHandler} className="detailView__head">
             {(this.state.active==="detailViewOpen")
@@ -214,9 +234,8 @@ import LayoutContext from "../../layout/layout-context"
               }
          </div>
 
-
-
-             <DetailView  activeClass={this.state.active}
+               {this.state.updating?null:
+                <DetailView  activeClass={this.state.active}
                           detailViewIndex={this.state.detailViewIndex}
                           projectIdentifier={this.props.location.state.projectIdentifier}
                           reloadTasks={this.reloadTaskHandler}
@@ -226,9 +245,9 @@ import LayoutContext from "../../layout/layout-context"
                           openTaskDetailView={this.openTaskDetailViewHandler}
                           projectData={this.props.location.state.data}
                           data={this.state.data}
-
+               
              />
-
+          }
 
 
 
@@ -286,7 +305,7 @@ import LayoutContext from "../../layout/layout-context"
                          fontSize:"3.5rem"
                        }}
                        className="projectBoardTogger">
-                      <i className="fa fa-hourglass-end" aria-hidden="true"></i>
+                      <i onClick={this.openProjectDetailViewHandler} className="fa fa-hourglass-end" aria-hidden="true"></i>
                 </div>
           </div>
        </div>
