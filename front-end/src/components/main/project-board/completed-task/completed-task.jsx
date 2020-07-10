@@ -33,14 +33,15 @@
      return (
           <div className="projectBoard__completed">
               <div className="projectBoard__anatomy">
-                  <div className={"projectBoard__head "+classPriority} onClick={()=>this.props.openTaskDetailView(this.props.index)}
-                  >{"ID: "+this.props.id+" PREFRENCE: "+preference}</div>
-                  <div className="projectBoard__body">SUMMARY: {this.props.summary}</div>
-                  <div className="projectBoard__foot">
-
+                <div className="flexer">
+                      <div className={"projectBoard__head hoverer "+classPriority} onClick={()=>this.props.openTaskDetailView(this.props.index)}
+                      >{this.props.id+" ("+preference+")"}</div>
+                      <div className={"projectBoard__body "+classPriority}>{this.props.summary}</div>
+                  </div>
+                  <div className={"projectBoard__foot "+classPriority}>
                      <div className="projectBoard__foot-modifier1 submitBtn" onClick={()=>this.props.openUpdateTaskDetailView(this.props.index)}>
-                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</div>
-                  <div onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i class="fa fa-trash" aria-hidden="true"></i> Delete</div>
+                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i><span> Update</span></div>
+                  <div onClick={()=>this.props.delete(this.props.index,this.props.id)} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i class="fa fa-trash" aria-hidden="true"></i><span> Delete</span></div>
                   </div>
               </div>
           </div>

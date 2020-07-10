@@ -4,19 +4,6 @@ import axios from "axios"
 
  class TodoTask extends Component{
 
-
-   deleteHandler=()=>{
-      if(window.confirm('Are you sure you would like to accept this reply as your favor?')===true){
-         axios.delete("/v1/").then(res=>{
-          console.log(res);
-        }).catch(e=>{
-          alert(e);
-        })
-      }else{
-        alert("not proceeded");
-      }
-   }
-
    render(){
      let preference = null;
      let classPriority = null;
@@ -33,11 +20,13 @@ import axios from "axios"
      return (
          <div className="projectBoard__todo ">
             <div className="projectBoard__anatomy">
-                <div className={"projectBoard__head "+classPriority} onClick={()=>this.props.openTaskDetailView(this.props.index)} >{"ID: "+this.props.id+" PREFRENCE: "+preference}</div>
-                <div className="projectBoard__body">{this.props.summary}</div>
-                <div className="projectBoard__foot">
-                     <div onClick={()=>this.props.openUpdateTaskDetailView(this.props.index)} props={this.props} className="projectBoard__foot-modifier1 submitBtn"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Update</div>
-                    <div onClick={this.deleteHandler} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i className="fa fa-trash" aria-hidden="true"></i> Delete</div>
+               <div className="flexer">
+                   <div className={"projectBoard__head hoverer "+classPriority} onClick={()=>this.props.openTaskDetailView(this.props.index)} >{this.props.id+" ("+preference+")"}</div>
+                   <div className={"projectBoard__body "+classPriority}>{this.props.summary}</div>
+               </div>
+                <div className={"projectBoard__foot "+classPriority}>
+                     <div onClick={()=>this.props.openUpdateTaskDetailView(this.props.index)} props={this.props} className="projectBoard__foot-modifier1 submitBtn"><i className="fa fa-pencil-square-o" aria-hidden="true"></i><span className="updateSpan"> Update</span></div>
+                    <div onClick={()=>this.props.delete(this.props.index,this.props.id)} type="Submit" className="projectBoard__foot-modifier2 submitBtn"><i className="fa fa-trash" aria-hidden="true"></i><span className="deleteSpan"> Delete</span></div>
                 </div>
             </div>
          </div>

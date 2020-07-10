@@ -21,6 +21,7 @@ import LayoutContext from "../../layout/layout-context"
      detailViewIndex:1,
      loadingTasks:false,
      selectedTaskIndex:-1,
+
    }
 
    static contextType= LayoutContext
@@ -99,6 +100,20 @@ import LayoutContext from "../../layout/layout-context"
     this.activeHandler();
   }
 
+  deleteHandler=(index,id)=>{
+     if(window.confirm('Are you sure you would like to accept this reply as your favor?')===true){
+        axios.delete("/v1/projecttask/"+id).then(res=>{
+        let newData = [...this.state.data]
+        newData.splice(index,1);
+        console.log(newData);
+        this.setState({data:newData})
+       }).catch(e=>{
+         alert(e);
+       })
+     }else{
+       alert("not proceeded");
+     }
+  }
 
    render(){
 
@@ -107,7 +122,7 @@ import LayoutContext from "../../layout/layout-context"
 
      let todo = null;
      if(this.state.data.length===0){
-          todo =<div  onClick={this.openAddTaskDetailViewHandler}>{<div className="dark-btn submitBtn">Add Task</div>} </div>
+          todo =<div  onClick={this.openAddTaskDetailViewHandler}>{<div className="dark-btn submitBtn"><i className="fa fa-plus" aria-hidden="true"></i> Task</div>} </div>
 
      }else{
          todo = <ul className="projectBoard__ul">
@@ -115,6 +130,7 @@ import LayoutContext from "../../layout/layout-context"
              return (data.status==="TO_DO")?
                     <li  className="projectBoard__li">
                         <TodoTask
+                            delete={this.deleteHandler}
                             activeHandler={this.activeHandler}
                             summary={data.summary}
                             status={data.status}
@@ -142,6 +158,7 @@ import LayoutContext from "../../layout/layout-context"
              return (data.status==="IN_PROGRESS")?
                     <li  className="projectBoard__li">
                         <InDevelopmentTask
+                            delete={this.deleteHandler}
                             summary={data.summary}
                             status={data.status}
                             preference={data.preference}
@@ -168,6 +185,7 @@ import LayoutContext from "../../layout/layout-context"
              return (data.status==="DONE")?
                     <li  className="projectBoard__li">
                         <CompletedTask
+                            delete={this.deleteHandler}
                             summary={data.summary}
                             status={data.status}
                             preference={data.preference}
@@ -205,6 +223,8 @@ import LayoutContext from "../../layout/layout-context"
                           selectedTaskIndex={this.state.selectedTaskIndex}
                           openTaskDetailView={this.openTaskDetailViewHandler}
                           projectData={this.props.location.state.data}
+                          data={this.state.data}
+
              />
 
 

@@ -120,41 +120,28 @@ this.setState({...this.props.selectedTask});
 
      return (
         <div className="addTask formUI">
-            <h4 className="formUI__heading addTask__modifier2">Update Project Task</h4>
-            <p className="formUI__heading addTask__modifier2">{"ID: "+this.state.id}</p>
+           <div className="sticky">
+                <h6 className="formUI__heading">Add Task</h6>
+                <h6 className="formUI__heading addTask__modifier2">Name: <strong>{this.state.id}</strong></h6>
+            </div>
             <div className="formUI__details">
+              <h6 className="itemdate">summary</h6>
                 <textarea
                     value={this.state.summary}
                     onChange={this.onChangeHandler}
-                    className="formUI__name-input"
+                    className="formUI__name-input colorChanger  inputSize"
                     placeholder="Project summary"
                     name="summary">
                 </textarea>
             </div>
-            <div className="rowMaker rowMaker--marginRemover">
+
+            <div className="rowMaker--marginRemover">
                 <div className="formUI__details">
-                <h6 className="formUI__heading addTask__dateLabelFixer">Start Date</h6>
-                <input
-                onChange={this.onChangeHandler}
-                type="date"
-                className="addProject__item-date  addTask__dateLabelFixer"
-                name="startDate" />
-                </div>
-                <div className="formUI__details">
-                <h6 className="formUI__heading addTask__dateLabelFixer">End Date</h6>
-                <input
-                onChange={this.onChangeHandler}
-                type="date"
-                className="addProject__item-date  addTask__dateLabelFixer"
-                name="endDate" />
-                </div>
-            </div>
-            <div className="rowMaker rowMaker--marginRemover">
-                <div className="formUI__details">
+                  <h6 className="itemdate">Priority</h6>
                     <select
                         value={this.state.preference}
                         onChange={this.onChangeHandler}
-                        className="formUI__name-input"
+                        className="formUI__name-input colorChanger   inputSize"
                         name="preference">
                             <option value={0}>Select Priority</option>
                             <option value={1}>High</option>
@@ -163,10 +150,11 @@ this.setState({...this.props.selectedTask});
                     </select>
                 </div>
                 <div className="formUI__details">
+                  <h6 className="itemdate">Status</h6>
                     <select
                         value={this.state.status}
                         onChange={this.onChangeHandler}
-                        className="formUI__name-input"
+                        className="formUI__name-input colorChanger  inputSize"
                         name="status">
                             <option value="">Select Status</option>
                             <option value="TO_DO">TO DO</option>
@@ -175,14 +163,32 @@ this.setState({...this.props.selectedTask});
                 </select>
                 </div>
             </div>
-
             <div className="rowMaker rowMaker--marginRemover">
+                <div className="formUI__details">
+                <h6 className="itemdate">start Date</h6>
+                <input
+                onChange={this.onChangeHandler}
+                type="date"
+                className="addProject__item-date  addTask__dateLabelFixer"
+                name="startDate" />
+                </div>
+                <div className="formUI__details">
+                <h6 className="itemdate">End Date</h6>
+                <input
+                onChange={this.onChangeHandler}
+                type="date"
+                className="addProject__item-date  addTask__dateLabelFixer"
+                name="endDate" />
+                </div>
+            </div>
+            <div className="">
             <div className="addProject__item addProject__item1 addProject__item3 parentFixer">
+                <h6>Notes</h6>
                     {this.state.notes.map((note,noteIndex)=>(
                         <div className="noteBox">
                               <input
                               type="text"
-                              className="addProject__item-name addNote addNote-fixer "
+                              className="addProject__item-name  inputSize addNote addNote-fixer "
                               name="projectName"
                               value={note}
                               disabled="true"/>
@@ -192,35 +198,37 @@ this.setState({...this.props.selectedTask});
                   <div>
                   <input
                   type="text"
-                  className="addProject__item-name addNote addNote-fixer"
+                  className="addProject__item-name  inputSize addNote addNote-fixer"
                   placeholder="add a Note"
                   name="addNote"
                   value={this.state.addNote}
                   onChange={this.onChangeHandler}
                   />
-                <i onClick={this.addNoteHandler}  className="fa fa-plus fa-4x addIcon addIcon-fixer addIcon1" aria-hidden="true"></i>
+                <i onClick={this.addNoteHandler}  className="fa fa-plus fa-4x addIcon addIcon-fixer1 addIcon1" aria-hidden="true"></i>
                 </div>
               </div>
               <div className="addProject__item addProject__item1 addProject__item3 parentFixer">
+                <h6>Usefull Links</h6>
                     {this.state.usefullLinks.map((link,linkIndex)=>(
                       <div className="linkBox">
                           <input
                           type="text"
-                          className="addProject__item-name addLink-fullLink"
+                          className="addProject__item-name  inputSize addLink-fullLink fullLink-fixer"
                           value={link.link}
                           disabled="true"/>
                           <i onClick={()=>this.removeLinkHandler(linkIndex)} className="fa fa-remove fa-4x removeIcon removeIcon-fixer removeIcon2" aria-hidden="true"></i>
                           <input
                           type="text"
-                          className="addProject__item-name addLink-comment"
+                          className="addProject__item-name addLink-comment  comment-fixer"
                           value={link.comment}
                           disabled="true"/>
+                          <span className="comment__span comment__span-fixer">comment :</span>
                       </div>
                     ))}
                     <div>
                     <input
                     type="text"
-                    className="addProject__item-name addLink-fullLink"
+                    className="addProject__item-name addLink-fullLink  fullLink-fixer"
                     placeholder="add a Link"
                     name="addLinkFullLink"
                     value={this.state.addLinkFullLink}
@@ -228,13 +236,14 @@ this.setState({...this.props.selectedTask});
                     />
                     <input
                     type="text"
-                    className="addProject__item-name addLink-comment"
+                    className="addProject__item-name addLink-comment comment-fixer"
                     placeholder="add a comment"
                     name="addLinkComment"
                     value={this.state.addLinkComment}
                     onChange={this.onChangeHandler}
                     />
-                    <i onClick={this.addLinkHandler}  className="fa fa-plus fa-4x addIcon  addIcon-fixer addIcon2" aria-hidden="true"></i>
+                    <i onClick={this.addLinkHandler}  className="fa fa-plus fa-4x addIcon  addIcon-fixer2 addIcon2" aria-hidden="true"></i>
+                    <span className="comment__span comment__span-fixer">comment :</span>
                     </div>
               </div>
            </div>

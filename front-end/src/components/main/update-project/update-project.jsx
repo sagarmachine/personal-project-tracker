@@ -157,8 +157,9 @@ import LayoutContext from "../../layout/layout-context"
                 onChange={this.onChangeHandler}/>
           </div>
           </div>
-          <div className="rowMaker">
+          <div className="">
           <div className="addProject__item addProject__item1 addProject__item3">
+             <h6>Notes</h6>
                 {this.state.notes.map((note,noteIndex)=>(
                   <div className="noteBox">
                       <input
@@ -179,10 +180,12 @@ import LayoutContext from "../../layout/layout-context"
                 value={this.state.addNote}
                 onChange={this.onChangeHandler}
                 />
+
                 <i onClick={this.addNoteHandler}  className="fa fa-plus fa-4x addIcon addIcon1" aria-hidden="true"></i>
                 </div>
           </div>
           <div className="addProject__item addProject__item1 addProject__item3">
+           <h6>links</h6>
                 {this.state.links.map((link,linkIndex)=>(
                   <div className="linkBox">
                       <input
@@ -196,6 +199,7 @@ import LayoutContext from "../../layout/layout-context"
                       className="addProject__item-name addLink-comment"
                       value={link.comment}
                       disabled="true"/>
+                      <span className="comment__span">comment :</span>
                   </div>
                 ))}
                 <div>
@@ -215,6 +219,7 @@ import LayoutContext from "../../layout/layout-context"
                 value={this.state.addLinkComment}
                 onChange={this.onChangeHandler}
                 />
+                <span className="comment__span">comment :</span>
                 <i onClick={this.addLinkHandler}  className="fa fa-plus fa-4x addIcon addIcon2" aria-hidden="true"></i>
                 </div>
           </div>

@@ -39,10 +39,13 @@ class Layout extends Component{
 
 
    logOutHandler=()=>{
-      this.setState({logInName:"",login :false})
-      axios.defaults.headers.common['Authentication'] = null;
-      alert("done");
-      window.location.href = "http://localhost:3000";
+     if(window.confirm('Are you sure you want to logout?')===true){
+       this.setState({logInName:"",login :this.state.logIn})
+       axios.defaults.headers.common['Authentication'] = null;
+       window.location.href = "http://localhost:3000";
+     }else{
+       return;
+     }
 
    }
 

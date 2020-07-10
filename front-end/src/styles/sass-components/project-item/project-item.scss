@@ -11,8 +11,14 @@
   &__details{
     flex-grow: 1;
     // background: $color-warning;
-      padding: 1rem 2rem;
-    & h3{
+    padding: 1rem 2rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    &-col1{
+      flex-grow: 3;
+    }
+    & .h3{
       display: block;
       background-image: linear-gradient(to right bottom,$color-orangered,$color-orangered );
       color:transparent;
@@ -26,7 +32,8 @@
         font-size: 2.5rem;
       }
     }
-    & p{
+
+    & .p{
       display: block;
       background-clip: text;
       background-image: linear-gradient(to right bottom,$color-orangered,$color-orangered );
@@ -39,6 +46,15 @@
         letter-spacing: 1px;
         font-size: 1.5rem;
       }
+    }
+    &-col2{
+      flex-grow: 1;
+      // text-align: right;
+      align-self: baseline;
+      // height: 100%;
+      color: $color-grey-light;
+      display: flex;
+      align-items: flex-end;
     }
   }
   &__edits{

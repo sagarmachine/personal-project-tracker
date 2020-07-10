@@ -1,16 +1,16 @@
 .projectBoardTogger{
   display:flex;
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
   box-sizing: content-box;
-  border: 1rem solid $color-secondary-pink;
+  border: .1rem solid $color-secondary-pink;
   // box-shadow: 0rem 0rem 20pt $color-secondary-pink;
   outline-offset: 1rem;
   margin: 4rem 2rem;
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 100;
   background-clip: text;
   background-image: linear-gradient(to right bottom,$color-green,$color-cyan);
@@ -23,22 +23,22 @@
     height: 6rem;
   }
   &:hover{
-    border: 1rem solid $color-orangered;
+    // border: 1rem solid $color-orangered;
     background: $color-link;
     // background-clip: none;
     color: $color-green;
   }
   &__todo{
-       border: 1rem solid $color-grey;
-       // box-shadow: 0rem 0rem 20pt $color-grey;
+       border: .1rem solid $color-grey;
+       box-shadow: 0rem 0rem 20pt $color-grey;
   }
   &__inDevelopment{
-       border: 1rem solid $color-purple;
-       // box-shadow: 0rem 0rem 20pt $color-purple;
+       border: .1rem solid $color-purple;
+       box-shadow: 0rem 0rem 20pt $color-purple;
   }
   &__completed{
-      border: 1rem solid $color-green;
-      // box-shadow: 0rem 0rem 20pt $color-green;
+      border: .1rem solid $color-green;
+      box-shadow: 0rem 0rem 20pt $color-green;
   }
 }
 

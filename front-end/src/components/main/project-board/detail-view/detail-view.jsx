@@ -7,12 +7,16 @@ import TaskDetailView from "./task-detail-view/task-detail-view";
  class DetailView extends Component{
 
 
+
+
    render(){
+
+
 
      let detailView=null;
      let detailViewIndex=this.props.detailViewIndex;
      if(detailViewIndex===1)
-     detailView=<ProjectDetailView projectData={this.props.projectData}/>
+     detailView=<ProjectDetailView data={this.props.data} projectData={this.props.projectData}/>
      else if(detailViewIndex===2)
      detailView=<TaskDetailView  selectedTask={this.props.selectedTask}
                                   selectedTaskIndex={this.props.selectedTaskIndex}

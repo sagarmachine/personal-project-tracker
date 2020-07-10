@@ -1,47 +1,32 @@
 .HIGH{
-  background: rgba($color-sass-pink,1);
+  background: rgba($color-sass-pink,.5);
   color:$color-link;
-  transition: all .5s;
-  &:hover{
-   // transform:scale(1.005);
-   background: $color-orangered;
-      cursor:pointer;
-  //
-  //
-  //
-  //
-  //
-  //
-     }
 }
 .MEDIUM{
   transition: all .5s;
-  background: rgba($color-Spring-green,1);
+  background: rgba($color-Spring-green,.5);
   color:$color-link;
-  &:hover{
-   // transform:scale(1.005);
-   background: $color-orangered;
-   cursor:pointer;
-  //
-  //
-  //
-  //
-  //
-     }
 }
 .LOW{
   transition: all .5s;
-  background: rgba($color-react-blue,1);
+  background: rgba($color-react-blue,.5);
   color:$color-link;
-  &:hover{
-   // transform:scale(1.005);
-   background: $color-orangered;
-      cursor:pointer;
-  //
-  //
-  //
-  //
-  //
-  //
-     }
 }
+
+.hoverer{
+  &:hover{
+    background: $color-orangered;
+    cursor:pointer;
+  }
+}
+
+// &:hover{
+//   // transform:scale(1.005);
+//
+//   //
+//   //
+//   //
+//   //
+//   //
+//   //
+// }

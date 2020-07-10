@@ -13,8 +13,15 @@ import {Link} from "react-router-dom"
          // <!-- Project Item Component -->
         <div className="projectItem">
                     <div className="projectItem__details">
-                        <h3>{this.props.name}</h3>
-                        <p>{this.props.des}</p>
+                      <div className="projectItem__details-col1">
+                          <h3 className="h3">{this.props.name}</h3>
+                          <p className="p">{this.props.des}</p>
+                      </div>
+                      <div className="projectItem__details-col2">
+                          {/*<p>Start Date: <strong>{this.props.data.startingDate}</strong></p>
+                          <p>End Date: <strong>{this.props.data.endingDate}</strong></p>*/}
+                          <p>Created On: <strong>{this.props.data.createdDate}</strong></p>
+                      </div>
                     </div>
                     <div className="projectItem__edits">
                         <ul className="projectItem__edits-list">

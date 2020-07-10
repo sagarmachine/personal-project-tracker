@@ -15,7 +15,7 @@
     width: 35vw;
     margin-bottom: 2rem;
     position: relative;
-    left: 7rem;
+    left: 4.5rem;
     @include respond(phone){
       left: -3rem;
       width: 75vw;
@@ -41,7 +41,8 @@
       content: "\25CF";
       font-size: 5.5rem;
       margin-right:  4rem;
-      color: #3dd466;
+      // color: #3dd466;
+      color: $color-orangered;
       // background-clip: text;
       // background-image: linear-gradient(to right bottom,$color-green,$color-cyan);
       font-weight: 100;
