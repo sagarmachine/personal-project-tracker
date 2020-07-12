@@ -16,9 +16,9 @@ import LandingPage from "./landing-page/landing-page";
      return (
         <div className="main">
           <Switch>
+          <Route exact path="/dashboard" component={Background}/>
           <Route exact path="/signUp"><Background/></Route>
          <Route exact path="/login"><Background/></Route>
-         <Route exact path="/dashboard" component={Background}/>
          <Route exact path="/addProject" component={Background}/>
          <Route exact path="/updateProject" component={Background}/>
          <Route exact path="/projectBoard" component={Background}/>

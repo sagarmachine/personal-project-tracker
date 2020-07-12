@@ -255,7 +255,7 @@ import LayoutContext from "../../layout/layout-context"
 
 
              {(this.state.data.length!==0)?
-             <div style={{display:"inline-block"}} className="submitBtn" onClick={this.openAddTaskDetailViewHandler}>Add Task Button</div>
+             <div style={{display:"inline-block"}} className="submitBtn" onClick={this.openAddTaskDetailViewHandler}><i className="fa fa-plus" aria-hidden="true"></i> Task</div>
             //  <Link to={{
             //    pathname:"/addTask",
             //    state:{

@@ -7,5 +7,6 @@
   align-items: center;
   @include respond(tab-port){
     min-height: 93vh;
+
   }
 }

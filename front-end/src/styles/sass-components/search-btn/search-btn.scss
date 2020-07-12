@@ -1,19 +1,19 @@
 .search-btn{
   height:6rem;
   width:40rem;
-  background:black;
+  background:rgba($color-link,.9);
   color:$color-orangered;
   margin:3rem auto;
   display:block;
   text-align:center;
-  border:.2rem solid $color-orangered;
+  border:.2rem solid rgba($color-orangered,.5);
   font-size: 3rem;
-  transition: all 1s;
+  transition: all .5s;
   @include respond(phone){
       width:30rem;
   }
   &:focus{
     outline:none;
-    border: .2rem solid orange;
+    border: .2rem solid rgba($color-orangered,.9);
   }
 }
