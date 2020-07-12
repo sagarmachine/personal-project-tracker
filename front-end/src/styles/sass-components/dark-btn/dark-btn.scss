@@ -3,7 +3,7 @@
   font-size: 2rem;
   margin: 2rem 0;
   padding: 1.5rem 2.5rem;
-  background: rgba($color-grey-dark-3,1);
+  // background: rgba($color-grey-dark-3,1);
   backface-visibility: hidden;
   &:hover{
     animation: shake .5s ease-out;
@@ -13,4 +13,7 @@
     margin: 1rem 0;
     padding: 1rem 2.5rem;
   }
+}
+input{
+  height: 5rem;
 }
