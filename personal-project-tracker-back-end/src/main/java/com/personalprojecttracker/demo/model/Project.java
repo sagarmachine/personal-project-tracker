@@ -34,16 +34,16 @@ Project {
     @NotNull(message = "project description cant be null")
     String projectDescription;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date startingDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date endingDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date createdDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date updatedDate;
 
     @PostPersist

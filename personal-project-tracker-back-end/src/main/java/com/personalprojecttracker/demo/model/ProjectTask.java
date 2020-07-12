@@ -30,16 +30,16 @@ public class ProjectTask {
 
     String status;
 
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date startDate;
 
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date endDate;
 
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date createdDate;
 
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date updatedDate;
 
     @PrePersist

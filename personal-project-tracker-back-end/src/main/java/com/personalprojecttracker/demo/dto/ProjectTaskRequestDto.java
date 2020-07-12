@@ -28,11 +28,11 @@ public class ProjectTaskRequestDto {
     String status;
 
     @NotNull(message="start date can't be null")
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date startDate;
 
     @NotNull(message="endDate can't be null")
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date endDate;
 
     List<String> notes=new ArrayList();

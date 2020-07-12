@@ -35,10 +35,10 @@ public class ProjectRequestDto {
     @NotNull(message = "project description cant be null")
     String projectDescription;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date startingDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     Date endingDate;
 
     List <String>notes= new ArrayList<>();

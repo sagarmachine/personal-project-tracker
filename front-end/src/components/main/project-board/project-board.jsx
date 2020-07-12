@@ -8,7 +8,6 @@ import DetailView from "./detail-view/detail-view"
 import axios from "axios";
 import LayoutContext from "../../layout/layout-context"
 
-
  class ProjectBoard extends Component{
 
 
@@ -121,6 +120,11 @@ import LayoutContext from "../../layout/layout-context"
           selectedTaskIndexTemp=0;
         
         } 
+        if(this.state.data.length===1)
+        {
+          detailViewIndexTemp=3;
+          selectedTaskIndexTemp=-1;
+        }
         this.setState({data:newData,selectedTaskIndex:selectedTaskIndexTemp,detailViewIndex:detailViewIndexTemp})
         
                
