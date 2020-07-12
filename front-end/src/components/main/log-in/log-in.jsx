@@ -46,6 +46,15 @@ import {Link } from "react-router-dom"
      setTimeout(()=>{
      },0)
    }
+
+   enterPressed(event) {
+    var code = event.keyCode || event.which;
+    if(code === 13) { 
+      alert("shit");
+    } 
+}
+
+
    render(){
  console.log("login --> "+ JSON.stringify(this.props.history))
 

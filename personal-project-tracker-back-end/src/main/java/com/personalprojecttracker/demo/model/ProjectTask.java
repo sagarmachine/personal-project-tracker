@@ -44,11 +44,13 @@ public class ProjectTask {
 
     @PrePersist
     void setCreatedDate(){
+
         this.createdDate=new Date();
     }
 
     @PreUpdate
     void setUpdatedDate(){
+
         this.updatedDate= new Date();
     }
 

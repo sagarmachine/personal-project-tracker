@@ -54,6 +54,7 @@ Project {
     @PostUpdate
     void setUpdatedDate(){
         this.updatedDate=new Date();
+
     }
 
     @OneToOne(mappedBy ="project",cascade = CascadeType.ALL,fetch = FetchType.EAGER)

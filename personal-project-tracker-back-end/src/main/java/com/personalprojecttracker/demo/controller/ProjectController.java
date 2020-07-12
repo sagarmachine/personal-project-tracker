@@ -38,7 +38,7 @@ public class ProjectController {
     @GetMapping("")
     public ResponseEntity<?> getAllProjects(Principal principal){
         User user =userRepository.findByEmail(principal.getName());
-       return  new ResponseEntity<>(user.getProjects(),HttpStatus.OK);
+        return new ResponseEntity<>(projectRepository.findByUserEmailOrderByCreatedDateDesc(principal.getName()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
