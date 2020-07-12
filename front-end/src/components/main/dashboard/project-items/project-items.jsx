@@ -12,18 +12,8 @@ import {Link} from "react-router-dom"
      deletingID:"",
      loadingProjects:0,
      searchedProjects:[],
-
    }
 
-  // shouldComponentUpdate=(nextProps,nextState)=>{
-  //
-  //    if((nextState.projects.length < this.state.projects.length) || this.state.totalProjects===0){
-  //      console.log("IN");
-  //      return true;
-  //    }
-  //    console.log("in");
-  //   return false;
-  // }
 
    deleteProjectHandler=(id,index)=>{
 
@@ -41,7 +31,11 @@ import {Link} from "react-router-dom"
             this.setState({totalProjects:this.state.totalProjects-1,deleting:0,deletingID:"",loadingProjects:1})
           },400)
    }).catch(e=>{
-        console.log(e);
+     if(e.response.data){
+       alert(e.response.data[0])
+     }else{
+       alert("Something went wrong")
+     }
    })
  }
 
@@ -55,7 +49,11 @@ if(this.state.loadingProjects===1)
          loadingProjects:0
        })
      }).catch(e=>{
-       // console.log(e);
+       if(e.response.data){
+         alert(e.response.data[0])
+       }else{
+         alert("Something went wrong")
+       }
      })
    }
 
@@ -97,7 +95,7 @@ searchProjectHandler=(search)=>{
        background:"rgba(0,0,0,.3)",
      }
      if(this.state.totalProjects===0){
-      projectItem = <Link to="/addProject"><h1 style={style}><i className="fa fa-plus" aria-hidden="true"></i> Add a project</h1></Link>
+      projectItem = <Spinner/>
     }else{
       if(this.state.deleting){
         projectItem = <Spinner/>

@@ -106,7 +106,11 @@ import axios from "axios"
        this.props.reloadTasks();
       // this.props.openTaskDetailView(this.props.selectedTaskIndex);
      }).catch(e=>{
-       console.log("failure");
+       if(e.response.data){
+         alert(e.response.data[0])
+       }else{
+         alert("Something went wrong")
+       }
      })
    }
 

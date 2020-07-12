@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
    render(){
 
      return (
-       <Fragment>
+       <Fragment> 
            <Link to="/addProject" className="dark-btn submitBtn">
               <i className="fa fa-plus" aria-hidden="true"></i>{" "}Project
            </Link>

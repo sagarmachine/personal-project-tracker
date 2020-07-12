@@ -10,6 +10,8 @@ import {Link } from "react-router-dom"
      loading:false
    }
 
+
+
    componentDidUpdate=()=>{
     if(this.state.authenticating===true)
     axios.post("/v1/user/login",this.state)
@@ -23,8 +25,15 @@ import {Link } from "react-router-dom"
 
 
   loginHandler=()=>{
+
     this.setState({authenticating:true,loading:true})
   }
+
+   keyPress=(e)=>{
+     if(e.charCode===13){
+       this.setState({authenticating:true,loading:true})
+     }
+   }
 
    onChangeHandler=(e)=>{
      let name = e.target.name
@@ -48,6 +57,7 @@ import {Link } from "react-router-dom"
            <div className="formUI__details">
                <div className="formUI__email">
                    <input
+                   onKeyPress={this.keyPress}
                    onChange={this.onChangeHandler}
                    id="Semail"
                    type="email"
@@ -58,6 +68,7 @@ import {Link } from "react-router-dom"
                </div>
                <div className="formUI__pass">
                    <input
+                   onKeyPress={this.keyPress}
                    onChange={this.onChangeHandler}
                    id="Spass"
                    type="password"
@@ -71,7 +82,7 @@ import {Link } from "react-router-dom"
                  <i style={{
                    margin:"1rem 5rem",
                  }} className="spinnerRotator fa fa-spinner fa-3x" aria-hidden="true"></i>
-                 :<input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
+                 :<input  onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
                }
 
                 <Link to="/signUp"><h3 style={{textAlign:"right"}}>new user?</h3></Link>

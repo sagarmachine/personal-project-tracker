@@ -32,7 +32,11 @@ import axios from "axios"
        console.log(res);
       this.props.reloadTasks();
      }).catch(e=>{
-       console.log("failure");
+       if(e.response.data){
+         alert(e.response.data[0])
+       }else{
+         alert("Something went wrong")
+       }
      })
    }
 
@@ -111,7 +115,7 @@ import axios from "axios"
             </Link> */}
             <div className="sticky">
               <h6 className="formUI__heading">Add Task</h6>
-              <h6 className="formUI__heading addTask__modifier2">Name: <strong>{this.props.projectIdentifier}</strong></h6>
+              <h6 className="formUI__heading addTask__modifier2"><strong>{this.props.projectIdentifier}</strong></h6>
             </div>
             <div className="formUI__details">
               <h6 className="itemdate">summary</h6>

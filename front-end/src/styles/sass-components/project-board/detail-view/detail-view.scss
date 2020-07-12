@@ -1,4 +1,5 @@
 .detailView{
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,6 +74,7 @@
   align-items: center;
   @include respond(tab-port){
     // display: block;
+    padding-top: 10rem;
     right: 0;
     margin: 0;
     height: 88vh;

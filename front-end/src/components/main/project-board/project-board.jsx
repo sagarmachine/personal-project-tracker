@@ -1,4 +1,5 @@
  import React, {Component} from "react"
+ import Spinner from "../../UI/Spinner/Spinner"
 import TodoTask from "./todo-task/todo-task"
 import InDevelopmentTask from "./in-development-task/in-development-task"
 import CompletedTask from "./completed-task/completed-task"
@@ -71,7 +72,11 @@ import LayoutContext from "../../layout/layout-context"
          this.openProjectDetailViewHandler();
        }
      }).catch(e=>{
-       console.log(e);
+       if(e.response.data){
+         alert(e.response.data[0])
+       }else{
+         alert("Something went wrong")
+       }
      })
 
      if(this.state.updating)
@@ -126,7 +131,11 @@ import LayoutContext from "../../layout/layout-context"
 
 
        }).catch(e=>{
-         alert(e);
+         if(e.response.data){
+           alert(e.response.data[0])
+         }else{
+           alert("Something went wrong")
+         }
        })
      }else{
        alert("not proceeded");
@@ -135,8 +144,9 @@ import LayoutContext from "../../layout/layout-context"
 
    render(){
 
+
     if(this.context.authenticated===false)
-    window.location.href = "http://localhost:3000/login";
+        window.location.href = "http://localhost:3000/login";
 
      let todo = null;
      if(this.state.data.length===0){
@@ -221,7 +231,7 @@ import LayoutContext from "../../layout/layout-context"
          </ul>
      }
      if(this.state.loadingTasks===true){
-       return null;
+       return <Spinner />;
      }
      return (
 
@@ -257,7 +267,7 @@ import LayoutContext from "../../layout/layout-context"
 
 
              {(this.state.data.length!==0)?
-             <div style={{display:"inline-block"}} className="submitBtn" onClick={this.openAddTaskDetailViewHandler}><i className="fa fa-plus" aria-hidden="true"></i> Task</div>
+             <div style={{display:"inline-block"}} className="submitBtn dark-btn" onClick={this.openAddTaskDetailViewHandler}><i className="fa fa-plus" aria-hidden="true"></i> Task</div>
             //  <Link to={{
             //    pathname:"/addTask",
             //    state:{
@@ -273,7 +283,7 @@ import LayoutContext from "../../layout/layout-context"
                 onClick={()=>this.onClickHandler("todoToggle")}
                 className="projectBoardTogger projectBoardTogger__todo">
                      <i className="fa fa-tasks" aria-hidden="true"></i>
-                     <span className="projectBoard__span">todo list tasks</span>
+                     <span className="projectBoard__span">todo</span>
                 </div>
                 <div
                 className={this.state.todoToggle}>
@@ -283,7 +293,7 @@ import LayoutContext from "../../layout/layout-context"
                 onClick={()=>this.onClickHandler("inDevelopmentToggle")}
                 className="projectBoardTogger projectBoardTogger__inDevelopment">
                      <i className="fa fa-spinner" aria-hidden="true"></i>
-                      <span className="projectBoard__span">in development tasks</span>
+                      <span className="projectBoard__span">in Progress</span>
                 </div>
                 <div
                 className={this.state.inDevelopmentToggle}>
@@ -293,7 +303,7 @@ import LayoutContext from "../../layout/layout-context"
                 onClick={()=>this.onClickHandler("completedToggle")}
                 className="projectBoardTogger projectBoardTogger__completed">
                       <i className="fa fa-check" aria-hidden="true"></i>
-                       <span className="projectBoard__span">compeleted tasks</span>
+                       <span className="projectBoard__span">Done</span>
                 </div>
                 <div
                 className={this.state.completedToggle}>

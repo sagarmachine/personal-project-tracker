@@ -42,12 +42,12 @@
                         exact
                         to="/profile"
                         className="nav__items-item">
-                          <i class="fa fa-user iconSize" aria-hidden="true"></i>{" "+this.props.email.split("@").shift()}
+                          <i className="fa fa-user iconSize" aria-hidden="true"></i>{" "+this.props.email.split("@").shift()}
                         </NavLink>
                         <div
                         onClick={this.props.logOut}
                         className="nav__items-item logOut">
-                          <i class="fa fa-sign-out iconSize" aria-hidden="true"></i> logOut
+                          <i className="fa fa-sign-out iconSize" aria-hidden="true"></i> logOut
                         </div>
                         {/*Landing Component GET-STARTED login:false
                           logout onClick={logoutHadler()}  */}

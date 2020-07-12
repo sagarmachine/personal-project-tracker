@@ -13,6 +13,11 @@ import axios from "axios"
       loading:false
     }
 
+    keyPress=(e)=>{
+      if(e.charCode===13){
+        this.setState({registering:true,loading:true})
+      }
+    }
 
     componentDidUpdate=()=>{
       if(this.state.registering===true)
@@ -68,6 +73,7 @@ import axios from "axios"
            <div className="formUI__details">
                <div className="formUI__name">
                    <input
+                   onKeyPress={this.keyPress}
                    onChange={this.onChangeHandler}
                    id="Sname"
                    type="text"
@@ -80,6 +86,7 @@ import axios from "axios"
                </div>
                <div className="formUI__email">
                    <input
+                   onKeyPress={this.keyPress}
                    onChange={this.onChangeHandler}
                    id="Semail"
                    type="email"
@@ -90,6 +97,7 @@ import axios from "axios"
                </div>
                <div className="formUI__pass">
                    <input
+                   onKeyPress={this.keyPress}
                    onChange={this.onChangeHandler}
                    id="Spass"
                    type="password"
@@ -101,6 +109,7 @@ import axios from "axios"
                <div className="formUI__pass2">
                    <input onChange={this.onChangeHandler}
                    id="Spass2"
+                   onKeyPress={this.keyPress}
                    type="password"
                    className="formUI__pass2-input"
                    placeholder="Confirm Password"
