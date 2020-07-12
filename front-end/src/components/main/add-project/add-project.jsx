@@ -44,7 +44,7 @@ import LayoutContext from "../../layout/layout-context"
            console.log(response);
            this.props.history.push("/dashboard");
        }).catch(e=>{
-          console.log(e);
+          alert(e.response.data[0])
        })
     }
 

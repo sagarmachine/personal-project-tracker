@@ -1,6 +1,7 @@
 .taskDetailView{
   border: 1px solid $color-orangered;
   padding: 1rem 2rem;
+  font-size: 1.5rem;
   margin-top: 5rem;
   color:$color-grey-light;
   // text-transform: capitalize;
@@ -10,7 +11,7 @@
 
   }
   &__head{
-     border: 1px solid $color-orangered;
+     // border: 1px solid $color-orangered;
      @include respond(phone){
 
      }

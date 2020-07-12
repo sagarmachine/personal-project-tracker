@@ -1,14 +1,14 @@
 .loader,
 .loader:before,
 .loader:after {
-  background: #0ec878;
+  background: $color-orangered;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
 .loader {
-  color: #0ec878;
+  color: $color-orangered;
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;
@@ -56,4 +56,18 @@
     box-shadow: 0 -2em;
     height: 5em;
   }
+}
+.spinnerRotator{
+   animation: rotator infinite ease-out;
+}
+@keyframes rotator {
+    0%{
+      transform: rotate(120deg);
+    }
+    50%{
+      transform: rotate(240deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
 }

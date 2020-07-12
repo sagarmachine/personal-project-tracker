@@ -131,7 +131,7 @@ import axios from "axios"
                         <option value={0}>Select Priority</option>
                         <option value={1}>High</option>
                         <option value={2}>Medium</option>
-                        <option value={3}>Low</option>
+                        <option selected value={3}>Low</option>
                 </select>
             </div>
             <div className="rowMaker rowMaker--marginRemover">

@@ -6,10 +6,10 @@ import axios from "axios"
 
 
    state={
-          id:"id",
-          summary:"task 2",
-          status: "TODO",
-          preference:"3",
+          id:"",
+          summary:"",
+          status: "",
+          preference:"",
           startDate:"",
           endDate:"",
           addNote:"",
@@ -117,7 +117,7 @@ this.setState({...this.props.selectedTask});
    }
 
    render(){
-
+     console.log(this.state);
      return (
         <div className="addTask formUI">
            <div className="sticky">
@@ -169,6 +169,7 @@ this.setState({...this.props.selectedTask});
                 <input
                 onChange={this.onChangeHandler}
                 type="date"
+                value={this.state.startDate}
                 className="addProject__item-date  addTask__dateLabelFixer"
                 name="startDate" />
                 </div>
@@ -177,6 +178,7 @@ this.setState({...this.props.selectedTask});
                 <input
                 onChange={this.onChangeHandler}
                 type="date"
+                value={this.state.endDate}
                 className="addProject__item-date  addTask__dateLabelFixer"
                 name="endDate" />
                 </div>
@@ -251,6 +253,7 @@ this.setState({...this.props.selectedTask});
             <input
             onClick={this.onSubmitHandler}
             type="submit"
+            value="update"
             className="submitBtn dark-btn addTask__modifier3" />
         </div>
      )
