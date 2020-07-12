@@ -38,9 +38,8 @@
                           <i className="fa fa-tachometer iconSize" aria-hidden="true"></i> Dashboard
                         </NavLink>
                         <NavLink
-
                         exact
-                        to="/profile"
+                        to="/"
                         className="nav__items-item">
                           <i className="fa fa-user iconSize" aria-hidden="true"></i>{" "+this.props.email.split("@").shift()}
                         </NavLink>

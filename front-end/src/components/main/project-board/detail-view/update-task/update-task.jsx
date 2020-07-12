@@ -147,7 +147,7 @@ this.setState({...this.props.selectedTask});
                         onChange={this.onChangeHandler}
                         className="formUI__name-input colorChanger   inputSize"
                         name="preference">
-                            <option value={0}>Select Priority</option>
+
                             <option value={1}>High</option>
                             <option value={2}>Medium</option>
                             <option value={3}>Low</option>
@@ -160,7 +160,7 @@ this.setState({...this.props.selectedTask});
                         onChange={this.onChangeHandler}
                         className="formUI__name-input colorChanger  inputSize"
                         name="status">
-                            <option value="">Select Status</option>
+                            
                             <option value="TO_DO">TO DO</option>
                             <option value="IN_PROGRESS">IN PROGRESS</option>
                             <option value="DONE">DONE</option>
