@@ -11,14 +11,15 @@ import LayoutContext from "../../layout/layout-context"
    render(){
     console.log(JSON.stringify(this.props))
     console.log(this.context.authenticated);
-if(this.context.authenticated==false)
+if(this.context.authenticated===false)
 window.location.href = "http://localhost:3000/login";
      return (
+       this.context.authenticated?
        <div className="dashboard">
             <h1 className="dashboard__heading">Projects</h1>
             <CreateProjectBtn />
             <ProjectItems/>
-       </div>
+       </div>:null
      )
    }
  }

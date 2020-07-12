@@ -1,6 +1,6 @@
 .sideDrawer{
   z-index: 10000;
-  font-size: 2rem;
+  font-size: 3rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,12 +11,14 @@
   align-items: center;
   width: 0;
   visibility: hidden;
-  background-image: linear-gradient(to left,rgba($color-link,.85),rgba($color-link,.7)), url("../../../../assets/images/sideDrawer.jpg");
+  // background-image: linear-gradient(to left,rgba($color-link,.85),rgba($color-link,.7)), url("../../../../assets/images/sideDrawer.jpg");
   background-size: cover;
   background-position: left;
+  background: $color-link;
   transition: all .5s ease-out;
-  color: $color-orangered;
+  color: $color-postman-background;
   // transition-delay:.5s;
+
 }
 .open{
   visibility: visible;

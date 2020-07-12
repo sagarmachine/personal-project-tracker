@@ -10,6 +10,7 @@ import axios from "axios"
       password:"",
       confirmPassword:"",
       registering:false,
+      loading:false
     }
 
 
@@ -22,7 +23,6 @@ import axios from "axios"
         this.props.email(this.state.email);
         this.props.history.push("/dashboard")
       }).catch(error=>{
-         alert(error.response.data[0])
          console.log(error.response);
 
         this.setState({
@@ -31,7 +31,9 @@ import axios from "axios"
           password:"",
           confirmPassword:"",
           registering:false,
+          loading:false
         })
+        alert(error.response.data[0])
       })
     }
 
@@ -50,14 +52,15 @@ import axios from "axios"
     }
 
     onSubmitHandler=()=>{
-      this.setState({registering:true})
+      this.setState({registering:true,loading:true})
         }
 
    render(){
 
+
      return (
 
-       <div className="formUI">
+       <div className="formUI log">
            <div className="formUI__heading">
                <h1 className="formUI__head">Sign Up</h1>
                <p className="formUI__para">Create your Account</p>
@@ -104,7 +107,15 @@ import axios from "axios"
                    value={this.state.confirmPassword}
                    name="confirmPassword" />
                </div>
-               <input onClick={this.onSubmitHandler} type="submit" className="submitBtn" />
+               {(this.state.registering)?
+                   <i style={{
+                     margin:"1rem 5rem",
+
+                   }} className="spinnerRotator fa fa-spinner fa-3x" aria-hidden="true"></i>
+                   :<input onClick={this.onSubmitHandler} type="submit" className="submitBtn" />
+                 }
+
+
            </div>
 
        </div>

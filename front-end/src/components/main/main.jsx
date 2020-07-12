@@ -15,9 +15,16 @@ import LandingPage from "./landing-page/landing-page";
 
      return (
         <div className="main">
-             <Background />
           <Switch>
-              <Route exact path="/" ><LandingPage/></Route>
+          <Route exact path="/signUp"><Background/></Route>
+         <Route exact path="/login"><Background/></Route>
+         <Route exact path="/dashboard" component={Background}/>
+         <Route exact path="/addProject" component={Background}/>
+         <Route exact path="/updateProject" component={Background}/>
+         <Route exact path="/projectBoard" component={Background}/>
+          </Switch>
+          <Switch>
+              <Route exact path="/" ><LandingPage getStarted={this.props.getStarted}/></Route>
                <Route exact path="/signUp"><SignUp email={this.props.email}/></Route>
               <Route exact path="/login"><LogIn test={"test"} email={this.props.email}/></Route>
               <Route exact path="/dashboard" component={Dashboard}/>

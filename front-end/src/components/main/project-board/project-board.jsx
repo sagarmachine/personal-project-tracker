@@ -1,9 +1,7 @@
  import React, {Component} from "react"
-import {Link} from "react-router-dom"
 import TodoTask from "./todo-task/todo-task"
 import InDevelopmentTask from "./in-development-task/in-development-task"
 import CompletedTask from "./completed-task/completed-task"
-import UpdateTask from "./detail-view/update-task/update-task"
 import DetailView from "./detail-view/detail-view"
 import axios from "axios";
 import LayoutContext from "../../layout/layout-context"
@@ -14,8 +12,8 @@ import LayoutContext from "../../layout/layout-context"
 
    state={
      todoToggle:"visible",
-     inDevelopmentToggle:"hidden",
-     completedToggle:"hidden",
+     inDevelopmentToggle:"visible",
+     completedToggle:"visible",
      data:[],
      active:"detailViewClose",
      detailViewIndex:1,
@@ -65,7 +63,8 @@ import LayoutContext from "../../layout/layout-context"
      .then(res=>{
        this.setState({
          data:res.data,
-         loadingTasks:false
+         loadingTasks:false,
+         active:"detailViewClose"
        });
        if(this.state.selectedTaskIndex>=0)
        this.openTaskDetailViewHandler(this.state.selectedTaskIndex);
@@ -83,7 +82,7 @@ import LayoutContext from "../../layout/layout-context"
 
 
    componentDidMount=()=>{
-     this.setState({loadingTasks:true})
+     this.setState({loadingTasks:true,active:"detailViewClose"})
    }
 
 
@@ -116,14 +115,14 @@ import LayoutContext from "../../layout/layout-context"
         if(this.state.selectedTaskIndex>index)
               selectedTaskIndexTemp -=1;
          if(detailViewIndexTemp===1)
-         { 
+         {
            detailViewIndexTemp=2;
           selectedTaskIndexTemp=0;
-        
-        } 
+
+        }
         this.setState({data:newData,selectedTaskIndex:selectedTaskIndexTemp,detailViewIndex:detailViewIndexTemp})
-        
-               
+
+
        }).catch(e=>{
          alert(e);
        })
@@ -134,7 +133,7 @@ import LayoutContext from "../../layout/layout-context"
 
    render(){
 
-    if(this.context.authenticated==false)
+    if(this.context.authenticated===false)
     window.location.href = "http://localhost:3000/login";
 
      let todo = null;
@@ -245,7 +244,7 @@ import LayoutContext from "../../layout/layout-context"
                           openTaskDetailView={this.openTaskDetailViewHandler}
                           projectData={this.props.location.state.data}
                           data={this.state.data}
-               
+
              />
           }
 

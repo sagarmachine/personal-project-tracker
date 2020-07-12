@@ -6,7 +6,7 @@
 
    render(){
      return (
-        <div onClick={this.props.clicked} className={this.props.classes}>SideDrawer</div>
+        <div onClick={this.props.clicked} className={this.props.classes}>Under construction</div>
      )
    }
  }

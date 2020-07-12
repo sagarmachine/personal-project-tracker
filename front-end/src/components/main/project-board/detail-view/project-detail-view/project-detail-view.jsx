@@ -60,12 +60,14 @@ export default class ProjectDetailView extends Component {
                         <div className="ProjectDetailView__name">done: <strong>{this.state.completedNo}</strong></div>
                     </div>
                 </div>
-                <hr/>
                 <div className="">
-                   <h5>Description</h5>
-                    <div className="ProjectDetailView__des ProjectDetailView__flexer ProjectDetailView__flexer-main">{this.props.projectData.projectDescription}</div>
-              <hr/>
-                    <h5>Notes</h5>
+
+
+                   {this.props.projectData.projectDescription?[<hr/>,<h5>Description</h5>,
+                    <div className="ProjectDetailView__des ProjectDetailView__flexer ProjectDetailView__flexer-main">{this.props.projectData.projectDescription}</div>]:null}
+
+{this.props.projectData.notes.length?[<hr/>,
+                    <h5>Notes</h5>,
                     <div className="taskDetailView__notes">
                     <ol>
                            {this.props.projectData.notes.map((note,i)=>(
@@ -74,19 +76,19 @@ export default class ProjectDetailView extends Component {
                              </li>
                            ))}
                        </ol>
-                    </div>
-<hr/>
-                    <h5>Links</h5>
+                    </div>]:null}
+{this.props.projectData.usefullLinks.length?[<hr/>,
+                    <h5>Links</h5>,
                     <div className="taskDetailView__links">
                     <ol>
                           {this.props.projectData.usefullLinks.map((link,i)=>(
                             <li key={"link"+i} className="taskDetailView__link">
-                               <a href={link.link} target="_blank" className="taskDetailView__linkUR">{link.link}</a>
+                               <a href={link.link} target="_blank" rel="noopener noreferrer" className="taskDetailView__linkUR">{link.link}</a>
                                <div className="taskDetailView__comment">{link.comment}</div>
                             </li>
                           ))}
                       </ol>
-                </div>
+                </div>]:null}
                 </div>
             </div>
         )

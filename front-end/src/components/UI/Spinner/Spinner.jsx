@@ -6,7 +6,7 @@
    render(){
 
      return (
-        <div><div class="loader">Loading...</div></div>
+        <div style={{fontSize:this.props.style}}><div class="loader">Loading...</div></div>
      )
    }
  }

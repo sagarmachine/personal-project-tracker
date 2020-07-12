@@ -1,4 +1,4 @@
-import React, {Component,Fragment,Provider} from "react"
+import React, {Component,Fragment} from "react"
 import Toolbar from "../navigation/toolbar/toolbar";
 import SideDrawer from "../navigation/side-drawer/side-drawer";
 import Main from "../main/main";
@@ -58,6 +58,10 @@ class Layout extends Component{
      })
    }
 
+   css=()=>{
+     return "black"
+   }
+
    render(){
 
     let sideDrawer = null;
@@ -66,7 +70,7 @@ class Layout extends Component{
 
      }
      return (
-       <LayoutContext.Provider value={{authenticated:true}}>
+       <LayoutContext.Provider value={{authenticated:this.state.logIn}}>
        <Fragment>
           <Toolbar
            logOut={this.logOutHandler}
@@ -74,7 +78,7 @@ class Layout extends Component{
            classes={this.state.toolbar}
            toggleSideDrawer={this.sideDrawerToggleHandler}/>
             {sideDrawer}
-          <Main  email={this.logInNameHandler}/>
+          <Main getStarted={this.state.logIn}  email={this.logInNameHandler}/>
        </Fragment>
        </LayoutContext.Provider>
      )

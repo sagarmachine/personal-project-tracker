@@ -1,28 +1,29 @@
  import React, {Component} from "react"
  import { withRouter } from 'react-router';
  import axios from "axios"
-
+import {Link } from "react-router-dom"
  class LogIn extends Component{
    state={
      email:"",
      password:"",
      authenticating:false,
+     loading:false
    }
 
    componentDidUpdate=()=>{
     if(this.state.authenticating===true)
-    axios.post("/v1/user/login",this.state).
-    then(data=>{
+    axios.post("/v1/user/login",this.state)
+    .then(data=>{
       this.props.email(this.state.email);
-      this.setState({authenticating:false});
-      this.props.history.push("/dashboard")}).
-    catch(ex=>{alert("credentials are invlaid");
+      this.setState({authenticating:false,loading:false});
+      this.props.history.push("/dashboard")})
+      .catch(ex=>{alert("credentials are invlaid");
          this.setState({email:"",password:"",authenticating:false})});
      }
 
 
   loginHandler=()=>{
-    this.setState({authenticating:true})
+    this.setState({authenticating:true,loading:true})
   }
 
    onChangeHandler=(e)=>{
@@ -38,8 +39,9 @@
    }
    render(){
  console.log("login --> "+ JSON.stringify(this.props.history))
+
      return (
-       <div className="formUI">
+       <div className="formUI log">
            <div className="formUI__heading">
                <h1 className="formUI__head">Log In</h1>
            </div>
@@ -64,8 +66,15 @@
                    name="password"
                    value={this.state.password}/>
                </div>
-                  <input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
+               {
+                 this.state.authenticating?
+                 <i style={{
+                   margin:"1rem 5rem",
+                 }} className="spinnerRotator fa fa-spinner fa-3x" aria-hidden="true"></i>
+                 :<input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
+               }
 
+                <Link to="/signUp"><h3 style={{textAlign:"right"}}>new user?</h3></Link>
            </div>
 
        </div>

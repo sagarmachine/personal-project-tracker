@@ -1,0 +1,168 @@
+.landing{
+  perspective: 1000px;
+  font-size:2rem;
+  height: 100rem;
+  width: 100%;
+  align-self: flex-start;
+  position: relative;
+  // display: flex;
+  color: $color-orangered;
+  justify-content: space-between;
+  &__head{
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+    font-size: 2.5rem;
+    line-height: 2;
+    // margin-left: 3rem;
+    // margin-top: 6rem;
+    width: 100%;
+    position: relative;
+    margin-bottom: 10rem;
+    // transform:skewY(-12deg) rotateY(30deg);
+    @include respond(phone){
+      flex-flow: column;
+      height: 50rem;
+    }
+    &-1{
+
+      color: $color-white;
+      align-self: center;
+      margin: 0rem auto;
+      // font-size: 3.5rem;
+      // text-align: center;
+    }
+    &-static{
+      width: 60rem;
+      position: relative;
+      top:-10rem;
+      margin-left: 5rem;
+      @include respond(phone){
+        top:10rem;
+      }
+      &--2{
+        margin-left: 5rem;
+        background: $color-postman-background;
+        border: 1px solid rgba($color-white,.1);
+        transition: all .2;
+        // padding: 1rem;
+        z-index: 10;
+        bottom: 25rem;
+        position: absolute;
+        @include respond(tab-port){
+          bottom: 15rem;
+        }
+        cursor: pointer;
+        &:hover{
+          background: $color-orangered;
+          border-bottom: 3px solid transparent;
+        }
+      }
+    }
+ }
+}
+.backgroundWhite{
+  background-color: rgba($color-postman-background,1);
+  height: 50rem;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  @include respond(tab-port){
+    height: 30rem;
+    width: 100%;
+  }
+  @include respond(phone){
+    height: 40rem;
+  }
+}
+
+.landing__logo{
+    // position: absolute;
+    position: relative;
+    bottom: 0rem;
+    display:inline-block;
+    margin-top: 10rem;
+    margin-right: 15rem;
+    height: 50rem;
+    width: 50rem;
+    border: 5px solid $color-orangered;
+    box-shadow: 3rem 3rem 2rem $color-link;
+    border-radius: 8px;
+    transition: all .2s;
+    transform: rotate3d(.5,-.866,0,20deg) rotate(-1deg);
+    box-sizing: content-box;
+    &:hover{
+      filter: grayscale(100%);
+       animation: none;
+    }
+    animation: landing 10s linear infinite;
+
+    @include respond(tab-port){
+      height: 25rem;
+      width: 25rem;
+    }
+
+    @include respond(phone){
+      height: 15rem;
+      width: 15rem;
+      right: -29rem;
+      bottom: 5rem;
+    }
+}
+
+@keyframes landing {
+  0%{
+    box-shadow: 3rem 3rem 2rem $color-link;
+    transform: rotate3d(.5,-.866,0,20deg) rotate(-1deg);
+  }
+   50%{
+     box-shadow: 3.5rem 3.5rem 2rem $color-link;
+      transform: rotate3d(.5,-.866,0,30deg) rotate(-1deg);
+   }
+   100%{
+     box-shadow: 3rem 3rem 2rem $color-link;
+     transform: rotate3d(.5,-.866,0,20deg) rotate(-1deg);
+   }
+}
+@keyframes landing2 {
+  0%{
+    transform: rotate3d(.5,-.866,0,20deg) rotate(-1deg);
+  }
+   50%{
+      transform: rotate3d(.5,-.866,0,270deg) rotate(-1deg);
+   }
+   100%{
+     transform: rotate3d(.5,-.866,0,20deg) rotate(-1deg);
+   }
+}
+.meet{
+  &__parent{
+    display: flex;
+    justify-content: center;
+  }
+  cursor: default;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bolder;
+  margin: 5rem auto;
+  padding: 1rem 2rem;
+  color: $color-postman-background;
+  transition: all 5s;
+}
+.footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:$color-white;
+  height: 20rem;
+  background: $color-postman-background;
+  text-transform: capitalize;
+  font-family: cursive;
+  font-size: 3rem;
+  & i{
+    color:$color-white;
+    padding: 0 1rem;
+  }
+}

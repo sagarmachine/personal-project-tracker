@@ -103,7 +103,7 @@ import LayoutContext from "../../layout/layout-context"
 
 
    render(){
-    if(this.context.authenticated==false)
+    if(this.context.authenticated===false)
     window.location.href = "http://localhost:3000/login";
 
 
