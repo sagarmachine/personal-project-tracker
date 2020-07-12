@@ -5,8 +5,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import javax.swing.text.DateFormatter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Entity
@@ -40,15 +43,16 @@ Project {
     @JsonFormat(pattern = "yyyy-mm-dd")
     Date endingDate;
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     Date createdDate;
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     Date updatedDate;
 
     @PostPersist
     void setCreatedDate(){
-        this.createdDate=new Date();;
+        this.createdDate=new Date();
+
     }
 
     @PostUpdate
