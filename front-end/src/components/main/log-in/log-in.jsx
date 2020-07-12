@@ -37,6 +37,15 @@ import {Link } from "react-router-dom"
      setTimeout(()=>{
      },0)
    }
+
+   enterPressed(event) {
+    var code = event.keyCode || event.which;
+    if(code === 13) { 
+      alert("shit");
+    } 
+}
+
+
    render(){
  console.log("login --> "+ JSON.stringify(this.props.history))
 
@@ -71,7 +80,7 @@ import {Link } from "react-router-dom"
                  <i style={{
                    margin:"1rem 5rem",
                  }} className="spinnerRotator fa fa-spinner fa-3x" aria-hidden="true"></i>
-                 :<input onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
+                 :<input  onClick={this.loginHandler} type="submit" className="submitBtn"  value="Log In"/>
                }
 
                 <Link to="/signUp"><h3 style={{textAlign:"right"}}>new user?</h3></Link>

@@ -103,16 +103,13 @@ import java.util.*;
     }
 
     @Override
-    public Set<ProjectTask> getAllTaskByProjectIdentifier(String projectIdentifier, Principal principal) {
+    public List<ProjectTask> getAllTaskByProjectIdentifier(String projectIdentifier, Principal principal) {
         Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier.toUpperCase());
         if(backlog==null || principal==null || !principal.getName().equals(backlog.getProject().getUser().getEmail()))
             throw  new ProjectNotFoundException("no project found with projectIdentifier=\""+projectIdentifier.toUpperCase()+"\"");
-        Set<ProjectTask> projectTasks=backlog.getProjectTasks();
-        Set<ProjectTask> projectTasksSorted= new HashSet<>();
+        List<ProjectTask> projectTasks=projectTaskRepository.findByBacklogProjectIdentifierOrderByCreatedDateDesc(backlog.getProjectIdentifier());
 
-        projectTasks.stream().sorted(Comparator.comparingInt(ProjectTask::getPreference).reversed())
-                .forEach(projectTask -> {projectTasksSorted.add(projectTask);});
-        return projectTasksSorted;
+         return projectTasks;
     }
 
     @Override

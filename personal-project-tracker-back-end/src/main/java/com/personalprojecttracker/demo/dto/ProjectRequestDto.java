@@ -25,11 +25,11 @@ public class ProjectRequestDto {
     int id;
 
     @NotNull(message = "project name cant be null")
-    @Size(min= 5,message = "project name had to be at least 5 in letters")
+    @Size(min= 4,message = "project name had to be at least 4 in letters")
     String projectName;
 
     @NotNull(message = "project id cant be null")
-    @Size(min = 4,message = "project id had to be at least 4 in letters")
+    @Size(min = 3,message = "project id had to be at least 3 in letters")
     String projectIdentifier;
 
     @NotNull(message = "project description cant be null")
