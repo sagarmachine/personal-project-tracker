@@ -84,18 +84,20 @@ searchProjectHandler=(search)=>{
 
 
    render(){
-     let projectItem = null;
-     let style = {
-       textTransform:"uppercase",
-       fontSize:"2rem",
-       textAlign:"center",
-       color:"orangered",
-       padding:"3rem 0",
-       border:"1px solid none",
-       background:"rgba(0,0,0,.3)",
+     let style={
+        textAlign:"center",
+        padding:"2.5rem",
+        color:"black",
+        fontSize:"2.5rem",
+        background:"rgba(255,255,255,0.3)"
      }
+     let projectItem = null;
+
      if(this.state.totalProjects===0){
       projectItem = <Spinner/>
+      if(this.state.loadingProjects===0){
+        projectItem = <h1 style={style}>Start Adding Project</h1>
+      }
     }else{
       if(this.state.deleting){
         projectItem = <Spinner/>
