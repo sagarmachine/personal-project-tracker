@@ -25,11 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/user")
 @RefreshScope
-@CrossOrigin(value = {"http://localhost:3000"},exposedHeaders = "Authentication")
 public class UserController {
-
-//    @Value("${test}")
-//    String test;
 
     @Autowired
     IBindingResultErrorService bindingResultErrorService;

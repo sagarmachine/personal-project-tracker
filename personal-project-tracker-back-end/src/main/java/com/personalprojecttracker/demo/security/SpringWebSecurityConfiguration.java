@@ -13,15 +13,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -44,16 +39,16 @@ public class SpringWebSecurityConfiguration extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/v1/user/*","/h2-console/*","/**/*","/actuator/refresh").permitAll()
+                .antMatchers("/api/v1/user/*","/actuator/refresh","/api/test/*").permitAll()
 //                .antMatchers("/**/*","/*").permitAll()
                 .anyRequest().authenticated()
-                .and().csrf().disable().cors().disable()
+                .and().csrf().disable()
+                //.cors().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                .and().exceptionHandling().authenticationEntryPoint(userNotLoginAuthenticationEntryPoint)
-               .and()//.addFilterAt(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .headers().frameOptions().sameOrigin()
-        .and().addFilterAfter(getCheckAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class);
-
+                .and() .headers().frameOptions().sameOrigin()
+               .and().addFilterBefore(getCheckAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class);
+ http.cors();
 
     }
 
@@ -81,32 +76,13 @@ public class SpringWebSecurityConfiguration extends WebSecurityConfigurerAdapter
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowCredentials(true);
-//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-//        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With","Origin","Content-Type","Accept","Authorization","Authentication"));
-//
-//        // This allow us to expose the headers
-//        configuration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
-//                "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
-//
-//
-//
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**/*").allowedOrigins("http://localhost:3000").allowedHeaders("Authentication");
-//            }
-//        };
-//    }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/*").allowedOrigins("*").exposedHeaders("Authentication");
+            }
+        };
+    }
 }

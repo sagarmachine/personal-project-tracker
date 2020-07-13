@@ -78,9 +78,11 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -98,7 +100,7 @@ import java.util.ArrayList;
 @CrossOrigin
 @Slf4j
 
-public class CheckAuthenticationFilter  extends BasicAuthenticationFilter {
+public class CheckAuthenticationFilter  extends OncePerRequestFilter {
 
     JWTUtil jwtUtil;
     IUserService userService;
@@ -111,12 +113,12 @@ public class CheckAuthenticationFilter  extends BasicAuthenticationFilter {
 //    }
 
 
-    public CheckAuthenticationFilter(AuthenticationManager authenticationManager) {
-        super(authenticationManager);
-    }
+   // public CheckAuthenticationFilter(AuthenticationManager authenticationManager) {
+  //      super(authenticationManager);
+  //  }
 
     public CheckAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil,IUserService userService) {
-        super(authenticationManager);
+      //  super(authenticationManager);
         this.jwtUtil = jwtUtil;
         this.userService=userService;
     }
@@ -130,17 +132,25 @@ public class CheckAuthenticationFilter  extends BasicAuthenticationFilter {
 
 try {
     if (jwtToken != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        log.info("---=-=-=-=-=--> 1 stage");
         String JWT =jwtToken.substring(7);
         UserDetails user =userService.loadUserByUsername(jwtUtil.getUsernameFromToken(JWT));
+
         if (jwtUtil.validateToken(JWT, user)) {
-            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user,"", new ArrayList<>()));
+            log.info("---=-=-=-=-=--> 2 stage");
+           SecurityContext context = SecurityContextHolder.createEmptyContext();
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken= new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+           usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            context.setAuthentication(usernamePasswordAuthenticationToken);
+           SecurityContextHolder.setContext(context);
+            log.info("Fine   --------------> "+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
         }
     }
-}catch(Exception ex){
-        log.info("JWTUtil Excwption -->"+ex);
+}catch(Exception ex) {
+    log.info("JWTUtil Excwption -->" + ex);
 }
-        log.info("-------------->");
-        filterChain.doFilter(request, response);
+
+       filterChain.doFilter(request, response);
 
     }
 }

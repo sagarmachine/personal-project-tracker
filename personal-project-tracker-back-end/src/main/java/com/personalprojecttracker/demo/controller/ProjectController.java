@@ -8,19 +8,20 @@ import com.personalprojecttracker.demo.repository.ProjectRepository;
 import com.personalprojecttracker.demo.repository.UserRepository;
 import com.personalprojecttracker.demo.service.IBindingResultErrorService;
 import com.personalprojecttracker.demo.service.IProjectService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/project")
-@CrossOrigin(value = {"http://localhost:3000"},exposedHeaders = "Authentication")
 public class ProjectController {
 
     @Autowired
@@ -37,6 +38,7 @@ public class ProjectController {
 
     @GetMapping("")
     public ResponseEntity<?> getAllProjects(Principal principal){
+        log.info("<--> "+ SecurityContextHolder.getContext().getAuthentication());
         User user =userRepository.findByEmail(principal.getName());
         return new ResponseEntity<>(projectRepository.findByUserEmailOrderByCreatedDateDesc(principal.getName()), HttpStatus.OK);
     }
