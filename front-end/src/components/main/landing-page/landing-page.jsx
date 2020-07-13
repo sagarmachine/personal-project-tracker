@@ -29,7 +29,7 @@ import logo from "../../../assets/images/projectTrackerLogo3.png"
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" Make"}});
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" your"}});
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" project"}});
-  setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" unforgatable."}});
+  setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" unforgettable."}});
 
   setTimeout(()=>{this.setState((prevState)=>{return{value:""}});
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+"Track"}});
