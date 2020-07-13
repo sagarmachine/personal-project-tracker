@@ -1,0 +1,15 @@
+.pageNotFound{
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  transform: rotate3d(0,10,20.30);
+  &__404{
+    font-size: 50rem;
+  }
+  &__para{
+    transform:rotate(-90deg);
+    font-size: 3.5rem;
+    position: absolute;
+    bottom: 46rem;
+  }
+}
