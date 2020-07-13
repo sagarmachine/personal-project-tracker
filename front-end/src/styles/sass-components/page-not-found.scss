@@ -1,15 +1,92 @@
 .pageNotFound{
-  display:flex;
-  justify-content: center;
-  align-content: center;
+  // width: 100%;
+  border: 1px solid rgba($color-link,.1);
+  padding: 2rem;
+  position: relative;
+  top: 50%;
+  z-index: 500;
+  // display:flex;
+  // justify-content: center;
+  // align-content: center;
+  // flex-direction: column;
   transform: rotate3d(0,10,20.30);
+  color: $color-grey;
   &__404{
-    font-size: 50rem;
+    text-align: center;
+    // padding-left: 6rem;
+    margin-left: 6rem;
+   font-size: 5rem;
+   letter-spacing: 2rem;
+  }
+  &__4{
+    position:relative;
+    display: inline-block;
+    align-self: baseline;
+    animation: hinge 4s linear infinite;
+    animation-delay: 2s;
+
+  }
+  &__0{
+    position:relative;
+    display: inline-block;
+    align-self: baseline;
+    animation: hinge 3.5s linear  infinite;
+    animation-delay: 2s;
+
+  }
+  &__44{
+    position:relative;
+    display: inline-block;
+    align-self: baseline;
+    animation: hinge 3s linear  infinite;
+    animation-delay: 2s;
   }
   &__para{
-    transform:rotate(-90deg);
-    font-size: 3.5rem;
-    position: absolute;
-    bottom: 46rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 3rem;
   }
+  &__btn{
+    font-size: 2rem;
+    display: flex;
+    margin-bottom: 3rem;
+    &-1{
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      & div{
+        color: $color-grey-light;
+      }
+    }
+
+  }
+}
+@keyframes hinge {
+   0% {
+      transform: rotate(0);
+      // transform-origin: top;
+      animation-timing-function: ease-in-out;
+   }
+   30%, 60% {
+      transform: rotate(80deg);
+      // transform-origin: top;
+      animation-timing-function: ease-in-out;
+   }
+   40% {
+      transform: rotate(60deg);
+      // transform-origin: top;
+      animation-timing-function: ease-in-out;
+   }
+   80% {
+      transform: rotate(60deg) translateY(0);
+      opacity: 1;
+      // transform-origin: top;
+      animation-timing-function: ease-in-out;
+   }
+   100% {
+      transform: translateY(200px);
+      opacity: 0;
+   }
 }
