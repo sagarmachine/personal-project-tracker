@@ -22,7 +22,7 @@ export default class TaskDetailView extends Component {
                 </div>
                 <div className="taskDetailView__btn">
                      <div className="dark-btn submitBtn" onClick={()=>this.props.openUpdateTaskDetailView(this.props.selectedTaskIndex)} ><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Update</div>
-                     <div className="dark-btn submitBtn" onClick={()=>this.props.openUpdateTaskDetailView(this.props.selectedTaskIndex)} ><i className="fa fa-trash" aria-hidden="true"></i> Delete</div>
+                     <div style={{display:"none"}} className="dark-btn submitBtn" onClick={()=>this.props.openUpdateTaskDetailView(this.props.selectedTaskIndex)} ><i className="fa fa-trash" aria-hidden="true"></i> Delete</div>
                 </div>
                 <hr/>
                 <h5>Summary</h5>

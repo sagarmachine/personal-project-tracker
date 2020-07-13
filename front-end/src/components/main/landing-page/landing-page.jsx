@@ -29,7 +29,7 @@ import logo from "../../../assets/images/projectTrackerLogo3.png"
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" Make"}});
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" your"}});
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" project"}});
-  setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" unforgatable."}});
+  setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+" unforgettable."}});
 
   setTimeout(()=>{this.setState((prevState)=>{return{value:""}});
   setTimeout(()=>{this.setState((prevState)=>{return{value:prevState.value+"Track"}});
@@ -100,9 +100,11 @@ this.repeat();
                    <div className="landing__head-1">
                        <div className="backgroundWhite"></div>
                        <div className="landing__head-static">{this.state.value}</div>
+                       <Link style={{color:"white"}} to={this.props.getStarted?"/dashboard":"/login"}>
                        <div className="subnitBtn dark-btn landing__head-static--2">
-                          <Link style={{color:"white"}} to={this.props.getStarted?"/dashboard":"/login"}>Get Started</Link>
+                          Get Started
                        </div>
+                       </Link>
                    </div>
                    <img className="landing__logo" src={logo} alt="logo"/>
                 </div>
