@@ -19,7 +19,8 @@ import {Link } from "react-router-dom"
       this.props.email(this.state.email);
       this.setState({authenticating:false,loading:false});
       this.props.history.push("/dashboard")})
-      .catch(ex=>{alert("credentials are invlaid");
+      .catch(ex=>{alert(JSON.stringify(ex));
+            console.log(JSON.stringifyex);
          this.setState({email:"",password:"",authenticating:false})});
      }
 
