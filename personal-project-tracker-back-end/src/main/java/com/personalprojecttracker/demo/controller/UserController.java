@@ -1,5 +1,6 @@
 package com.personalprojecttracker.demo.controller;
 
+import com.personalprojecttracker.demo.model.PayPalClient;
 import com.personalprojecttracker.demo.model.User;
 import com.personalprojecttracker.demo.repository.UserRepository;
 import com.personalprojecttracker.demo.security.JWTUtil;
@@ -19,8 +20,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -74,7 +77,17 @@ public class UserController {
 
     }
 
+    @Autowired
+   PayPalClient payPalClient;
 
+    @PostMapping(value = "/make/payment")
+    public Map<String, Object> makePayment(@RequestParam("sum") String sum){
+        return payPalClient.createPayment(sum);
+    }
 
+    @PostMapping(value = "/complete/payment")
+    public Map<String, Object> completePayment(HttpServletRequest request){
+        return payPalClient.completePayment(request);
+    }
 
 }

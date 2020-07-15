@@ -94,7 +94,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
+
 
 
 @CrossOrigin
@@ -113,12 +113,12 @@ public class CheckAuthenticationFilter  extends OncePerRequestFilter {
 //    }
 
 
-//    public CheckAuthenticationFilter(AuthenticationManager authenticationManager) {
-//        super(authenticationManager);
-//    }
+   // public CheckAuthenticationFilter(AuthenticationManager authenticationManager) {
+  //      super(authenticationManager);
+  //  }
 
     public CheckAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil,IUserService userService) {
-        // super(authenticationManager);
+      //  super(authenticationManager);
         this.jwtUtil = jwtUtil;
         this.userService=userService;
     }
@@ -130,31 +130,27 @@ public class CheckAuthenticationFilter  extends OncePerRequestFilter {
 
         String jwtToken = request.getHeader("Authentication");
 
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while( headerNames.hasMoreElements())
-            log.info("---=-=-=-=-=--> 0 stage "+ headerNames.nextElement());
+try {
+    if (jwtToken != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        log.info("---=-=-=-=-=--> 1 stage");
+        String JWT =jwtToken.substring(7);
+        UserDetails user =userService.loadUserByUsername(jwtUtil.getUsernameFromToken(JWT));
 
-        try {
-            if (jwtToken != null ) {
-                log.info("---=-=-=-=-=--> 1 stage");
-                String JWT =jwtToken.substring(7);
-                UserDetails user =userService.loadUserByUsername(jwtUtil.getUsernameFromToken(JWT));
-
-                if (jwtUtil.validateToken(JWT, user)) {
-                    log.info("---=-=-=-=-=--> 2 stage");
-                    SecurityContext context = SecurityContextHolder.createEmptyContext();
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken= new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
-                    usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    context.setAuthentication(usernamePasswordAuthenticationToken);
-                    SecurityContextHolder.setContext(context);
-                    log.info("Fine   --------------> "+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
-                }
-            }
-        }catch(Exception ex) {
-            log.info("JWTUtil Excwption -->" + ex);
+        if (jwtUtil.validateToken(JWT, user)) {
+            log.info("---=-=-=-=-=--> 2 stage");
+           SecurityContext context = SecurityContextHolder.createEmptyContext();
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken= new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+           usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            context.setAuthentication(usernamePasswordAuthenticationToken);
+           SecurityContextHolder.setContext(context);
+            log.info("Fine   --------------> "+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
         }
+    }
+}catch(Exception ex) {
+    log.info("JWTUtil Excwption -->" + ex);
+}
 
-        filterChain.doFilter(request, response);
+       filterChain.doFilter(request, response);
 
     }
 }

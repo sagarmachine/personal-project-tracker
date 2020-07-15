@@ -9,6 +9,10 @@ import UpdateProject from "./update-project/update-project"
 import ProjectBoard from "./project-board/project-board"
 import LandingPage from "./landing-page/landing-page";
 import PageNotFound from "./page-not-found/page-not-found";
+import PayPalPayment from "./pay-pal-payment/pay-pal-payment";
+import PayPalSuccess from "./pay-pal-payment/sucess";
+
+
 
  class Main extends Component{
 
@@ -32,6 +36,9 @@ import PageNotFound from "./page-not-found/page-not-found";
               <Route exact path="/addProject" component={AddProject}/>
               <Route exact path="/updateProject" component={UpdateProject}/>
               <Route exact path="/projectBoard" component={ProjectBoard}/>
+              <Route exact path="/pay" component={PayPalPayment}/>
+               <Route  path="/pay" component={PayPalSuccess}/>
+
               <Route path="/" component={PageNotFound}/>
           </Switch>
         </div>
